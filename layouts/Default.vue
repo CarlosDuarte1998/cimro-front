@@ -1,7 +1,5 @@
 <template>
- 
+    <header>
+        <Header />
+    </header>
 </template>
-
-<style scoped>
-
-</style>
