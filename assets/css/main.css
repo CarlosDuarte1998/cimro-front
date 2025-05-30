@@ -12,3 +12,17 @@ body {
   box-shadow: none;
   
 }
+
+.container{
+ 
+  margin: 0 auto;
+ 
+}
+
+.bg-blue-900 {
+  background-color: rgb(0 62 113/var(--tw-bg-opacity,1));
+}
+
+.bg-blue-600 {
+  background-color: rgb(0 104 201/var(--tw-bg-opacity,1));
+}

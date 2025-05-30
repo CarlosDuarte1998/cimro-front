@@ -1,4 +1,7 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
+
+import colors from 'tailwindcss/colors'
+
 export default defineNuxtConfig({
   compatibilityDate: '2025-05-15',
   devtools: { enabled: true },
@@ -12,5 +15,8 @@ export default defineNuxtConfig({
     '@nuxtjs/tailwindcss',
     'nuxt-swiper',
   ],
- 
+
+
+
+
 })

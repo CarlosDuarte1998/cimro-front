@@ -4,7 +4,8 @@ import Footer from "@/components/Footer.vue"
 
 </script>
 <template>
-    <header>
+   <div class="flex min-h-screen flex-col  text-gray-900">
+     <header class="sticky top-0 z-50 w-full border-b border-gray-200 bg-white">
         <Header />
     </header>
     <main>
@@ -13,5 +14,6 @@ import Footer from "@/components/Footer.vue"
     <footer>
         <Footer />
     </footer>
+   </div>
 
 </template>

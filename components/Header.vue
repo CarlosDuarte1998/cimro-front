@@ -5,7 +5,7 @@
 
 </script>
 <template>
-    <header class="sticky top-0 z-50 w-full border-b border-gray-200 bg-white">
+    
         <div class="container flex h-16 items-center justify-between px-4 md:px-6 max-w-[1380px] mx-auto"><a
                 class="flex items-center gap-2" href="/">
                 <img alt="CIMRO Logo" width="140" height="60" decoding="async" data-nimg="1" class="h-16 w-auto"
@@ -20,12 +20,16 @@
 
                 <UDropdownMenu arrow :items="items = [
                     {
-                        label: 'Subitem 1',
-                        href: '/servicios/subitem-1'
+                        label: 'Todos los Servicios',
+                        href: '/servicios'
                     },
                     {
-                        label: 'Subitem 2',
-                        href: '/servicios/subitem-2'
+                        label: 'Tomografía',
+                        href: '/servicios/35'
+                    },
+                    {
+                        label: 'Resonancia Magnética',
+                        href: '/servicios/85'
                     }
                 ]" class="p-0 border-0" :ui="{
                     content: 'w-48'
@@ -60,5 +64,5 @@
                     </svg><span class="sr-only">Toggle menu</span></button>
             </div>
         </div>
-    </header>
+
 </template>
