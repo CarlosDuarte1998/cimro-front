@@ -2,5 +2,15 @@
 export default defineNuxtConfig({
   compatibilityDate: '2025-05-15',
   devtools: { enabled: true },
-  modules: ['@nuxt/ui', '@nuxt/icon', '@nuxt/fonts']
+  ui: {
+    colorMode: false
+  },
+  modules: [
+    '@nuxt/ui',
+    '@nuxt/icon',
+    '@nuxt/fonts',
+    '@nuxtjs/tailwindcss',
+    'nuxt-swiper',
+  ],
+ 
 })
