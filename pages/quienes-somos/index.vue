@@ -10,11 +10,11 @@
     </section>
 
     <section class="py-16">
-        <div class="container px-4 md:px-6">
+        <div class="container px-4 md:px-6 max-w-[1300px] mx-auto">
             <div class="grid gap-12 md:grid-cols-2">
                 <div>
-                    <h2 class="mb-6 text-2xl font-bold tracking-tight text-gray-900 sm:text-3xl">Nuestra Historia</h2>
-                    <div class="space-y-4 text-gray-600">
+                    <h2 class="mb-6 text-2xl font-bold tracking-tight text-gray-900 sm:text-4xl">Nuestra Historia</h2>
+                    <div class="space-y-4 text-gray-600 text-lg">
                         <p>El Centro de Imágenes Radiológicas de Occidente (CIMRO) fue fundado en [año] con la visión de
                             ofrecer servicios de diagnóstico por imagen de la más alta calidad, combinando tecnología de
                             vanguardia con un enfoque humanizado en la atención al paciente.</p>
@@ -34,8 +34,8 @@
     </section>
 
     <section class="bg-gray-50 py-16">
-        <div class="container px-4 md:px-6">
-            <div class="grid gap-8 md:grid-cols-3">
+        <div class="container px-4 md:px-6 max-w-[1300px] mx-auto">
+            <div class="grid gap-8 md:grid-cols-3 text-lg">
                 <div class="rounded-lg bg-white p-6 shadow-sm">
                     <h3 class="mb-4 text-xl font-bold text-gray-900">Misión</h3>
                     <p class="text-gray-600">Proporcionar servicios de diagnóstico por imagen de la más alta calidad,
@@ -93,7 +93,7 @@
     </section>
 
     <section class="py-16">
-        <div class="container px-4 md:px-6">
+        <div class="container px-4 md:px-6 max-w-[1300px] mx-auto">
             <div class="mb-12 text-center">
                 <h2 class="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">Nuestro Equipo</h2>
                 <p class="mx-auto mt-4 max-w-[700px] text-gray-500">Contamos con un equipo de profesionales altamente
@@ -144,7 +144,7 @@
     </section>
 
     <section class="bg-gray-50 py-16">
-        <div class="container px-4 md:px-6">
+        <div class="container px-4 md:px-6 max-w-[1300px] mx-auto">
             <div class="mb-12 text-center">
                 <h2 class="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">Nuestras Instalaciones</h2>
                 <p class="mx-auto mt-4 max-w-[700px] text-gray-500">Contamos con instalaciones modernas y equipadas con

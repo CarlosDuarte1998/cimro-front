@@ -4,7 +4,7 @@
             <div class="grid gap-8 md:grid-cols-2 lg:grid-cols-4">
                 <div class="space-y-4"><img alt="CIMRO Logo" loading="lazy" width="120" height="40" decoding="async"
                         data-nimg="1" class="h-10 w-auto" style="color:transparent"
-                        src="/placeholder.svg?height=40&amp;width=120">
+                        src="/public/logo-white-horizontal.png">
                     <p class="text-sm text-blue-100">Centro de Imágenes Radiológicas de Occidente, ofreciendo servicios
                         de diagnóstico por imagen con tecnología avanzada y atención humanizada.</p>
                 </div>

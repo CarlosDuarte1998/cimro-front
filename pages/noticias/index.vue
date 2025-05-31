@@ -11,7 +11,7 @@
     </section>
 
     <section class="py-16">
-        <div class="container px-4 md:px-6">
+        <div class="container px-4 md:px-6 max-w-[1300px] mx-auto">
             <div class="mb-12">
                 <h2 class="text-2xl font-bold tracking-tight text-gray-900 sm:text-3xl">Noticias Destacadas</h2>
                 <div data-orientation="horizontal" role="none" class="shrink-0 bg-border border-gray-200 h-[1px] w-full mt-4"></div>
@@ -94,7 +94,7 @@
                 <div class="rounded-lg border border-gray-200 bg-card text-card-foreground shadow-sm overflow-hidden">
                     <div class="relative h-48 w-full"><img alt="Campaña de detección temprana de cáncer de mama"
                             loading="lazy" decoding="async" data-nimg="fill" class="object-cover"
-                            src="/placeholder.svg?height=250&amp;width=400"
+                            src="https://picsum.photos/400/500?random=2"
                             style="position: absolute; height: 100%; width: 100%; inset: 0px; color: transparent;">
                     </div>
                     <div class="flex flex-col space-y-1.5 p-6">
@@ -138,7 +138,7 @@
                     <div class="relative h-48 w-full"><img
                             alt="Nuevos protocolos de atención para pacientes pediátricos" loading="lazy"
                             decoding="async" data-nimg="fill" class="object-cover"
-                            src="/placeholder.svg?height=250&amp;width=400"
+                            src="https://picsum.photos/400/500?random=3"
                             style="position: absolute; height: 100%; width: 100%; inset: 0px; color: transparent;">
                     </div>
                     <div class="flex flex-col space-y-1.5 p-6">
@@ -181,7 +181,7 @@
                 <div class="rounded-lg border border-gray-200 bg-card text-card-foreground shadow-sm overflow-hidden">
                     <div class="relative h-48 w-full"><img alt="CIMRO participa en congreso internacional de radiología"
                             loading="lazy" decoding="async" data-nimg="fill" class="object-cover"
-                            src="/placeholder.svg?height=250&amp;width=400"
+                            src="https://picsum.photos/400/500?random=4"
                             style="position: absolute; height: 100%; width: 100%; inset: 0px; color: transparent;">
                     </div>
                     <div class="flex flex-col space-y-1.5 p-6">
@@ -224,7 +224,7 @@
                 <div class="rounded-lg border border-gray-200 bg-card text-card-foreground shadow-sm overflow-hidden">
                     <div class="relative h-48 w-full"><img alt="Convenio con aseguradoras para beneficio de pacientes"
                             loading="lazy" decoding="async" data-nimg="fill" class="object-cover"
-                            src="/placeholder.svg?height=250&amp;width=400"
+                            src="https://picsum.photos/400/500?random=5"
                             style="position: absolute; height: 100%; width: 100%; inset: 0px; color: transparent;">
                     </div>
                     <div class="flex flex-col space-y-1.5 p-6">

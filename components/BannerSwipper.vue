@@ -28,7 +28,7 @@ onMounted(() => {
     <ClientOnly>
         <swiper-container ref="containerRef" :init="false">
             <swiper-slide class="relative" v-for="slide in 4" :key="slide">
-                <div class="relative h-[500px] w-full">
+                <div class="relative h-[700px] w-full">
                     <img :src="`https://picsum.photos/800/400?random=${slide}`" alt="Banner Image 1"
                         class="w-full h-full object-cover" />
                     <div
