@@ -190,61 +190,18 @@ import BannerSwipper from '~/components/BannerSwipper.vue';
       <div class="absolute inset-0 bg-blue-900/20 mix-blend-multiply"></div>
    </section>
 
+   <section>
+     
+   </section>
 
    <section class="py-16">
-      <div class="container px-4 md:px-6 m-auto">
+      <div class="container px-4 md:px-6 max-w-[1300px] m-auto">
          <div class="mb-12 text-center">
             <h2 class="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">Lo que dicen nuestros pacientes</h2>
             <p class="mx-auto mt-4 max-w-[700px] text-gray-500">La satisfacción de nuestros pacientes es nuestro mayor
                orgullo.</p>
          </div>
-         <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-            <div class="rounded-lg border border-gray-200 text-card-foreground shadow-sm bg-gray-50">
-               <div class="p-6 pt-6">
-                  <div class="mb-4 flex items-center gap-4">
-                     <div class="h-12 w-12 overflow-hidden rounded-full bg-gray-200"><img alt="Avatar" loading="lazy"
-                           width="48" height="48" decoding="async" data-nimg="1" class="h-full w-full object-cover"
-                           style="color:transparent" src="/placeholder.svg?height=48&amp;width=48"></div>
-                     <div>
-                        <h4 class="font-medium">María González</h4>
-                        <p class="text-sm text-gray-500">Paciente de Tomografía</p>
-                     </div>
-                  </div>
-                  <p class="italic text-gray-600">"El servicio fue excelente, desde la recepción hasta la entrega de
-                     resultados. El personal muy amable y profesional. Recomiendo ampliamente CIMRO."</p>
-               </div>
-            </div>
-            <div class="rounded-lg border border-gray-200 text-card-foreground shadow-sm bg-gray-50">
-               <div class="p-6 pt-6">
-                  <div class="mb-4 flex items-center gap-4">
-                     <div class="h-12 w-12 overflow-hidden rounded-full bg-gray-200"><img alt="Avatar" loading="lazy"
-                           width="48" height="48" decoding="async" data-nimg="1" class="h-full w-full object-cover"
-                           style="color:transparent" src="/placeholder.svg?height=48&amp;width=48"></div>
-                     <div>
-                        <h4 class="font-medium">Carlos Rodríguez</h4>
-                        <p class="text-sm text-gray-500">Paciente de Ultrasonido</p>
-                     </div>
-                  </div>
-                  <p class="italic text-gray-600">"Instalaciones modernas y limpias. El médico que me atendió fue muy
-                     profesional y me explicó detalladamente los resultados. Muy satisfecho con el servicio."</p>
-               </div>
-            </div>
-            <div class="rounded-lg border border-gray-200 text-card-foreground shadow-sm bg-gray-50">
-               <div class="p-6 pt-6">
-                  <div class="mb-4 flex items-center gap-4">
-                     <div class="h-12 w-12 overflow-hidden rounded-full bg-gray-200"><img alt="Avatar" loading="lazy"
-                           width="48" height="48" decoding="async" data-nimg="1" class="h-full w-full object-cover"
-                           style="color:transparent" src="/placeholder.svg?height=48&amp;width=48"></div>
-                     <div>
-                        <h4 class="font-medium">Laura Martínez</h4>
-                        <p class="text-sm text-gray-500">Paciente de Mamografía</p>
-                     </div>
-                  </div>
-                  <p class="italic text-gray-600">"Me sentí muy cómoda durante todo el proceso. El personal fue muy
-                     amable y considerado. Los resultados estuvieron listos en tiempo récord. Excelente servicio."</p>
-               </div>
-            </div>
-         </div>
+          <div class="taggbox" style="width:100%;height:100%;overflow:auto;" data-widget-id="285784" website="1"></div>
       </div>
    </section>
 

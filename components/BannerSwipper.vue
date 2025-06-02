@@ -37,7 +37,7 @@ onMounted(() => {
                         class="w-full h-full object-cover" />
                     <div
                         class="absolute inset-0 bg-gradient-to-r from-black/100 to-transparent flex items-center justify-start px-16">
-                        <div>
+                        <div class="z-10">
                             <h2 class="mb-4 text-3xl font-bold text-white md:text-4xl lg:text-5xl max-w-lg">
                                 Tecnología de vanguardia para su salud {{ index }}
                             </h2>

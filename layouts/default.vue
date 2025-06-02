@@ -2,6 +2,16 @@
 import Header from "@/components/Header.vue"
 import Footer from "@/components/Footer.vue"
 
+useHead({
+  title: 'CIMRO - Centro de Imágenes Médicas y Radiología',
+  script: [
+    {
+      src: 'https://widget.taggbox.com/embed.min.js',
+      type: 'text/javascript'
+    }
+  ]
+})
+
 </script>
 <template>
    <div class="flex min-h-screen flex-col  text-gray-900">
