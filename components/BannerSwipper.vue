@@ -66,9 +66,9 @@ onMounted(() => {
   </swiper-container>
 
   <!-- Debug (opcional) -->
-  <template v-for="(slide, index) in bannerMain" :key="'debug-' + index">
+  <!-- <template v-for="(slide, index) in bannerMain" :key="'debug-' + index">
     <pre>{{ slide.description }}</pre>
-  </template>
+  </template> -->
 </template>
 
 <style scoped></style>

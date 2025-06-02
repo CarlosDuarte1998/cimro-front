@@ -1,28 +1,47 @@
 <script setup>
 import { onMounted } from 'vue'
 
+import { useConfigStore } from '#imports';
+
+const configStore = useConfigStore();
+let insurances = ref([]);
+
 onMounted(() => {
-  const logos = document.getElementById("slider")?.cloneNode(true);
-  if (logos) {
-    document.getElementById("logos")?.appendChild(logos);
-  }
+    const logos = document.getElementById("slider")?.cloneNode(true);
+    if (logos) {
+        document.getElementById("logos")?.appendChild(logos);
+    }
 });
+
+watch(
+  () => configStore.configuraciones.configuraciones,
+  (newVal) => {
+    insurances.value = newVal.insurance
+  },
+ 
+);
+
+
+
 </script>
 
 
 <template>
     <!-- Brans Loop infinity -->
 
+
+
+
     <div class="logos" id="logos">
 
         <div class="logos-slide flex" id="slider">
-            <template v-for="item in 20">
+            <template v-for="item in insurances">
 
-                <img :src="`https://picsum.photos/400/500?random=${item}`" alt="" srcset="" class="" v-if="item%2 === 0" />
-                <img :src="`https://picsum.photos/230/500?random=${item}`" alt="" srcset="" class="" v-else />
+                <img :src="item.imagen" alt="" srcset="" class="" />
+
 
             </template>
-            
+
         </div>
 
     </div>
@@ -31,7 +50,6 @@ onMounted(() => {
 </template>
 
 <style scoped>
-
 .logos {
     width: 80%;
     display: flex;
@@ -40,17 +58,20 @@ onMounted(() => {
     background: white;
     white-space: nowrap;
     position: relative;
-    padding: 20px 0;
+    padding: px 0;
 }
 
-.logos-slide{
+.logos-slide {
     animation: 20s slide infinite linear;
 
     img {
-        height: 120px;
+        display: inline-block;
+        width: 150px;
         margin: 0px 70px;
+        aspect-ratio: 1/1;
+        object-fit: contain;
     }
-    }
+}
 
 .logos::before {
     position: absolute;
@@ -59,7 +80,7 @@ onMounted(() => {
     width: 200px;
     height: 100%;
     content: "";
-    background: linear-gradient(to left, rgb(255, 255, 255,0), rgb(255, 255, 255)) ;
+    background: linear-gradient(to left, rgb(255, 255, 255, 0), rgb(255, 255, 255));
     z-index: 1;
 }
 
@@ -70,7 +91,7 @@ onMounted(() => {
     width: 200px;
     height: 100%;
     content: "";
-    background: linear-gradient(to right, rgb(255, 255, 255,0), rgb(255, 255, 255));
+    background: linear-gradient(to right, rgb(255, 255, 255, 0), rgb(255, 255, 255));
     z-index: 1;
 }
 
@@ -79,8 +100,9 @@ onMounted(() => {
     0% {
         transform: translateX(0);
     }
+
     100% {
-        transform: translateX(-20%);
+        transform: translateX(-50%);
     }
 }
 </style>

@@ -8,6 +8,7 @@ export const useConfigStore = defineStore("config", {
     state: () => ({
         configuraciones: [],
         bannerMain: [],
+        insurance: [],
         loaded: false,
         error: null,
     }),
@@ -22,6 +23,7 @@ export const useConfigStore = defineStore("config", {
                     const response = await axios.get(`https://cimro-back-dev.grupomonterroza.com/wp-json/acf/v3/opciones`);
                     this.configuraciones = response.data;
                     this.bannerMain = this.configuraciones["configuraciones"].bannerMain || [];
+                    this.insurance = this.configuraciones["configuraciones"].insurance || [];
                 } catch (error) {
                     console.error("Error fetching configuraciones:", error);
                     this.error = error;
