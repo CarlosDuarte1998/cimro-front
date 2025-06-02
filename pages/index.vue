@@ -191,7 +191,7 @@ import BannerSwipper from '~/components/BannerSwipper.vue';
    </section>
 
    <section>
-     
+
    </section>
 
    <section class="py-16">
@@ -201,11 +201,15 @@ import BannerSwipper from '~/components/BannerSwipper.vue';
             <p class="mx-auto mt-4 max-w-[700px] text-gray-500">La satisfacción de nuestros pacientes es nuestro mayor
                orgullo.</p>
          </div>
-          <div class="taggbox" style="width:100%;height:100%;overflow:auto;" data-widget-id="285784" website="1"></div>
+         <div class="taggbox" style="width:100%;height:100%;overflow:auto;" data-widget-id="285784" website="1"></div>
       </div>
    </section>
 
    <section>
+      <div class="mb-6 text-center">
+         <h2 class="text-3xl font-bold tracking-tight text-gray-900 sm:text-3xl">Aseguradoras Afiliadas</h2>
+     
+      </div>
       <BransLoop />
    </section>
 

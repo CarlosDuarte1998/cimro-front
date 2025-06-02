@@ -14,8 +14,8 @@
                     src="/public/logo-horizontal.png"></a>
             <nav class="hidden md:flex md:gap-6 lg:gap-10">
                <div class="flex items-center gap-6 lg:gap-8">
-                 <NuxtLink class="4xl:text-lg text-sm font-bold text-gray-700 transition-colors hover:text-blue-600" to="/">Inicio
-                </NuxtLink>
+                 <a class="4xl:text-lg text-sm font-bold text-gray-700 transition-colors hover:text-blue-600" href="/">Inicio
+                </a>
 
                 <NuxtLink class="4xl:text-lg text-sm font-bold text-gray-700 transition-colors hover:text-blue-600"
                     to="/quienes-somos">Quiénes Somos</NuxtLink>

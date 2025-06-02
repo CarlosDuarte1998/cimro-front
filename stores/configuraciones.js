@@ -9,6 +9,7 @@ export const useConfigStore = defineStore("config", {
         configuraciones: [],
         bannerMain: [],
         insurance: [],
+        social: [],
         loaded: false,
         error: null,
     }),
@@ -22,6 +23,9 @@ export const useConfigStore = defineStore("config", {
                     this.loaded = true;
                     const response = await axios.get(`https://cimro-back-dev.grupomonterroza.com/wp-json/acf/v3/opciones`);
                     this.configuraciones = response.data;
+
+                    
+
                     this.bannerMain = this.configuraciones["configuraciones"].bannerMain || [];
                     this.insurance = this.configuraciones["configuraciones"].insurance || [];
                 } catch (error) {
