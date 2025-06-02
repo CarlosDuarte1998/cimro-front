@@ -29,7 +29,7 @@ onMounted(() => {
 </script>
 
 <template>
-    <ClientOnly>
+
         <swiper-container ref="containerRef" :init="false">
             <swiper-slide class="relative" v-for="(slide, index) in configStore.bannerMain" :key="index">
                 <div class="relative h-[700px] w-full">
@@ -59,7 +59,7 @@ onMounted(() => {
             </swiper-slide> -->
         </swiper-container>
 
-    </ClientOnly>
+
 </template>
 
 <style scoped></style>
