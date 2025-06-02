@@ -1,65 +1,82 @@
 <script setup lang="ts">
-
+import { ref, computed, onMounted } from 'vue';
 import { useConfigStore } from '#imports';
 
+// ✅ Tipado de cada banner
+interface BannerItem {
+  images: { url: string }[];
+  description: {
+    title: string;
+  };
+}
+
+// Store
 const configStore = useConfigStore();
+
+// ✅ Tipado correcto del bannerMain
+const bannerMain = computed<BannerItem[]>(() => configStore.bannerMain);
+
+// Swiper
 const containerRef = ref(null);
 const slides = ref(Array.from({ length: 10 }));
+
 const swiper = useSwiper(containerRef, {
-    effect: "fade",
-    loop: true,
-    autoplay: {
-        delay: 5000,
+  effect: "fade",
+  loop: true,
+  autoplay: {
+    delay: 5000,
+  },
+  creativeEffect: {
+    prev: {
+      shadow: true,
+      translate: [0, 0, -400],
     },
-    creativeEffect: {
-        prev: {
-            shadow: true,
-            translate: [0, 0, -400],
-        },
-        next: {
-            shadow: true,
-            translate: [0, 0, -400],
-        },
+    next: {
+      shadow: true,
+      translate: [0, 0, -400],
     },
+  },
 });
 
 onMounted(() => {
-    console.log(swiper.instance);
+  console.log(swiper.instance);
 });
 </script>
 
 <template>
+  <swiper-container ref="containerRef" :init="false">
+    <template v-for="(slide, index) in bannerMain" :key="index">
+      <swiper-slide class="relative">
+        <div class="relative h-[700px] w-full">
+          <template v-for="(item, index2) in slide.images" :key="index2">
+            <img :src="item.url" alt="Banner Image" class="w-full h-full object-cover" />
+          </template>
 
-        <swiper-container ref="containerRef" :init="false">
-            <swiper-slide class="relative" v-for="(slide, index) in configStore.bannerMain" :key="index">
-                <div class="relative h-[700px] w-full">
-                    <img :src="slide.image.url" alt="Banner Image 1"
-                        class="w-full h-full object-cover" />
-                    <div
-                        class="absolute inset-0 bg-gradient-to-r from-black/100 to-transparent flex items-center justify-start px-16">
-                        <div class="z-10">
-                            <h2 class="mb-4 text-3xl font-bold text-white md:text-4xl lg:text-5xl max-w-lg">
-                                Tecnología de vanguardia para su salud {{ index }}
-                            </h2>
-                            <p class="text-lg text-white max-w-md">
-                                Descubre cómo nuestras instalaciones y equipos avanzados pueden
-                                mejorar tu bienestar.
-                            </p>
-                            <button
-                                class="mt-6 px-6 py-3 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition-colors">
-                                Conoce nuestros servicios
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            </swiper-slide>
+          <div
+            class="absolute inset-0 bg-gradient-to-r from-black/100 to-transparent flex items-center justify-start px-16">
+            <div class="z-10">
+              <h2 class="mb-4 text-3xl font-bold text-white md:text-4xl lg:text-5xl max-w-lg">
+                {{ slide.description.title }}
+              </h2>
+              <p class="text-lg text-white max-w-md">
+                Descubre cómo nuestras instalaciones y equipos avanzados pueden
+                mejorar tu bienestar.
+              </p>
+              <button
+                class="mt-6 px-6 py-3 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition-colors">
+                Conoce nuestros servicios
+              </button>
+            </div>
+          </div>
+        </div>
+      </swiper-slide>
+    </template>
+  </swiper-container>
 
-            <!-- <swiper-slide v-for="(slide, idx) in slides" :key="idx" style="background-color: black; color: white;">
-                Slide {{ idx + 1 }}
-            </swiper-slide> -->
-        </swiper-container>
-
-
+  <!-- Debug (opcional) -->
+  <template v-for="(slide, index) in bannerMain" :key="'debug-' + index">
+    <pre>{{ slide.description }}</pre>
+  </template>
 </template>
 
 <style scoped></style>

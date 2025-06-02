@@ -205,6 +205,10 @@ import BannerSwipper from '~/components/BannerSwipper.vue';
       </div>
    </section>
 
+   <section>
+      <BransLoop />
+   </section>
+
    <section class="bg-[#3d78bc] py-16 text-white">
       <div class="container px-4 md:px-6 m-auto">
          <div class="mx-auto max-w-3xl text-center">

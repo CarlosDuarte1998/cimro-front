@@ -32,6 +32,7 @@ useHead({
     <main>
         <slot />
     </main>
+    
     <footer>
         <Footer />
     </footer>
