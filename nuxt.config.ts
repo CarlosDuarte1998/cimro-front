@@ -5,6 +5,11 @@ import colors from 'tailwindcss/colors'
 export default defineNuxtConfig({
   compatibilityDate: '2025-05-15',
   devtools: { enabled: true },
+
+  //SSR disabled for now
+
+  ssr: false,
+
   ui: {
     colorMode: false
   },
@@ -14,7 +19,9 @@ export default defineNuxtConfig({
     '@nuxt/fonts',
     '@nuxtjs/tailwindcss',
     'nuxt-swiper',
+    '@pinia/nuxt',
   ],
+
 
 
 

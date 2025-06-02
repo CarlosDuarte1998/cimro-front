@@ -1,4 +1,8 @@
 <script setup lang="ts">
+
+import { useConfigStore } from '#imports';
+
+const configStore = useConfigStore();
 const containerRef = ref(null);
 const slides = ref(Array.from({ length: 10 }));
 const swiper = useSwiper(containerRef, {
@@ -27,15 +31,15 @@ onMounted(() => {
 <template>
     <ClientOnly>
         <swiper-container ref="containerRef" :init="false">
-            <swiper-slide class="relative" v-for="slide in 4" :key="slide">
+            <swiper-slide class="relative" v-for="(slide, index) in configStore.bannerMain" :key="index">
                 <div class="relative h-[700px] w-full">
-                    <img :src="`https://picsum.photos/800/400?random=${slide}`" alt="Banner Image 1"
+                    <img :src="slide.image.url" alt="Banner Image 1"
                         class="w-full h-full object-cover" />
                     <div
                         class="absolute inset-0 bg-gradient-to-r from-black/100 to-transparent flex items-center justify-start px-16">
                         <div>
                             <h2 class="mb-4 text-3xl font-bold text-white md:text-4xl lg:text-5xl max-w-lg">
-                                Tecnología de vanguardia para su salud {{ slide }}
+                                Tecnología de vanguardia para su salud {{ index }}
                             </h2>
                             <p class="text-lg text-white max-w-md">
                                 Descubre cómo nuestras instalaciones y equipos avanzados pueden
@@ -54,6 +58,7 @@ onMounted(() => {
                 Slide {{ idx + 1 }}
             </swiper-slide> -->
         </swiper-container>
+
     </ClientOnly>
 </template>
 
