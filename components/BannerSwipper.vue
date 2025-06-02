@@ -1,20 +1,12 @@
-<script setup lang="ts">
+<script setup>
 import { ref, computed, onMounted } from 'vue';
 import { useConfigStore } from '#imports';
-
-// ✅ Tipado de cada banner
-interface BannerItem {
-  images: { url: string }[];
-  description: {
-    title: string;
-  };
-}
 
 // Store
 const configStore = useConfigStore();
 
-// ✅ Tipado correcto del bannerMain
-const bannerMain = computed<BannerItem[]>(() => configStore.bannerMain);
+// Computed que devuelve los banners
+const bannerMain = computed(() => configStore.bannerMain);
 
 // Swiper
 const containerRef = ref(null);
@@ -39,7 +31,7 @@ const swiper = useSwiper(containerRef, {
 });
 
 onMounted(() => {
-  console.log(swiper.instance);
+ 
 });
 </script>
 
