@@ -9,7 +9,7 @@ export const useConfigStore = defineStore("config", {
         configuraciones: [],
         bannerMain: [],
         insurance: [],
-        social: [],
+        socialMedia: [],
         loaded: false,
         error: null,
     }),
@@ -28,6 +28,7 @@ export const useConfigStore = defineStore("config", {
 
                     this.bannerMain = this.configuraciones["configuraciones"].bannerMain || [];
                     this.insurance = this.configuraciones["configuraciones"].insurance || [];
+                    this.socialMedia = this.configuraciones["configuraciones"].socialmedia || [];
                 } catch (error) {
                     console.error("Error fetching configuraciones:", error);
                     this.error = error;
@@ -37,5 +38,8 @@ export const useConfigStore = defineStore("config", {
             }
         
         },
-    }
+    },
+    getters: {
+        
+    },
 });
