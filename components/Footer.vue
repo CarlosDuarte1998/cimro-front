@@ -8,9 +8,6 @@ const socialMediaLinks = computed(() => configStore.socialMedia);
 </script>
 
 <template>
-    <pre>
-        {{ socialMediaLinks }}
-    </pre>
     <footer class="bg-[#003e71] text-white">
         <div class="container m-auto px-4 py-12 md:px-6">
             <div class="grid gap-8 md:grid-cols-2 lg:grid-cols-4">
@@ -27,8 +24,8 @@ const socialMediaLinks = computed(() => configStore.socialMedia);
                     <h3 class="mb-4 text-lg font-medium">Enlaces Rápidos</h3>
                     <ul class="space-y-2 text-sm text-blue-100">
                         <li>
-                            <NuxtLink class="transition-colors hover:text-white hover:underline" to="/">Inicio
-                            </NuxtLink>
+                            <a class="transition-colors hover:text-white hover:underline" href="/">Inicio
+                            </a>
                         </li>
                         <li>
                             <NuxtLink class="transition-colors hover:text-white hover:underline" to="/quienes-somos">
@@ -100,31 +97,30 @@ const socialMediaLinks = computed(() => configStore.socialMedia);
                     <h3 class="mb-4 text-lg font-medium">Síguenos</h3>
                     <div class="flex gap-4">
                         <a class="text-blue-100 transition-colors hover:text-white" :href="socialMediaLinks.facebook"
-                            v-if="socialMediaLinks.facebook">
-                            <UIcon name="i-lucide-facebook" class="size-5" />
+                            v-if="socialMediaLinks.facebook" target="_blank">
+                            <UIcon name="i-fa6-brands-facebook" class="size-5" />
                             <span class="sr-only">Facebook</span>
                         </a><a class="text-blue-100 transition-colors hover:text-white"
-                            :href="socialMediaLinks.instagram" v-if="socialMediaLinks.instagram">
-                            <UIcon name="i-lucide-instagram" class="size-5" />
+                            :href="socialMediaLinks.instagram" v-if="socialMediaLinks.instagram" target="_blank">
+                            <UIcon name="i-fa6-brands-instagram" class="size-5" />
                             <span class="sr-only">Instagram</span>
                         </a><a class="text-blue-100 transition-colors hover:text-white" :href="socialMediaLinks.twitter"
-                            v-if="socialMediaLinks.twitter">
-                            <UIcon name="i-lucide-twitter" class="size-5" />
+                            v-if="socialMediaLinks.twitter" target="_blank">
+                            <UIcon name="i-fa6-brands-twitter" class="size-5" />
                             <span class="sr-only">Twitter</span>
                         </a>
 
                         <a class="text-blue-100 transition-colors hover:text-white" :href="socialMediaLinks.youtube"
-                            v-if="socialMediaLinks.youtube">
-                            <UIcon name="i-lucide-youtube" class="size-5" />
+                            v-if="socialMediaLinks.youtube" target="_blank">
+                            <UIcon name="i-fa6-brands-youtube" class="size-5" />
                             <span class="sr-only">YouTube</span>
                         </a>
                         <!-- whatsapp -->
 
-                        {{ socialMediaLinks.whatsapp }}
 
                         <a class="text-blue-100 transition-colors hover:text-white" :href="socialMediaLinks.whatsapp"
-                            v-if="socialMediaLinks.whatsapp">
-                            <UIcon name="i-lucide-whatsapp" class="size-5" />
+                            v-if="socialMediaLinks.whatsapp" target="_blank">
+                            <UIcon name="i-fa6-brands-whatsapp" class="size-5" />
                             <span class="sr-only">WhatsApp</span>
                         </a>
 

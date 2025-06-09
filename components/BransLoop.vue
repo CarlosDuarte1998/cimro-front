@@ -4,7 +4,7 @@ import { onMounted } from 'vue'
 import { useConfigStore } from '#imports';
 
 const configStore = useConfigStore();
-let insurances = ref([]);
+let insurances = computed(() => configStore.insurance || []);
 
 onMounted(() => {
     const logos = document.getElementById("slider")?.cloneNode(true);
@@ -13,13 +13,6 @@ onMounted(() => {
     }
 });
 
-watch(
-  () => configStore.configuraciones.configuraciones,
-  (newVal) => {
-    insurances.value = newVal.insurance
-  },
- 
-);
 
 
 

@@ -1,7 +1,12 @@
 <script setup>
 import Header from "@/components/Header.vue"
 import Footer from "@/components/Footer.vue"
+import { useConfigStore } from "#imports";
 
+//store
+const configStore = useConfigStore();
+
+const socialMediaLinks = computed(() => configStore.socialMedia);
 useHead({
   title: 'CIMRO - Centro de Imágenes Médicas y Radiología',
   script: [
@@ -21,8 +26,25 @@ useHead({
               <UIcon name="i-flowbite-map-pin-alt-solid" class="size-5" />
               Urb San Miguelito, Santa Ana, El Salvador
           </a></div>
-          <div>
-            
+          <div class="flex items-center gap-2">
+         <a :href="socialMediaLinks.facebook" v-if="socialMediaLinks.facebook" target="_blank" rel="noopener noreferrer">
+           <UIcon name="i-flowbite-facebook-solid" class="size-5" />
+         </a>
+          <a :href="socialMediaLinks.instagram" v-if="socialMediaLinks.instagram" target="_blank" rel="noopener noreferrer">
+            <UIcon name="i-flowbite-instagram-solid" class="size-5" />
+          </a>
+          <a :href="socialMediaLinks.twitter" v-if="socialMediaLinks.twitter" target="_blank" rel="noopener noreferrer">
+            <UIcon name="i-flowbite-twitter-solid" class="size-5" />
+          </a>
+          <a :href="socialMediaLinks.youtube" v-if="socialMediaLinks.youtube" target="_blank" rel="noopener noreferrer">
+            <UIcon name="i-flowbite-youtube-solid" class="size-5" />
+          </a>
+          <a :href="`tel:${socialMediaLinks.contact}`" v-if="socialMediaLinks.contact" class="ml-2" target="_blank" rel="noopener noreferrer">
+            <UIcon name="i-flowbite-phone-solid" class="size-5" />
+          </a>
+          <a :href="`mailto:${socialMediaLinks.email}`" v-if="socialMediaLinks.email" class="ml-2" target="_blank" rel="noopener noreferrer">
+            <UIcon name="i-flowbite-envelope-solid" class="size-5" />
+          </a>
           </div>
         </div>
     </div>

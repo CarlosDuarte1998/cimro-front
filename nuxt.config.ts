@@ -20,6 +20,7 @@ export default defineNuxtConfig({
     '@nuxtjs/tailwindcss',
     'nuxt-swiper',
     '@pinia/nuxt',
+    '@nuxtjs/sitemap',
   ],
 
 
