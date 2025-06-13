@@ -12,7 +12,8 @@ useHead({
   script: [
     {
       src: 'https://widget.taggbox.com/embed.min.js',
-      type: 'text/javascript'
+      type: 'text/javascript',
+      async: true
     }
   ]
 })
