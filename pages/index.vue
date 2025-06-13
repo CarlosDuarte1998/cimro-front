@@ -27,7 +27,7 @@ import BannerSwipper from '~/components/BannerSwipper.vue';
                   </div>
                   <div class="p-6 pt-0"><img alt="Tomografía Computarizada" loading="lazy" width="350" height="200"
                         decoding="async" data-nimg="1" class="mb-4 rounded-lg object-cover" style="color:transparent"
-                        src="/placeholder.svg?height=200&amp;width=350">
+                        src="https://picsum.photos/200/350?random=6">
                      <p class="text-sm text-gray-500">Nuestros equipos de última generación permiten obtener imágenes
                         precisas con la menor dosis de radiación posible.</p>
                   </div>
@@ -44,7 +44,7 @@ import BannerSwipper from '~/components/BannerSwipper.vue';
                   </div>
                   <div class="p-6 pt-0"><img alt="Ultrasonidos" loading="lazy" width="350" height="200" decoding="async"
                         data-nimg="1" class="mb-4 rounded-lg object-cover" style="color:transparent"
-                        src="/placeholder.svg?height=200&amp;width=350">
+                        src="https://picsum.photos/200/350?random=4">
                      <p class="text-sm text-gray-500">Realizamos estudios de ultrasonido general, obstétrico,
                         ginecológico y especializado con equipos de alta definición.</p>
                   </div>
@@ -61,7 +61,7 @@ import BannerSwipper from '~/components/BannerSwipper.vue';
                   </div>
                   <div class="p-6 pt-0"><img alt="Rayos X" loading="lazy" width="350" height="200" decoding="async"
                         data-nimg="1" class="mb-4 rounded-lg object-cover" style="color:transparent"
-                        src="/placeholder.svg?height=200&amp;width=350">
+                        src="https://picsum.photos/200/350?random=2">
                      <p class="text-sm text-gray-500">Contamos con equipos digitales que proporcionan imágenes de alta
                         calidad con mínima exposición a la radiación.</p>
                   </div>
@@ -184,7 +184,7 @@ import BannerSwipper from '~/components/BannerSwipper.vue';
             </div>
             <div class="flex items-center justify-center"><img alt="Equipo médico avanzado" loading="lazy" width="500"
                   height="400" decoding="async" data-nimg="1" class="rounded-lg object-cover" style="color:transparent"
-                  src="/placeholder.svg?height=400&amp;width=500"></div>
+                  src="https://picsum.photos/400/500?random=1"></div>
          </div>
       </div>
       <div class="absolute inset-0 bg-blue-900/20 mix-blend-multiply"></div>
