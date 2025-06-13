@@ -30,3 +30,14 @@ body {
 .tb_snap_btn_bg{
   display: none;
 }
+
+.btn-menu-mobile{
+  border: 0px;
+  padding: 0px;
+  box-shadow: 0px;
+  --tw-ring-shadow:init;
+}
+.btn-menu-mobile li{
+  height: 1rem;
+  width: 1rem;
+}

@@ -5,16 +5,16 @@
 
 </script>
 <template>
-  
-    
-        <div class="container flex h-23 items-center justify-between md:px-6 max-w-[1380px] mx-auto"><a
-                class="flex items-center gap-2" href="/">
-                <img alt="CIMRO Logo" width="140" height="60" decoding="async" data-nimg="1" class="h-16 w-auto"
-                    style="color:transparent"
-                    src="/public/logo-horizontal.png"></a>
-            <nav class="hidden md:flex md:gap-6 lg:gap-10">
-               <div class="flex items-center gap-6 lg:gap-8">
-                 <a class="4xl:text-lg text-sm font-bold text-gray-700 transition-colors hover:text-blue-600" href="/">Inicio
+
+
+    <div class="container flex sm:h-23 items-center justify-between py-4 px-5 md:px-6 max-w-[1380px] mx-auto"><a
+            class="flex items-center gap-2" href="/">
+            <img alt="CIMRO Logo" width="140" height="60" decoding="async" data-nimg="1" class="h-12 sm:h-16 w-auto"
+                style="color:transparent" src="/public/logo-horizontal.png"></a>
+        <nav class="hidden md:flex md:gap-6 lg:gap-10">
+            <div class="flex items-center gap-6 lg:gap-8">
+                <a class="4xl:text-lg text-sm font-bold text-gray-700 transition-colors hover:text-blue-600"
+                    href="/">Inicio
                 </a>
 
                 <NuxtLink class="4xl:text-lg text-sm font-bold text-gray-700 transition-colors hover:text-blue-600"
@@ -45,17 +45,31 @@
 
                 <NuxtLink class="4xl:text-lg text-sm font-bold text-gray-700 transition-colors hover:text-blue-600"
                     to="/noticias">Noticias</NuxtLink>
-                <NuxtLink class="4xl:text-lg text-sm font-bold text-gray-700 transition-colors hover:text-blue-600" to="/videos">
+                <NuxtLink class="4xl:text-lg text-sm font-bold text-gray-700 transition-colors hover:text-blue-600"
+                    to="/videos">
                     Vídeos</NuxtLink>
                 <NuxtLink class="4xl:text-lg text-sm font-bold text-gray-700 transition-colors hover:text-blue-600"
                     to="/turismo-salud">Turismo Salud</NuxtLink>
                 <NuxtLink class="4xl:text-lg text-sm font-bold text-gray-700 transition-colors hover:text-blue-600"
                     to="/contactanos">Contáctanos</NuxtLink>
-                    <NuxtLink class="items-center justify-center gap-2  rounded-md text-sm font-semibold  h-10 px-4 py-2 hidden bg-blue-600 hover:bg-blue-700 md:inline-flex text-white "
-                    href="/agendar-cita">Agendar Cita</NuxtLink>
-               </div>
-            </nav>
-         
+                <a class="items-center justify-center gap-2  rounded-md text-sm font-semibold  h-10 px-4 py-2 hidden bg-blue-600 hover:bg-blue-700 md:inline-flex text-white "
+                    href="/agendar-cita">Agendar Cita</a>
+            </div>
+        </nav>
+
+        <div class="sm:hidden">
+       
+                <USlideover title="Menu">
+                    <UButton icon="lucide:align-justify" color="neutral" class="btn-menu-mobile" variant="outline"  size="xl" />
+
+                    <template #body>
+                        <Placeholder class="h-full" />
+                    </template>
+                </USlideover>
+          
+
         </div>
+
+    </div>
 
 </template>

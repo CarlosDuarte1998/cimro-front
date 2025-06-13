@@ -17,6 +17,7 @@ export const useConfigStore = defineStore("config", {
     actions: {
 
         async fetchConfiguraciones() {
+           
            if (this.configuraciones.length === 0) {
                 this.loaded = false;
                 try {

@@ -48,8 +48,8 @@ const socialMediaLinks = computed(() => configStore.socialMedia);
                                 Turismo Salud</NuxtLink>
                         </li>
                         <li>
-                            <NuxtLink class="transition-colors hover:text-white hover:underline" to="/agendar-cita">
-                                Agendar Cita</NuxtLink>
+                            <a class="transition-colors hover:text-white hover:underline" to="/agendar-cita">
+                                Agendar Cita</a>
                         </li>
                         <li>
                             <NuxtLink class="transition-colors hover:text-white hover:underline" to="/contactanos">

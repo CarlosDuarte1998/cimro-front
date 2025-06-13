@@ -30,7 +30,7 @@ onMounted(() => {
         <div class="logos-slide flex" id="slider">
             <template v-for="item in insurances">
 
-                <img :src="item.imagen" alt="" srcset="" class="" />
+                <img :src="item.imagen" alt="" srcset="" class="" loading="lazy" />
 
 
             </template>

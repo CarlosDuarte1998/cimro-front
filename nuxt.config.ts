@@ -21,7 +21,14 @@ export default defineNuxtConfig({
     'nuxt-swiper',
     '@pinia/nuxt',
     '@nuxtjs/sitemap',
+    '@nuxtjs/device'
   ],
+
+  runtimeConfig: {
+    public: {
+      API_BASE_URL: process.env.NUXT_API_BASE_URL,
+    }
+  }
 
 
 

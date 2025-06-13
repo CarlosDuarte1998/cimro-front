@@ -1,13 +1,59 @@
 <script setup>
 import { useRoute } from "vue-router";
 import { onMounted, ref } from "vue";
+import { useServicesStore } from "#imports";
+
+
+
+
+
+const servicesStore = useServicesStore();
+
+
 
 const route = useRoute();
 const slug = ref("");
 
 onMounted(() => {
+  servicesStore.getServiceBySlug("31");
   slug.value = route.params.slug;
 });
+
+
+const items = ['Descripción', 'Preparación', 'Procedimiento', 'Preguntas Frecuentes']
+const selected = ref('Descripción')
+
+const setSelected = (item) => {
+  selected.value = item
+}
+const openAccordion = ref('0')
+const itemsAccodion = computed(() => [
+  {
+    label: 'Descripción',
+    icon: 'i-lucide-file-text',
+    description: servicesStore.longDetails.description,
+    isHtml: true
+  },
+  {
+    label: 'Preparación',
+    icon: 'i-lucide-briefcase-medical',
+    description: servicesStore.longDetails.preparation,
+    isHtml: true
+  },
+  {
+    label: 'Procedimiento',
+    icon: 'i-lucide-list-checks',
+    description: servicesStore.longDetails.Procedure,
+    isHtml: true
+  },
+  {
+    label: 'Preguntas Frecuentes',
+    icon: 'i-lucide-help-circle',
+    description: servicesStore.longDetails.faq,
+    isHtml: false
+  }
+])
+
 </script>
 
 <template>
@@ -87,10 +133,14 @@ onMounted(() => {
                     </p>
                   </div>
                 </div>
-                <div data-orientation="horizontal" role="none" class="shrink-0 bg-border border-gray-200 h-[1px] w-full"></div>
+                <div data-orientation="horizontal" role="none"
+                  class="shrink-0 bg-border border-gray-200 h-[1px] w-full"></div>
                 <div class="flex justify-center">
-                  <a class="inline-flex items-center justify-center gap-2  rounded-md text-sm font-medium  bg-black text-white text-primary-foreground hover:bg-black/90 h-10 px-4 py-2 w-full"
-                    href="/agendar-cita">Agendar Cita</a>
+                  <a class="inline-flex items-center justify-center gap-2  rounded-md text-sm font-medium  bg-[#001871] text-white text-primary-foreground hover:bg-[#001871]/90 h-10 px-4 py-2 w-full"
+                    href="https://wa.me/50377461474?text=Hola, quisiera informaciȯn de Tomografia" target="_bank">
+                    <UIcon name="i-fa6-brands-whatsapp" class="size-5" />
+                    Agendar Cita
+                  </a>
                 </div>
               </div>
             </div>
@@ -126,140 +176,112 @@ onMounted(() => {
         <div class="lg:col-span-2">
           <div class="mb-8">
             <img alt="Tomógrafo Multicorte" loading="lazy" width="800" height="400" decoding="async" data-nimg="1"
-              class="rounded-lg object-cover" src="https://picsum.photos/800/400?random=1"
-              style="color: transparent" />
+              class="rounded-lg object-cover" src="https://picsum.photos/800/400?random=1" style="color: transparent" />
           </div>
           <div dir="ltr" data-orientation="horizontal">
-            <div role="tablist" aria-orientation="horizontal"
-              class="h-10 items-center justify-center rounded-md bg-muted p-1 text-muted-foreground mb-6 grid w-full grid-cols-4"
-              tabindex="0" data-orientation="horizontal" style="outline: none">
-              <button type="button" role="tab" aria-selected="false" aria-controls="radix-«r36»-content-descripcion"
-                data-state="inactive" id="radix-«r36»-trigger-descripcion"
-                class="inline-flex items-center justify-center whitespace-nowrap rounded-sm px-3 py-1.5 text-sm font-medium ring-offset-background transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 data-[state=active]:bg-background data-[state=active]:text-foreground data-[state=active]:shadow-sm"
-                tabindex="-1" data-orientation="horizontal" data-radix-collection-item="">
-                Descripción</button><button type="button" role="tab" aria-selected="false"
-                aria-controls="radix-«r36»-content-preparacion" data-state="inactive"
-                id="radix-«r36»-trigger-preparacion"
-                class="inline-flex items-center justify-center whitespace-nowrap rounded-sm px-3 py-1.5 text-sm font-medium ring-offset-background transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 data-[state=active]:bg-background data-[state=active]:text-foreground data-[state=active]:shadow-sm"
-                tabindex="-1" data-orientation="horizontal" data-radix-collection-item="">
-                Preparación</button><button type="button" role="tab" aria-selected="true"
-                aria-controls="radix-«r36»-content-procedimiento" data-state="active"
-                id="radix-«r36»-trigger-procedimiento"
-                class="inline-flex items-center justify-center whitespace-nowrap rounded-sm px-3 py-1.5 text-sm font-medium ring-offset-background transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 data-[state=active]:bg-background data-[state=active]:text-foreground data-[state=active]:shadow-sm"
-                tabindex="0" data-orientation="horizontal" data-radix-collection-item="">
-                Procedimiento</button><button type="button" role="tab" aria-selected="false"
-                aria-controls="radix-«r36»-content-preguntas" data-state="inactive" id="radix-«r36»-trigger-preguntas"
-                class="inline-flex items-center justify-center whitespace-nowrap rounded-sm px-3 py-1.5 text-sm font-medium ring-offset-background transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 data-[state=active]:bg-background data-[state=active]:text-foreground data-[state=active]:shadow-sm"
-                tabindex="-1" data-orientation="horizontal" data-radix-collection-item="">
-                Preguntas Frecuentes
+
+
+            <UAccordion :items="itemsAccodion" v-model="openAccordion" v-if="$device.isMobile">
+              <template #content="{ item }">
+                <div v-if="item.isHtml">
+                  <div v-html="item.description"></div>
+                </div>
+                <div v-else>
+
+                  <ul>
+
+                    <!-- Version Mobile -->
+                    <template v-for="(itemDescription, index) in item.description">
+
+                      <li>
+                        <div class="rounded-lg p-4">
+                          <div class="flex items-start gap-3"><svg xmlns="http://www.w3.org/2000/svg" width="24"
+                              height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                              stroke-linecap="round" stroke-linejoin="round"
+                              class="lucide lucide-circle-help mt-0.5 h-5 w-5 shrink-0 text-blue-600">
+                              <circle cx="12" cy="12" r="10"></circle>
+                              <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path>
+                              <path d="M12 17h.01"></path>
+                            </svg>
+                            <div>
+                              <h4 class="font-medium">{{ itemDescription.faq_title }}</h4>
+                              <p class="text-sm text-gray-600">
+                                {{ itemDescription.faq_description }}
+                              </p>
+                            </div>
+                          </div>
+                        </div>
+                      </li>
+                    </template>
+
+                  </ul>
+                </div>
+              </template>
+            </UAccordion>
+
+
+            <!-- Version Desktop -->
+            <div
+              class="items-center justify-center rounded-md sm:gap-4 grid w-full grid-cols-3 sm:grid-cols-4 select-container p-1 breadcrumb" v-if="!$device.isMobile">
+              <button v-for="(item, index) in items" :key="index" :class="[
+                'text-sm font-medium transition duration-400 py-2 rounded-sm btn-breadcrumb',
+                selected === item ? 'select-active' : 'cursor-pointer'
+              ]" @click="setSelected(item)">
+                {{ $device.isMobile && item === 'Preguntas Frecuentes' ? 'FAQ' : item }}
               </button>
             </div>
-            <div data-state="inactive" data-orientation="horizontal" role="tabpanel"
-              aria-labelledby="radix-«r36»-trigger-descripcion" id="radix-«r36»-content-descripcion" tabindex="0"
-              class="mt-2 ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 space-y-6"
-              style="" hidden=""></div>
-            <div data-state="inactive" data-orientation="horizontal" role="tabpanel"
-              aria-labelledby="radix-«r36»-trigger-preparacion" id="radix-«r36»-content-preparacion" tabindex="0"
-              class="mt-2 ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 space-y-6"
-              hidden=""></div>
-            <div data-state="active" data-orientation="horizontal" role="tabpanel"
-              aria-labelledby="radix-«r36»-trigger-procedimiento" id="radix-«r36»-content-procedimiento" tabindex="0"
-              class="mt-2 ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 space-y-6">
-              <div>
-                <h2 class="mb-4 text-2xl font-bold tracking-tight text-gray-900">
-                  ¿Cómo se realiza la Tomografía?
-                </h2>
-                <p class="text-gray-600">
-                  El procedimiento de la tomografía computarizada es rápido,
-                  indoloro y no invasivo (a menos que se requiera medio de
-                  contraste intravenoso). A continuación, se describe el proceso
-                  paso a paso:
-                </p>
-              </div>
-              <div class="space-y-4">
-                <div class="rounded-lg border border-gray-200 p-4">
-                  <h3 class="mb-2 text-lg font-medium text-gray-900">
-                    1. Preparación
-                  </h3>
-                  <p class="text-gray-600">
-                    Se le pedirá que se cambie a una bata hospitalaria y retire
-                    cualquier objeto metálico que pueda interferir con el
-                    estudio (joyas, anteojos, prótesis dentales removibles,
-                    etc.). Si el estudio requiere medio de contraste, se le
-                    colocará una vía intravenosa.
-                  </p>
-                </div>
-                <div class="rounded-lg border border-gray-200 p-4">
-                  <h3 class="mb-2 text-lg font-medium text-gray-900">
-                    2. Posicionamiento
-                  </h3>
-                  <p class="text-gray-600">
-                    Se le pedirá que se acueste en la mesa de exploración, que
-                    se moverá lentamente a través del tomógrafo (un equipo en
-                    forma de anillo). El técnico le ayudará a encontrar la
-                    posición correcta y puede utilizar almohadas o correas para
-                    ayudarle a mantener la posición adecuada.
-                  </p>
-                </div>
-                <div class="rounded-lg border border-gray-200 p-4">
-                  <h3 class="mb-2 text-lg font-medium text-gray-900">
-                    3. Realización del Estudio
-                  </h3>
-                  <p class="text-gray-600">
-                    Durante el estudio, la mesa se moverá lentamente a través
-                    del tomógrafo mientras el equipo realiza múltiples imágenes.
-                    Es importante permanecer completamente inmóvil durante la
-                    exploración para evitar que las imágenes salgan borrosas. El
-                    técnico le dará instrucciones a través de un
-                    intercomunicador, como cuándo debe contener la respiración.
-                  </p>
-                </div>
-                <div class="rounded-lg border border-gray-200 p-4">
-                  <h3 class="mb-2 text-lg font-medium text-gray-900">
-                    4. Administración de Contraste (si aplica)
-                  </h3>
-                  <p class="text-gray-600">
-                    Si su estudio requiere medio de contraste, este se
-                    administrará a través de la vía intravenosa durante la
-                    exploración. Puede sentir una sensación de calor o un sabor
-                    metálico en la boca durante la inyección, lo cual es normal.
-                    En algunos casos, también puede ser necesario tomar
-                    contraste oral antes del estudio.
-                  </p>
-                </div>
-                <div class="rounded-lg border border-gray-200 p-4">
-                  <h3 class="mb-2 text-lg font-medium text-gray-900">
-                    5. Finalización
-                  </h3>
-                  <p class="text-gray-600">
-                    Una vez completado el estudio, se retirará la vía
-                    intravenosa (si se utilizó) y podrá reanudar sus actividades
-                    normales. Si recibió medio de contraste, se le recomendará
-                    beber abundante agua para ayudar a eliminar el contraste de
-                    su organismo.
-                  </p>
-                </div>
-              </div>
-              <div>
-                <h3 class="mb-3 text-xl font-bold text-gray-900">
-                  Duración del Procedimiento
-                </h3>
-                <p class="text-gray-600">
-                  El tiempo total del procedimiento varía según el tipo de
-                  estudio, pero generalmente toma entre 15 y 30 minutos. La
-                  exploración en sí suele durar solo unos minutos, mientras que
-                  la mayor parte del tiempo se dedica a la preparación y
-                  posicionamiento.
-                </p>
+
+
+            <div
+              class="mt-2 ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 space-y-6"  v-if="!$device.isMobile">
+
+
+              <div v-if="selected === 'Descripción'" v-html="servicesStore.longDetails.description"></div>
+              <div v-if="selected === 'Preparación'" v-html="servicesStore.longDetails.preparation"></div>
+              <div v-if="selected === 'Procedimiento'" v-html="servicesStore.longDetails.Procedure"></div>
+              <div v-if="selected === 'Preguntas Frecuentes'">
+
+                <ul class="grid gap-3">
+                  <li v-for="(item, index) in servicesStore.longDetails.faq">
+                    <div class="rounded-lg border border-gray-200 p-4">
+                      <div class="flex items-start gap-3"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                          viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                          stroke-linejoin="round"
+                          class="lucide lucide-circle-help mt-0.5 h-5 w-5 shrink-0 text-blue-600">
+                          <circle cx="12" cy="12" r="10"></circle>
+                          <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path>
+                          <path d="M12 17h.01"></path>
+                        </svg>
+                        <div>
+                          <h4 class="font-medium">{{ item.faq_title }}</h4>
+                          <p class="text-sm text-gray-600">
+                            {{ item.faq_description }}
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                  </li>
+                </ul>
               </div>
             </div>
-            <div data-state="inactive" data-orientation="horizontal" role="tabpanel"
-              aria-labelledby="radix-«r36»-trigger-preguntas" id="radix-«r36»-content-preguntas" tabindex="0"
-              class="mt-2 ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 space-y-6"
-              hidden=""></div>
           </div>
         </div>
       </div>
     </div>
   </section>
 </template>
+
+
+<style scoped>
+.select-active {
+  background-color: #001871;
+  color: #fff;
+  font-weight: 600;
+}
+
+.breadcrumb {
+  background-color: #85bbeb27;
+}
+
+.btn-breadcrumb {}
+</style>
