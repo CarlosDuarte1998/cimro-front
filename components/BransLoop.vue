@@ -25,9 +25,9 @@ onMounted(() => {
 
 
 
-    <div class="logos" id="logos" v-if="!$device.isMobile">
+    <div class="logos" id="logos" >
 
-        <div class="logos-slide flex" id="slider">
+        <div class="logos-slide hidden lg:flex" id="slider">
             <template v-for="item in insurances">
 
                 <img :src="item.imagen" alt="" srcset="" class="" loading="lazy" />
@@ -38,11 +38,13 @@ onMounted(() => {
         </div>
 
     </div>
-    <div v-else>
-        <div class="grid grid-cols-2 px-5" >
+    <div>
+        <div class="grid grid-cols-2 px-5 lg:hidden" >
             <template v-for="item in insurances">
 
-                <img :src="item.imagen" alt="" srcset="" class="logos-mobile" loading="lazy"  />
+               <div class="flex justify-center items-center">
+                 <img :src="item.imagen" alt="" srcset="" class="logos-mobile" loading="lazy"  />
+               </div>
 
 
             </template>
