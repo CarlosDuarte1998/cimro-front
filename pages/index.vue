@@ -92,7 +92,7 @@ import BannerSwipper from '~/components/BannerSwipper.vue';
             <p class="mx-auto mt-4 max-w-[700px] text-gray-500">En CIMRO nos distinguimos por ofrecer un servicio de
                excelencia con tecnología de vanguardia.</p>
          </div>
-         <div class="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+         <div class="grid gap-8 grid-cols-2 md:grid-cols-2 lg:grid-cols-3">
             <div class="flex flex-col items-center text-center">
                <div class="mb-4 rounded-full bg-blue-100 p-3 text-blue-600"><svg xmlns="http://www.w3.org/2000/svg"
                      width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"

@@ -25,7 +25,7 @@ onMounted(() => {
 
 
 
-    <div class="logos" id="logos">
+    <div class="logos" id="logos" v-if="!$device.isMobile">
 
         <div class="logos-slide flex" id="slider">
             <template v-for="item in insurances">
@@ -37,6 +37,17 @@ onMounted(() => {
 
         </div>
 
+    </div>
+    <div v-else>
+        <div class="grid grid-cols-2 px-5" >
+            <template v-for="item in insurances">
+
+                <img :src="item.imagen" alt="" srcset="" class="logos-mobile" loading="lazy"  />
+
+
+            </template>
+
+        </div>
     </div>
 
 
@@ -75,6 +86,13 @@ onMounted(() => {
     content: "";
     background: linear-gradient(to left, rgb(255, 255, 255, 0), rgb(255, 255, 255));
     z-index: 1;
+}
+
+.logos-mobile {
+    display: inline-block;
+    width: 150px;
+    aspect-ratio: 1/1;
+    object-fit: contain;
 }
 
 .logos::after {

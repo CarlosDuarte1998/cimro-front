@@ -178,6 +178,8 @@ const itemsAccodion = computed(() => [
             <img alt="Tomógrafo Multicorte" loading="lazy" width="800" height="400" decoding="async" data-nimg="1"
               class="rounded-lg object-cover" src="https://picsum.photos/800/400?random=1" style="color: transparent" />
           </div>
+
+         
           <div dir="ltr" data-orientation="horizontal">
 
 
