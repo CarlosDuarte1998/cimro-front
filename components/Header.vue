@@ -66,11 +66,10 @@ const toggleSlideover = () => {
         </nav>
 
         <div class="lg:hidden">
+            <UButton icon="lucide:align-justify" color="neutral" class="btn-menu-mobile" variant="outline"
+                size="xl" @click="toggleSlideover" />
 
-            <USlideover title="Menu" :open="open" @close="toggleSlideover">
-                <UButton icon="lucide:align-justify" color="neutral" class="btn-menu-mobile" variant="outline"
-                    size="xl" @click="toggleSlideover" />
-
+            <USlideover title="Menu" v-model:open="open">
                 <template #body>
 
                     <div class="h-full flex flex-col justify-between">
