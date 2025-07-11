@@ -53,7 +53,9 @@
                 <NuxtLink class="4xl:text-lg text-sm font-bold text-gray-700 transition-colors hover:text-blue-600"
                     to="/contactanos">Contáctanos</NuxtLink>
                 <a class="items-center justify-center gap-2  rounded-md text-sm font-semibold  h-10 px-4 py-2 hidden bg-blue-600 hover:bg-blue-700 md:inline-flex text-white "
-                    href="/agendar-cita">Agendar Cita</a>
+                    href="https://wa.me/50377461474?text=Hola,%20quisiera%20informaci%C8%AFn">
+                    Contáctanos
+                </a>
             </div>
         </nav>
 

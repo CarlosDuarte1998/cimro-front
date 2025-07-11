@@ -25,9 +25,9 @@ import BannerSwipper from '~/components/BannerSwipper.vue';
                      <div class="text-2xl font-semibold leading-none tracking-tight">Tomografía Computarizada</div>
                      <div class="text-sm text-muted-foreground">Imágenes detalladas de alta resolución</div>
                   </div>
-                  <div class="p-6 pt-0"><img alt="Tomografía Computarizada" loading="lazy" width="350" height="200"
-                        decoding="async" data-nimg="1" class="mb-4 rounded-lg object-cover" style="color:transparent"
-                        src="https://picsum.photos/200/350?random=6">
+                  <div class="p-6 pt-0 flex flex-col items-center"><img alt="Tomografía Computarizada" loading="lazy"
+                        width="350" height="200" decoding="async" data-nimg="1" class="mb-4 rounded-lg object-cover"
+                        style="color:transparent" src="https://picsum.photos/250/250?random=6">
                      <p class="text-sm text-gray-500">Nuestros equipos de última generación permiten obtener imágenes
                         precisas con la menor dosis de radiación posible.</p>
                   </div>
@@ -42,9 +42,9 @@ import BannerSwipper from '~/components/BannerSwipper.vue';
                      <div class="text-2xl font-semibold leading-none tracking-tight">Ultrasonidos</div>
                      <div class="text-sm text-muted-foreground">Convencionales y especializados</div>
                   </div>
-                  <div class="p-6 pt-0"><img alt="Ultrasonidos" loading="lazy" width="350" height="200" decoding="async"
-                        data-nimg="1" class="mb-4 rounded-lg object-cover" style="color:transparent"
-                        src="https://picsum.photos/200/350?random=4">
+                  <div class="p-6 pt-0 flex flex-col items-center"><img alt="Ultrasonidos" loading="lazy" width="350"
+                        height="200" decoding="async" data-nimg="1" class="mb-4 rounded-lg object-cover"
+                        style="color:transparent" src="https://picsum.photos/250/250?random=4">
                      <p class="text-sm text-gray-500">Realizamos estudios de ultrasonido general, obstétrico,
                         ginecológico y especializado con equipos de alta definición.</p>
                   </div>
@@ -59,9 +59,9 @@ import BannerSwipper from '~/components/BannerSwipper.vue';
                      <div class="text-2xl font-semibold leading-none tracking-tight">Rayos X</div>
                      <div class="text-sm text-muted-foreground">Convencionales y especiales</div>
                   </div>
-                  <div class="p-6 pt-0"><img alt="Rayos X" loading="lazy" width="350" height="200" decoding="async"
-                        data-nimg="1" class="mb-4 rounded-lg object-cover" style="color:transparent"
-                        src="https://picsum.photos/200/350?random=2">
+                  <div class="p-6 pt-0 flex flex-col items-center"><img alt="Rayos X" loading="lazy" width="350"
+                        height="200" decoding="async" data-nimg="1" class="mb-4 rounded-lg object-cover"
+                        style="color:transparent" src="https://picsum.photos/250/250?random=2">
                      <p class="text-sm text-gray-500">Contamos con equipos digitales que proporcionan imágenes de alta
                         calidad con mínima exposición a la radiación.</p>
                   </div>
@@ -208,7 +208,7 @@ import BannerSwipper from '~/components/BannerSwipper.vue';
    <section>
       <div class="mb-6 text-center">
          <h2 class="text-3xl font-bold tracking-tight text-gray-900 sm:text-3xl">Aseguradoras Afiliadas</h2>
-     
+
       </div>
       <BransLoop />
    </section>

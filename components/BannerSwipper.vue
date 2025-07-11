@@ -46,18 +46,19 @@ onMounted(() => {
           </template>
 
           <div
-            class="absolute inset-0 bg-gradient-to-r from-black/100 to-transparent flex items-center justify-start px-16">
+            class="absolute inset-0 bg-gradient-to-r from-black/100 to-transparent flex items-center justify-start px-16" v-if="slide.description.title!=''">
             <div class="z-10">
               <h2 class="mb-4 text-3xl font-bold text-white md:text-4xl lg:text-5xl max-w-lg">
                 {{ slide.description.title }}
               </h2>
-              <p class="text-lg text-white max-w-md">
-                Descubre cómo nuestras instalaciones y equipos avanzados pueden
-                mejorar tu bienestar.
+              <p class="text-lg text-white max-w-md" v-if="slide.description.shortDescription">
+                {{ slide.description.shortDescription }}
               </p>
               <button
                 class="mt-6 px-6 py-3 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition-colors">
-                Conoce nuestros servicios
+               <a :href="slide.description.link">{{ 
+               slide.description.btnLabel || 'Ir'
+               }}</a>
               </button>
             </div>
           </div>
@@ -65,11 +66,6 @@ onMounted(() => {
       </swiper-slide>
     </template>
   </swiper-container>
-
-  <!-- Debug (opcional) -->
-  <!-- <template v-for="(slide, index) in bannerMain" :key="'debug-' + index">
-    <pre>{{ slide.description }}</pre>
-  </template> -->
 </template>
 
 <style scoped></style>
