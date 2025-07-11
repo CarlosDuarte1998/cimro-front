@@ -9,7 +9,7 @@ export const useContactStore = defineStore("contact", {
     }),
     actions: {
         async fetchContacts(data) {
-            const response = await axios.get("/v1/submit-form", { params: data });
+            const response = await axios.post("/v1/submit-form", { params: data });
             this.contacts = response.data;
         },
     },
