@@ -1,14 +1,40 @@
 <script setup>
 import { UButton } from '#components';
+import {useContactStore} from '#imports';
 //Manejar formulario
 
 let formData = ref({
-    nombre: '',
+    firstname: '',
     email: '',
-    telefono: '',
-    asunto: '',
-    mensaje: ''
+    contact: '',
+    subject: '',
+    message: ''
 });
+
+const contactStore = useContactStore();
+
+onMounted(() => {
+   
+});
+
+
+const handleSubmit = () => {
+    contactStore.submitContactForm(formData.value)
+        .then(() => {
+            // Reset form after successful submission
+            formData.value = {
+                firstname: '',
+                email: '',
+                contact: '',
+                subject: '',
+                message: ''
+            };
+        })
+        .catch(error => {
+            console.error('Error submitting form:', error);
+        });
+};
+
 
 </script>
 
@@ -22,9 +48,6 @@ let formData = ref({
             </div>
         </div>
     </section>
-    <pre>
-        {{ formData }}
-    </pre>
 
     <section class="py-16">
         <div class="container px-4 md:px-6 max-w-[1300px] mx-auto">
@@ -82,11 +105,11 @@ let formData = ref({
                                 contacto contigo lo antes posible.</div>
                         </div>
                         <div class="p-6 pt-0">
-                            <form class="space-y-4" action="https://formspree.io/f/mldnkloa" method="POST">
+                            <form class="space-y-4" @submit.prevent="handleSubmit">
                                 <div class="space-y-2"><label
                                         class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
                                         for="nombre">Nombre Completo</label><input
-                                        v-model="formData.nombre"
+                                        v-model="formData.firstname"
                                         class="flex h-10 w-full rounded-md border border-gray-300 border-input bg-background px-3 py-2 text-base  placeholder:text-muted-foreground  md:text-sm"
                                         id="nombre" placeholder="Tu nombre completo" required="" value="" name="nombre">
                                 </div>
@@ -100,14 +123,14 @@ let formData = ref({
                                 <div class="space-y-2"><label
                                         class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
                                         for="telefono">Teléfono</label><input
-                                        v-model="formData.telefono"
+                                        v-model="formData.contact"
                                         class="flex h-10 w-full rounded-md border border-gray-300 border-input bg-background px-3 py-2 text-base  placeholder:text-muted-foreground  md:text-sm"
                                         id="telefono" placeholder="Tu número de teléfono" required="" value=""
                                         name="telefono"></div>
                                 <div class="space-y-2"><label
                                         class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
                                         for="asunto">Asunto</label><input
-                                        v-model="formData.asunto"
+                                        v-model="formData.subject"
                                         class="flex h-10 w-full rounded-md border border-gray-300 bg-background px-3 py-2 text-base  placeholder:text-muted-foreground  md:text-sm"
                                         id="asunto" placeholder="Asunto de tu mensaje" required="" value=""
                                         name="asunto"></div>
@@ -116,8 +139,8 @@ let formData = ref({
                                         for="mensaje">Mensaje</label><textarea
                                         class="flex min-h-[80px] w-full rounded-md border border-gray-300 bg-background px-3 py-2 text-base ring-offset-background placeholder:text-muted-foreground  md:text-sm"
                                         id="mensaje" name="message" placeholder="Escribe tu mensaje aquí..." rows="4"
-                                        required="" v-model="formData.mensaje"></textarea></div><button
-                                    class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&amp;_svg]:pointer-events-none [&amp;_svg]:size-4 [&amp;_svg]:shrink-0 bg-primary text-primary-foreground hover:bg-primary/90 h-10 px-4 py-2 w-full"
+                                        required="" v-model="formData.message"></textarea></div><button
+                                    class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium bg-[#0068c9] h-10 px-4 py-2 w-full text-white"
                                     type="submit">Enviar Mensaje</button>
                             </form>
                         </div>

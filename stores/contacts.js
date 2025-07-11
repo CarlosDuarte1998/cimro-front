@@ -8,7 +8,7 @@ export const useContactStore = defineStore("contact", {
         contacts: [],
     }),
     actions: {
-        async fetchContacts(data) {
+        async submitContactForm(data) {
             const response = await axios.post("/v1/submit-form", { params: data });
             this.contacts = response.data;
         },

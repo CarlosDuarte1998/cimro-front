@@ -39,7 +39,7 @@ onMounted(() => {
   <swiper-container ref="containerRef" :init="false">
     <template v-for="(slide, index) in bannerMain" :key="index">
       <swiper-slide class="relative">
-        <div class="relative h-[700px] w-full">
+        <div class="relative h-[500px] sm:h-[700px] w-full">
           <template v-for="(item, index2) in slide.images" :key="index2">
             <img :src="item.url" :alt="`Banner Image ${index2}`" class="w-full h-full object-cover hidden sm:block"  v-if="index2 == 'desktop'" loading="lazy"/>
             <img :src="item.url" :alt="`Banner Image ${index2}`" class="sm:hidden" srcset="" loading="lazy" v-else>

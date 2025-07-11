@@ -18,7 +18,7 @@ import BannerSwipper from '~/components/BannerSwipper.vue';
             <p class="mx-auto mt-4 max-w-[700px] text-gray-500">Ofrecemos una amplia gama de servicios de diagnóstico
                por imagen con la más alta tecnología y personal especializado.</p>
 
-            <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 mt-10">
+            <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 mt-10 px-5 md:px-0">
                <div
                   class="rounded-lg border border-gray-200 bg-card text-card-foreground shadow-sm transition-all hover:shadow-md">
                   <div class="flex flex-col space-y-1.5 p-6">

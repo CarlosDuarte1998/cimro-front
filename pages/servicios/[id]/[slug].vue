@@ -1,9 +1,13 @@
 <script setup>
-import { useRoute } from "vue-router";
 import { onMounted, ref } from "vue";
 import { useServicesStore } from "#imports";
 
+const route = useRoute();
+const id = ref(route.params.id); 
+const slug = ref(route.params.slug); 
 
+
+///servicios/31/slug URL
 
 
 
@@ -11,11 +15,10 @@ const servicesStore = useServicesStore();
 
 
 
-const route = useRoute();
-const slug = ref("");
+
 
 onMounted(() => {
-  servicesStore.getServiceBySlug("31");
+  servicesStore.getServiceBySlug(id.value);
   slug.value = route.params.slug;
 });
 
@@ -27,6 +30,10 @@ const setSelected = (item) => {
   selected.value = item
 }
 const openAccordion = ref('0')
+const imageUrl = computed(() => 
+ servicesStore.imgServices || ''
+)
+
 const itemsAccodion = computed(() => [
   {
     label: 'Descripción',
@@ -57,6 +64,7 @@ const itemsAccodion = computed(() => [
 </script>
 
 <template>
+
   <section class="bg-blue-900 py-16 text-white">
     <div class="container px-4 md:px-6">
       <div class="mx-auto max-w-3xl text-center">
@@ -176,7 +184,7 @@ const itemsAccodion = computed(() => [
         <div class="lg:col-span-2">
           <div class="mb-8">
             <img alt="Tomógrafo Multicorte" loading="lazy" width="800" height="400" decoding="async" data-nimg="1"
-              class="rounded-lg object-cover" src="https://picsum.photos/800/400?random=1" style="color: transparent" />
+              class="w-full h-full rounded-lg object-cover" v-if="imageUrl" :src="imageUrl" />
           </div>
 
          

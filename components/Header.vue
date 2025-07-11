@@ -1,6 +1,12 @@
 <script setup>
 
+//Accion slideover
 
+const open = ref(false);
+
+const toggleSlideover = () => {
+    open.value = !open.value;
+};
 
 
 </script>
@@ -61,34 +67,35 @@
 
         <div class="lg:hidden">
 
-            <USlideover title="Menu">
+            <USlideover title="Menu" :open="open" @close="toggleSlideover">
                 <UButton icon="lucide:align-justify" color="neutral" class="btn-menu-mobile" variant="outline"
-                    size="xl" />
+                    size="xl" @click="toggleSlideover" />
 
                 <template #body>
 
                     <div class="h-full flex flex-col justify-between">
                         <nav class="flex flex-col gap-4 p-4  ">
                             <a class="text-gray-700 hover:text-blue-600" href="/">Inicio</a>
-                            <NuxtLink class="text-gray-700 hover:text-blue-600" to="/quienes-somos">Quiénes Somos
+                            <NuxtLink class="text-gray-700 hover:text-blue-600" to="/quienes-somos" @click="toggleSlideover">Quiénes Somos
                             </NuxtLink>
                             <div class="">
-                                <NuxtLink class="text-gray-700 hover:text-blue-600" to="/servicios">Servicios</NuxtLink>
+                                <NuxtLink  class="text-gray-700 hover:text-blue-600" to="/servicios" @click="toggleSlideover">Servicios</NuxtLink>
                                 <div class="pl-5 hidden">
                                     <template v-for="(item, index) in items">
-                                        <NuxtLink class="text-gray-700 hover:text-blue-600" :to="item.href"
+                                        <NuxtLink @click="toggleSlideover" class="text-gray-700 hover:text-blue-600" :to="item.href"
                                             v-if="index !== 0">
                                             {{ item.label }}
                                         </NuxtLink>
                                     </template>
                                 </div>
                             </div>
-                            <NuxtLink class="text-gray-700 hover:text-blue-600" to="/noticias">Noticias</NuxtLink>
-                            <NuxtLink class="text-gray-700 hover:text-blue-600" to="/videos">Vídeos</NuxtLink>
-                            <NuxtLink class="text-gray-700 hover:text-blue-600" to="/turismo-salud">Turismo Salud
+                            <NuxtLink @click="toggleSlideover" class="text-gray-700 hover:text-blue-600" to="/noticias">Noticias</NuxtLink>
+                            <NuxtLink @click="toggleSlideover" class="text-gray-700 hover:text-blue-600" to="/videos">Vídeos</NuxtLink>
+                            <NuxtLink @click="toggleSlideover" class="text-gray-700 hover:text-blue-600" to="/turismo-salud">Turismo Salud
                             </NuxtLink>
-                            <NuxtLink class="text-gray-700 hover:text-blue-600" to="/contactanos">Contáctanos</NuxtLink>
+                            <NuxtLink @click="toggleSlideover" class="text-gray-700 hover:text-blue-600" to="/contactanos">Contáctanos</NuxtLink>
                             <a class="text-gray-700 hover:text-blue-600" href="/agendar-cita">Agendar Cita</a>
+                            
                         </nav>
                         <div class="p-4 text-center text-gray-700">
                             <img src="/logo-horizontal.png" alt="Logo" srcset="" class="mx-auto mb-4 h-12 w-auto" loading="lazy" 
