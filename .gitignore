@@ -18,6 +18,8 @@ logs
 .fleet
 .idea
 
+# Vercel deployment files
+.vercel
 # Local env files
 .env
 .env.*
