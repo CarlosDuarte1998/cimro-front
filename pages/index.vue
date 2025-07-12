@@ -2,19 +2,20 @@
 import BannerSwipper from '~/components/BannerSwipper.vue';
 
 const categoriesStore = useCategoriesStore();
+const { corporateInfo, getKeywordsString, generateDescription, getSchemaData } = useCIMROSEO();
 
 // SEO Meta Tags para la página principal
 useSeoMeta({
-  title: 'Centro de Imágenes Médicas y Radiología - CIMRO El Salvador',
-  description: 'CIMRO es el centro líder en diagnóstico por imagen en El Salvador. Ofrecemos resonancia magnética, tomografía, radiología y más con tecnología de vanguardia. Agende su cita.',
-  keywords: 'CIMRO, radiología El Salvador, resonancia magnética, tomografía, diagnóstico por imagen, centro médico Santa Ana, rayos X, ultrasonido',
-  ogTitle: 'CIMRO - Centro de Imágenes Médicas y Radiología El Salvador',
-  ogDescription: 'Centro líder en diagnóstico por imagen con tecnología de vanguardia. Resonancia magnética, tomografía, radiología y más servicios médicos especializados.',
-  ogImage: 'https://cimro.com.sv/logo-horizontal.png',
-  ogUrl: 'https://cimro.com.sv',
-  twitterTitle: 'CIMRO - Centro de Imágenes Médicas El Salvador',
-  twitterDescription: 'Diagnóstico por imagen con tecnología de vanguardia. Agende su cita en CIMRO.',
-  twitterImage: 'https://cimro.com.sv/logo-horizontal.png',
+  title: `${corporateInfo.name} - Diagnóstico por Imágenes Santa Ana`,
+  description: generateDescription('CIMRO es el centro líder en diagnóstico por imágenes en Santa Ana, El Salvador. Tomografía computarizada multicorte, ultrasonidos, rayos X, mamografía, cardiología. Aseguradoras afiliadas SISA, ACSA, MAPFRE.'),
+  keywords: getKeywordsString(),
+  ogTitle: `${corporateInfo.name} Santa Ana El Salvador`,
+  ogDescription: generateDescription(),
+  ogImage: `${corporateInfo.website}/logo-horizontal.png`,
+  ogUrl: corporateInfo.website,
+  twitterTitle: `${corporateInfo.name} Santa Ana`,
+  twitterDescription: 'Diagnóstico por imágenes con tecnología de vanguardia en Santa Ana, El Salvador. Agende su cita en CIMRO.',
+  twitterImage: `${corporateInfo.website}/logo-horizontal.png`,
 });
 
 // Structured Data para SEO local
@@ -22,36 +23,7 @@ useHead({
   script: [
     {
       type: 'application/ld+json',
-      innerHTML: JSON.stringify({
-        '@context': 'https://schema.org',
-        '@type': 'MedicalOrganization',
-        name: 'CIMRO - Centro de Imágenes Médicas y Radiología',
-        url: 'https://cimro.com.sv',
-        logo: 'https://cimro.com.sv/logo-horizontal.png',
-        description: 'Centro especializado en diagnóstico por imagen con tecnología de vanguardia en El Salvador.',
-        address: {
-          '@type': 'PostalAddress',
-          streetAddress: 'Urb San Miguelito',
-          addressLocality: 'Santa Ana',
-          addressCountry: 'El Salvador'
-        },
-        contactPoint: {
-          '@type': 'ContactPoint',
-          telephone: '+503-2440-0000',
-          contactType: 'customer service'
-        },
-        medicalSpecialty: [
-          'Radiología',
-          'Resonancia Magnética',
-          'Tomografía Computarizada',
-          'Ultrasonido',
-          'Rayos X'
-        ],
-        sameAs: [
-          'https://www.facebook.com/cimro',
-          'https://www.instagram.com/cimro'
-        ]
-      })
+      innerHTML: JSON.stringify(getSchemaData('homepage'))
     }
   ]
 });

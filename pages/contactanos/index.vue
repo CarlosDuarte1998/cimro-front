@@ -2,15 +2,24 @@
 import { UButton } from '#components';
 import {useContactStore} from '#imports';
 
+const { corporateInfo, getKeywordsString, generateDescription, businessHours } = useCIMROSEO();
+
 // SEO Meta Tags para página de contacto
 useSeoMeta({
-  title: 'Contacto - Agende su Cita en CIMRO El Salvador',
-  description: 'Contáctenos para agendar su cita de diagnóstico por imagen. Ubicados en Santa Ana, El Salvador. Atención personalizada y horarios flexibles.',
-  keywords: 'contacto CIMRO, agendar cita radiología, centro imágenes Santa Ana, teléfono CIMRO, dirección CIMRO El Salvador',
-  ogTitle: 'Contacto - CIMRO Centro de Imágenes Médicas',
-  ogDescription: 'Agende su cita de diagnóstico por imagen. Contáctenos para más información sobre nuestros servicios.',
-  ogImage: 'https://cimro.com.sv/logo-horizontal.png',
-  ogUrl: 'https://cimro.com.sv/contactanos'
+  title: `Contacto - Agende su Cita | ${corporateInfo.name}`,
+  description: generateDescription(`Contáctenos para agendar su cita de diagnóstico por imágenes en ${corporateInfo.location}. ${businessHours.weekdays}. ${businessHours.saturday}. Atención personalizada y tecnología de vanguardia.`),
+  keywords: getKeywordsString([
+    'contacto CIMRO Santa Ana',
+    'agendar cita radiología Santa Ana',
+    'teléfono CIMRO',
+    'dirección centro imágenes Santa Ana',
+    'horarios CIMRO El Salvador',
+    'cita diagnóstico por imágenes'
+  ]),
+  ogTitle: `Contacto - ${corporateInfo.shortName} Centro de Imágenes Santa Ana`,
+  ogDescription: `Agende su cita de diagnóstico por imágenes en ${corporateInfo.name}. Contáctenos para más información sobre nuestros servicios especializados.`,
+  ogImage: `${corporateInfo.website}/logo-horizontal.png`,
+  ogUrl: `${corporateInfo.website}/contactanos`
 });
 
 // Structured Data para información de contacto
@@ -23,30 +32,28 @@ useHead({
         '@type': 'ContactPage',
         mainEntity: {
           '@type': 'MedicalOrganization',
-          name: 'CIMRO - Centro de Imágenes Médicas',
+          name: corporateInfo.name,
           address: {
             '@type': 'PostalAddress',
-            streetAddress: 'Urb San Miguelito',
+            streetAddress: corporateInfo.address,
             addressLocality: 'Santa Ana',
             addressCountry: 'El Salvador'
           },
           contactPoint: [
             {
               '@type': 'ContactPoint',
-              telephone: '+503-2440-0000',
+              telephone: corporateInfo.phone,
               contactType: 'customer service',
+              email: corporateInfo.email,
               availableLanguage: 'Spanish'
             },
             {
               '@type': 'ContactPoint',
               contactType: 'emergency',
-              telephone: '+503-2440-0000'
+              telephone: corporateInfo.phone
             }
           ],
-          openingHours: [
-            'Mo-Fr 07:00-18:00',
-            'Sa 07:00-12:00'
-          ]
+          openingHours: businessHours.structured
         }
       })
     }

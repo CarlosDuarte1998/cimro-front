@@ -143,9 +143,48 @@
 </template>
 
 
-<script setup>
-// Store de categorías
+<script setup lang="ts">
+const { corporateInfo, getKeywordsString, generateDescription, services } = useCIMROSEO();
 const categoriesStore = useCategoriesStore()
+
+// SEO optimizado para página de servicios
+useSeoMeta({
+  title: `Servicios de Diagnóstico por Imágenes | ${corporateInfo.name}`,
+  description: generateDescription(`Servicios especializados de diagnóstico por imágenes en Santa Ana, El Salvador. ${services.join(', ')}. Centro médico con tecnología de vanguardia y aseguradoras afiliadas.`),
+  keywords: getKeywordsString([
+    'servicios radiológicos Santa Ana',
+    'estudios médicos Santa Ana',
+    'centro radiológico El Salvador',
+    'diagnósticos médicos occidente El Salvador'
+  ]),
+  ogTitle: `Servicios de Diagnóstico por Imágenes - ${corporateInfo.shortName} Santa Ana`,
+  ogDescription: `Conoce todos los servicios de diagnóstico por imágenes que ofrece ${corporateInfo.name}. Tecnología de vanguardia y personal especializado.`,
+  ogImage: `${corporateInfo.website}/logo-horizontal.png`,
+  ogUrl: `${corporateInfo.website}/servicios`
+});
+
+// Schema.org para servicios médicos
+useHead({
+  script: [
+    {
+      type: 'application/ld+json',
+      innerHTML: JSON.stringify({
+        '@context': 'https://schema.org',
+        '@type': 'MedicalOrganization',
+        name: corporateInfo.name,
+        url: `${corporateInfo.website}/servicios`,
+        description: `Servicios especializados de diagnóstico por imágenes en Santa Ana, El Salvador`,
+        medicalSpecialty: services,
+        address: {
+          '@type': 'PostalAddress',
+          streetAddress: corporateInfo.address,
+          addressLocality: 'Santa Ana',
+          addressCountry: 'El Salvador'
+        }
+      })
+    }
+  ]
+});
 
 // Función para cargar categorías
 const loadCategories = async () => {
@@ -167,63 +206,6 @@ onMounted(() => {
     loadCategories()
   }
 })
-
-// Meta tags para SEO
-useSeoMeta({
-  title: 'Servicios de Diagnóstico por Imagen - CIMRO El Salvador',
-  description: 'Descubra todos nuestros servicios de diagnóstico por imagen: Resonancia Magnética, Tomografía, Radiología, Ultrasonido y más. Tecnología de vanguardia en CIMRO.',
-  keywords: 'servicios CIMRO, resonancia magnética El Salvador, tomografía computarizada, radiología digital, ultrasonido 4D, mamografía digital, densitometría ósea',
-  ogTitle: 'Servicios de Diagnóstico por Imagen - CIMRO',
-  ogDescription: 'Amplia gama de servicios de diagnóstico por imagen con tecnología de vanguardia y personal especializado.',
-  ogImage: 'https://cimro.com.sv/logo-horizontal.png',
-  ogUrl: 'https://cimro.com.sv/servicios'
-});
-
-// Structured Data para servicios médicos
-useHead({
-  script: [
-    {
-      type: 'application/ld+json',
-      innerHTML: JSON.stringify({
-        '@context': 'https://schema.org',
-        '@type': 'MedicalBusiness',
-        name: 'CIMRO - Servicios de Diagnóstico por Imagen',
-        url: 'https://cimro.com.sv/servicios',
-        description: 'Servicios especializados de diagnóstico por imagen con tecnología de vanguardia.',
-        medicalSpecialty: [
-          'Resonancia Magnética',
-          'Tomografía Computarizada', 
-          'Radiología Digital',
-          'Ultrasonido 4D',
-          'Mamografía Digital',
-          'Densitometría Ósea'
-        ],
-        hasOfferCatalog: {
-          '@type': 'OfferCatalog',
-          name: 'Servicios de Diagnóstico por Imagen',
-          itemListElement: [
-            {
-              '@type': 'Offer',
-              itemOffered: {
-                '@type': 'MedicalProcedure',
-                name: 'Resonancia Magnética',
-                description: 'Estudios de resonancia magnética con equipos de alta resolución'
-              }
-            },
-            {
-              '@type': 'Offer', 
-              itemOffered: {
-                '@type': 'MedicalProcedure',
-                name: 'Tomografía Computarizada',
-                description: 'Tomografías de última generación para diagnósticos precisos'
-              }
-            }
-          ]
-        }
-      })
-    }
-  ]
-});
 </script>
 
 <style scoped>

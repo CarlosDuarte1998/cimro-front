@@ -14,8 +14,6 @@ const currentService = ref(null);
 const currentCategory = ref(null);
 
 onMounted(async () => {
-  console.log('Loading service details...', { categorySlug: categorySlug.value, serviceSlug: serviceSlug.value });
-  
   // Cargar categorías si no están disponibles
   if (!categoriesStore.hasCategories) {
     await categoriesStore.fetchCategories();
@@ -23,26 +21,18 @@ onMounted(async () => {
   
   // Obtener la categoría por slug
   currentCategory.value = categoriesStore.getCategoryBySlug(categorySlug.value);
-  console.log('Found category:', currentCategory.value);
   
   if (currentCategory.value) {
     // Obtener los servicios de la categoría
     const services = await categoriesStore.fetchCategoryServices(currentCategory.value.id);
-    console.log('Services in category:', services);
     
     // Encontrar el servicio específico por slug
     currentService.value = services.find(service => service.slug === serviceSlug.value);
-    console.log('Found service:', currentService.value);
     
     // Si encontramos el servicio, obtener sus detalles completos
     if (currentService.value) {
       // Usar el ID del servicio en lugar del slug
-      console.log('Fetching service details for ID:', currentService.value.id);
       await servicesStore.getServiceById(currentService.value.id);
-      console.log('Service details loaded:', {
-        shortDetails: servicesStore.shortDetails,
-        longDetails: servicesStore.longDetails
-      });
     } else {
       console.error('Service not found with slug:', serviceSlug.value);
     }
@@ -74,15 +64,11 @@ const serviceDescription = computed(() => {
 });
 
 const imageUrl = computed(() => {
-  console.log('Computing image URL - servicesStore.imgServices:', servicesStore.imgServices);
-  console.log('Computing image URL - currentService featured_image:', currentService.value?.featured_image);
-  
   // Priorizar la imagen del store que ahora tiene mejor calidad
   const finalUrl = servicesStore.imgServices || 
                    currentService.value?.featured_image || 
                    '/placeholder.svg';
   
-  console.log('Final image URL selected:', finalUrl);
   return finalUrl;
 });
 

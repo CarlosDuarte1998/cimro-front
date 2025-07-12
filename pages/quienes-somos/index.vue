@@ -177,3 +177,49 @@
 
 
 </template>
+
+<script setup lang="ts">
+const { corporateInfo, getKeywordsString, generateDescription } = useCIMROSEO();
+
+// SEO optimizado para página "Quiénes Somos"
+useSeoMeta({
+  title: `Quiénes Somos | ${corporateInfo.name}`,
+  description: generateDescription(`Conoce la historia, misión y visión de ${corporateInfo.name}. Centro especializado en diagnóstico por imágenes en Santa Ana, El Salvador, comprometido con la excelencia médica y tecnología de vanguardia.`),
+  keywords: getKeywordsString([
+    'historia CIMRO',
+    'misión centro radiológico Santa Ana',
+    'visión diagnóstico por imágenes',
+    'centro médico El Salvador historia',
+    'radiología occidente El Salvador historia'
+  ]),
+  ogTitle: `Quiénes Somos - ${corporateInfo.shortName} Centro de Imágenes Santa Ana`,
+  ogDescription: `Conoce la historia y compromiso de ${corporateInfo.name} con la excelencia en diagnóstico por imágenes en Santa Ana, El Salvador.`,
+  ogImage: `${corporateInfo.website}/logo-horizontal.png`,
+  ogUrl: `${corporateInfo.website}/quienes-somos`
+});
+
+// Schema.org para página institucional
+useHead({
+  script: [
+    {
+      type: 'application/ld+json',
+      innerHTML: JSON.stringify({
+        '@context': 'https://schema.org',
+        '@type': 'AboutPage',
+        name: `Quiénes Somos - ${corporateInfo.name}`,
+        description: `Historia, misión y visión de ${corporateInfo.name}, centro especializado en diagnóstico por imágenes en Santa Ana, El Salvador`,
+        mainEntity: {
+          '@type': 'MedicalOrganization',
+          name: corporateInfo.name,
+          address: {
+            '@type': 'PostalAddress',
+            streetAddress: corporateInfo.address,
+            addressLocality: 'Santa Ana',
+            addressCountry: 'El Salvador'
+          }
+        }
+      })
+    }
+  ]
+});
+</script>

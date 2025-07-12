@@ -3,6 +3,7 @@ import { useConfigStore } from "#imports";
 
 //store
 const configStore = useConfigStore();
+const { corporateInfo, businessHours } = useCIMROSEO();
 
 const socialMediaLinks = computed(() => configStore.socialMedia);
 </script>
@@ -12,12 +13,12 @@ const socialMediaLinks = computed(() => configStore.socialMedia);
         <div class="container m-auto px-4 py-12 md:px-6">
             <div class="grid gap-8 md:grid-cols-2 lg:grid-cols-4">
                 <div class="space-y-4">
-                    <img alt="CIMRO Logo" loading="lazy" width="120" height="40" decoding="async" data-nimg="1"
+                    <img alt="CIMRO - Centro de Imágenes Radiológicas de Occidente Santa Ana" loading="lazy" width="120" height="40" decoding="async" data-nimg="1"
                         class="h-16 w-auto" style="color: transparent" src="/logo-white-horizontal.png" />
                     <p class="text-sm text-blue-100">
-                        Centro de Imágenes Radiológicas de Occidente, ofreciendo servicios
-                        de diagnóstico por imagen con tecnología avanzada y atención
-                        humanizada.
+                        {{ corporateInfo.name }}, ofreciendo servicios
+                        de diagnóstico por imágenes con tecnología avanzada y atención
+                        humanizada en Santa Ana, El Salvador.
                     </p>
                 </div>
                 <div>
@@ -64,35 +65,35 @@ const socialMediaLinks = computed(() => configStore.socialMedia);
                             <a href="https://www.google.com/maps/place/CIMRO/@13.980591,-89.556548,2188m/data=!3m1!1e3!4m6!3m5!1s0x8f62e8985656487b:0x58c9970ccf7141de!8m2!3d13.9805909!4d-89.5565483!16s%2Fg%2F11c54f45mc?hl=es&entry=ttu&g_ep=EgoyMDI1MDUyOC4wIKXMDSoASAFQAw%3D%3D"
                                 class="flex items-center gap-2 transition-colors hover:text-white hover:underline"
                                 target="_blank" rel="noopener noreferrer"
-                                aria-label="Ver ubicación de CIMRO en Google Maps">
+                                aria-label="Ver ubicación de CIMRO Centro de Imágenes Radiológicas de Occidente en Google Maps">
                                 <UIcon name="i-lucide-map-pin" class="size-5" aria-hidden="true" />
-                                <span>
-                                    5A Avenida Sur, entre 25 y 27 calle oriente, Urb San
-                                    Miguelito, Santa Ana</span>
+                                <span>{{ corporateInfo.address }}</span>
                             </a>
                         </li>
                         <li class="flex items-center gap-2">
-                            <a :href="`tel:${socialMediaLinks.contact}`"
-                                class="flex items-center gap-2 transition-colors hover:text-white hover:underline"
-                                target="_blank" rel="noopener noreferrer" v-if="socialMediaLinks.contact"
-                                :aria-label="`Llamar a CIMRO al ${socialMediaLinks.contact}`">
-                                <UIcon name="i-lucide-phone" class="size-5" aria-hidden="true" />
-                                <span>
-                                    {{ socialMediaLinks.contact }}
-                                </span>
-                            </a>
-                        </li>
-                        <li class="flex items-center gap-2">
-                            <a :href="`mailto:${socialMediaLinks.email}`"
+                            <a :href="`tel:${corporateInfo.phone}`"
                                 class="flex items-center gap-2 transition-colors hover:text-white hover:underline"
                                 target="_blank" rel="noopener noreferrer"
-                                v-if="socialMediaLinks.email"
-                                :aria-label="`Enviar correo a CIMRO a ${socialMediaLinks.email}`">
-                                <UIcon name="i-lucide-mail" class="size-5" aria-hidden="true" />
-                                <span>
-                                    {{ socialMediaLinks.email  }}
-                                </span>
+                                :aria-label="`Llamar a CIMRO al ${corporateInfo.phone}`">
+                                <UIcon name="i-lucide-phone" class="size-5" aria-hidden="true" />
+                                <span>{{ corporateInfo.phone }}</span>
                             </a>
+                        </li>
+                        <li class="flex items-center gap-2">
+                            <a :href="`mailto:${corporateInfo.email}`"
+                                class="flex items-center gap-2 transition-colors hover:text-white hover:underline"
+                                target="_blank" rel="noopener noreferrer"
+                                :aria-label="`Enviar correo a CIMRO a ${corporateInfo.email}`">
+                                <UIcon name="i-lucide-mail" class="size-5" aria-hidden="true" />
+                                <span>{{ corporateInfo.email }}</span>
+                            </a>
+                        </li>
+                        <li class="flex items-start gap-2">
+                            <UIcon name="i-lucide-clock" class="size-5 mt-0.5" aria-hidden="true" />
+                            <div>
+                                <div>{{ businessHours.weekdays }}</div>
+                                <div>{{ businessHours.saturday }}</div>
+                            </div>
                         </li>
                     </ul>
                 </div>
@@ -143,9 +144,10 @@ const socialMediaLinks = computed(() => configStore.socialMedia);
             </div>
             <div class="mt-8 border-t border-gray-500 pt-8 text-center text-sm text-blue-100">
                 <p>
-                    ©
-                    <!-- -->2025<!-- -->
-                    CIMRO. Todos los derechos reservados.
+                    © 2025 {{ corporateInfo.name }}. Todos los derechos reservados.
+                </p>
+                <p class="mt-2">
+                    Centro especializado en diagnóstico por imágenes en Santa Ana, El Salvador
                 </p>
             </div>
         </div>

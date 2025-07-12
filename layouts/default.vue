@@ -5,10 +5,12 @@ import { useConfigStore } from "#imports";
 
 //store
 const configStore = useConfigStore();
+const { corporateInfo } = useCIMROSEO();
 
 const socialMediaLinks = computed(() => configStore.socialMedia);
+
 useHead({
-  title: 'CIMRO - Centro de Imágenes Médicas y Radiología',
+  title: corporateInfo.name,
   script: [
     {
       src: 'https://widget.taggbox.com/embed.min.js',
@@ -31,9 +33,9 @@ useHead({
                class="sm:px-3 hidden sm:flex justify-center gap-1 items-center px-2 text-sm font-medium" 
                target="_blank" 
                rel="noopener noreferrer"
-               aria-label="Ver ubicación de CIMRO en Google Maps">
+               aria-label="Ver ubicación de CIMRO Centro de Imágenes Radiológicas de Occidente en Google Maps">
               <UIcon name="i-flowbite-map-pin-alt-solid" class="size-5" aria-hidden="true" />
-              Urb San Miguelito, Santa Ana, El Salvador
+              {{ corporateInfo.location }}
             </a>
           </div>
           <div class="flex items-center gap-2">

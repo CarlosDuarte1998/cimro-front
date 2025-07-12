@@ -32,8 +32,8 @@ const handleLogoClick = () => {
 
 
     <div class="container flex sm:h-23 items-center justify-between py-4 px-5 md:px-6 max-w-[1380px] mx-auto">
-        <a class="flex items-center gap-2" href="/" aria-label="CIMRO - Centro de Imágenes Médicas, ir al inicio" @click="handleLogoClick">
-            <img alt="CIMRO Logo" width="140" height="60" decoding="async" data-nimg="1" class="h-12 sm:h-16 w-auto"
+        <a class="flex items-center gap-2" href="/" aria-label="CIMRO - Centro de Imágenes Radiológicas de Occidente, ir al inicio" @click="handleLogoClick">
+            <img alt="CIMRO - Centro de Imágenes Radiológicas de Occidente Santa Ana" width="140" height="60" decoding="async" data-nimg="1" class="h-12 sm:h-16 w-auto"
                 style="color:transparent" src="/logo-horizontal.png">
         </a>
         <nav class="hidden lg:flex md:gap-6 lg:gap-10" role="navigation" aria-label="Navegación principal">
@@ -46,8 +46,7 @@ const handleLogoClick = () => {
                 <NuxtLink class="4xl:text-lg text-sm font-bold text-gray-700 transition-colors hover:text-blue-600 pb-1 border-b-2 border-transparent"
                     :class="{ 'border-blue-600 text-blue-600': route.path === '/quienes-somos' }"
                     to="/quienes-somos">Quiénes Somos</NuxtLink>
-
-                <NuxtLink class="4xl:text-lg text-sm font-bold text-gray-700 transition-colors hover:text-blue-600 pb-1 border-b-2 border-transparent"
+ <NuxtLink class="4xl:text-lg text-sm font-bold text-gray-700 transition-colors hover:text-blue-600 pb-1 border-b-2 border-transparent"
                     :class="{ 'border-blue-600 text-blue-600': route.path.startsWith('/servicios') }"
                     to="/servicios">Servicios</NuxtLink>
 
@@ -95,19 +94,10 @@ const handleLogoClick = () => {
                                 :class="{ 'border-blue-600 text-blue-600 bg-blue-50': route.path === '/quienes-somos' }"
                                 to="/quienes-somos" @click="toggleSlideover">Quiénes Somos
                             </NuxtLink>
-                            <div class="">
-                                <NuxtLink class="text-gray-700 hover:text-blue-600 py-2 border-l-4 border-transparent pl-2"
-                                    :class="{ 'border-blue-600 text-blue-600 bg-blue-50': route.path.startsWith('/servicios') }"
-                                    to="/servicios" @click="toggleSlideover">Servicios</NuxtLink>
-                                <div class="pl-5 hidden">
-                                    <template v-for="(item, index) in items">
-                                        <NuxtLink @click="toggleSlideover" class="text-gray-700 hover:text-blue-600 py-2" :to="item.href"
-                                            v-if="index !== 0">
-                                            {{ item.label }}
-                                        </NuxtLink>
-                                    </template>
-                                </div>
-                            </div>
+                            <NuxtLink class="text-gray-700 hover:text-blue-600 py-2 border-l-4 border-transparent pl-2"
+                                :class="{ 'border-blue-600 text-blue-600 bg-blue-50': route.path.startsWith('/servicios') }"
+                                to="/servicios" @click="toggleSlideover">Servicios</NuxtLink>
+
                             <NuxtLink @click="toggleSlideover" class="text-gray-700 hover:text-blue-600 py-2 border-l-4 border-transparent pl-2"
                                 :class="{ 'border-blue-600 text-blue-600 bg-blue-50': route.path === '/noticias' }"
                                 to="/noticias">Noticias</NuxtLink>
