@@ -170,13 +170,60 @@ onMounted(() => {
 
 // Meta tags para SEO
 useSeoMeta({
-  title: 'Servicios de Diagnóstico por Imagen - CIMRO',
-  description: 'Descubre nuestros servicios de diagnóstico por imagen: Tomografía, Rayos X, Ultrasonidos, Mamografías y más. Tecnología de última generación.',
+  title: 'Servicios de Diagnóstico por Imagen - CIMRO El Salvador',
+  description: 'Descubra todos nuestros servicios de diagnóstico por imagen: Resonancia Magnética, Tomografía, Radiología, Ultrasonido y más. Tecnología de vanguardia en CIMRO.',
+  keywords: 'servicios CIMRO, resonancia magnética El Salvador, tomografía computarizada, radiología digital, ultrasonido 4D, mamografía digital, densitometría ósea',
   ogTitle: 'Servicios de Diagnóstico por Imagen - CIMRO',
-  ogDescription: 'Servicios médicos especializados en diagnóstico por imagen con equipos de última generación y personal altamente capacitado.',
-  ogImage: '/logo-horizontal.png',
-  twitterCard: 'summary_large_image'
-})
+  ogDescription: 'Amplia gama de servicios de diagnóstico por imagen con tecnología de vanguardia y personal especializado.',
+  ogImage: 'https://cimro.com.sv/logo-horizontal.png',
+  ogUrl: 'https://cimro.com.sv/servicios'
+});
+
+// Structured Data para servicios médicos
+useHead({
+  script: [
+    {
+      type: 'application/ld+json',
+      innerHTML: JSON.stringify({
+        '@context': 'https://schema.org',
+        '@type': 'MedicalBusiness',
+        name: 'CIMRO - Servicios de Diagnóstico por Imagen',
+        url: 'https://cimro.com.sv/servicios',
+        description: 'Servicios especializados de diagnóstico por imagen con tecnología de vanguardia.',
+        medicalSpecialty: [
+          'Resonancia Magnética',
+          'Tomografía Computarizada', 
+          'Radiología Digital',
+          'Ultrasonido 4D',
+          'Mamografía Digital',
+          'Densitometría Ósea'
+        ],
+        hasOfferCatalog: {
+          '@type': 'OfferCatalog',
+          name: 'Servicios de Diagnóstico por Imagen',
+          itemListElement: [
+            {
+              '@type': 'Offer',
+              itemOffered: {
+                '@type': 'MedicalProcedure',
+                name: 'Resonancia Magnética',
+                description: 'Estudios de resonancia magnética con equipos de alta resolución'
+              }
+            },
+            {
+              '@type': 'Offer', 
+              itemOffered: {
+                '@type': 'MedicalProcedure',
+                name: 'Tomografía Computarizada',
+                description: 'Tomografías de última generación para diagnósticos precisos'
+              }
+            }
+          ]
+        }
+      })
+    }
+  ]
+});
 </script>
 
 <style scoped>

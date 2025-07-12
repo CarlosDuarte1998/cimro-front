@@ -69,7 +69,12 @@
 
             <!-- Services Grid -->
             <div v-else class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-                <div v-for="service in services" :key="service.id" class="service-card rounded-lg border border-gray-200 bg-white shadow-sm hover:shadow-md transition-all duration-300 overflow-hidden">
+                <NuxtLink 
+                    v-for="service in services" 
+                    :key="service.id" 
+                    :to="`/servicios/${route.params.slug}/${service.slug}`"
+                    class="service-card rounded-lg border border-gray-200 bg-white shadow-sm hover:shadow-md transition-all duration-300 overflow-hidden cursor-pointer block"
+                >
                     <!-- Service Image -->
                     <div class="h-48 overflow-hidden relative">
                         <img 
@@ -95,16 +100,12 @@
                     
                     <!-- Service Content -->
                     <div class="p-6">
-                        <h3 class="text-xl font-semibold mb-2">{{ service.title?.rendered || service.title || 'Sin título' }}</h3>
-                        <div v-if="service.excerpt?.rendered" class="text-gray-600 text-sm line-clamp-3" v-html="service.excerpt.rendered"></div>
-                        <div v-else-if="service.excerpt" class="text-gray-600 text-sm line-clamp-3" v-html="service.excerpt"></div>
-                        <div class="mt-4">
-                            <NuxtLink :to="`/servicios/${route.params.slug}/${service.slug}`" class="text-blue-600 hover:text-blue-800 font-medium text-sm">
-                                Ver detalles →
-                            </NuxtLink>
+                        <h3 class="text-xl font-semibold mb-4">{{ service.title?.rendered || service.title || 'Sin título' }}</h3>
+                        <div class="text-blue-600 hover:text-blue-800 font-medium text-sm">
+                            Ver detalles →
                         </div>
                     </div>
-                </div>
+                </NuxtLink>
             </div>
 
             <!-- Back to Services -->

@@ -28,13 +28,72 @@ export const useServicesStore = defineStore("services", {
             try {
                 const response = await axios.get(`${this.API_BASE_URL}/v2/servicio/${slug}?_embed`);
                 this.services = response.data;
-                this.shortDetails = response.data.acf.detalles.info_short;
-                this.longDetails = response.data.acf.detalles.info_long;
-                this.imgServices = response.data._embedded?.['wp:featuredmedia']?.[0]?.source_url || '';
+                this.shortDetails = response.data.acf?.detalles?.info_short || {};
+                this.longDetails = response.data.acf?.detalles?.info_long || {};
+                
+                // Obtener imagen en mejor calidad
+                const featuredMedia = response.data._embedded?.['wp:featuredmedia']?.[0];
+                if (featuredMedia) {
+                    // Priorizar imagen en tamaño original o el más grande disponible
+                    this.imgServices = featuredMedia.media_details?.sizes?.full?.source_url || 
+                                     featuredMedia.media_details?.sizes?.large?.source_url ||
+                                     featuredMedia.source_url || '';
+                } else {
+                    this.imgServices = '';
+                }
             } catch (error) {
-                console.log(error)
+                console.error('Error fetching service by slug:', error);
+                // Resetear datos en caso de error
+                this.services = {};
+                this.shortDetails = {};
+                this.longDetails = {};
+                this.imgServices = '';
             }
+        },
 
+        async getServiceById(id){
+            try {
+                console.log(`Fetching service with URL: ${this.API_BASE_URL}/v2/servicio/${id}?_embed`);
+                const response = await axios.get(`${this.API_BASE_URL}/v2/servicio/${id}?_embed`);
+                console.log('Service API response:', response.data);
+                
+                this.services = response.data;
+                this.shortDetails = response.data.acf?.detalles?.info_short || {};
+                this.longDetails = response.data.acf?.detalles?.info_long || {};
+                
+                // Obtener imagen en mejor calidad
+                const featuredMedia = response.data._embedded?.['wp:featuredmedia']?.[0];
+                console.log('Featured Media Full Object:', featuredMedia);
+                
+                if (featuredMedia) {
+                    console.log('Available image sizes:', featuredMedia.media_details?.sizes);
+                    console.log('Original source_url:', featuredMedia.source_url);
+                    
+                    // Priorizar imagen en tamaño original o el más grande disponible
+                    this.imgServices = featuredMedia.media_details?.sizes?.full?.source_url || 
+                                     featuredMedia.media_details?.sizes?.large?.source_url ||
+                                     featuredMedia.media_details?.sizes?.medium_large?.source_url ||
+                                     featuredMedia.source_url || '';
+                    
+                    console.log('Selected image URL:', this.imgServices);
+                } else {
+                    this.imgServices = '';
+                }
+                
+                console.log('Processed service data:', {
+                    services: this.services,
+                    shortDetails: this.shortDetails,
+                    longDetails: this.longDetails,
+                    imgServices: this.imgServices
+                });
+            } catch (error) {
+                console.error('Error fetching service by ID:', error);
+                // Resetear datos en caso de error
+                this.services = {};
+                this.shortDetails = {};
+                this.longDetails = {};
+                this.imgServices = '';
+            }
         }
     }
 

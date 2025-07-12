@@ -1,8 +1,59 @@
 <script setup>
 import { UButton } from '#components';
 import {useContactStore} from '#imports';
-//Manejar formulario
 
+// SEO Meta Tags para página de contacto
+useSeoMeta({
+  title: 'Contacto - Agende su Cita en CIMRO El Salvador',
+  description: 'Contáctenos para agendar su cita de diagnóstico por imagen. Ubicados en Santa Ana, El Salvador. Atención personalizada y horarios flexibles.',
+  keywords: 'contacto CIMRO, agendar cita radiología, centro imágenes Santa Ana, teléfono CIMRO, dirección CIMRO El Salvador',
+  ogTitle: 'Contacto - CIMRO Centro de Imágenes Médicas',
+  ogDescription: 'Agende su cita de diagnóstico por imagen. Contáctenos para más información sobre nuestros servicios.',
+  ogImage: 'https://cimro.com.sv/logo-horizontal.png',
+  ogUrl: 'https://cimro.com.sv/contactanos'
+});
+
+// Structured Data para información de contacto
+useHead({
+  script: [
+    {
+      type: 'application/ld+json',
+      innerHTML: JSON.stringify({
+        '@context': 'https://schema.org',
+        '@type': 'ContactPage',
+        mainEntity: {
+          '@type': 'MedicalOrganization',
+          name: 'CIMRO - Centro de Imágenes Médicas',
+          address: {
+            '@type': 'PostalAddress',
+            streetAddress: 'Urb San Miguelito',
+            addressLocality: 'Santa Ana',
+            addressCountry: 'El Salvador'
+          },
+          contactPoint: [
+            {
+              '@type': 'ContactPoint',
+              telephone: '+503-2440-0000',
+              contactType: 'customer service',
+              availableLanguage: 'Spanish'
+            },
+            {
+              '@type': 'ContactPoint',
+              contactType: 'emergency',
+              telephone: '+503-2440-0000'
+            }
+          ],
+          openingHours: [
+            'Mo-Fr 07:00-18:00',
+            'Sa 07:00-12:00'
+          ]
+        }
+      })
+    }
+  ]
+});
+
+// Manejar formulario
 let formData = ref({
     firstname: '',
     lastname: '',
@@ -128,40 +179,72 @@ const handleSubmit = async () => {
                         </div>
                         <div class="p-6 pt-0">
                             <form class="space-y-4" @submit.prevent="handleSubmit">
-                                <div class="space-y-2"><label
+                                <div class="space-y-2">
+                                    <label
                                         class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
-                                        for="nombre">Nombre Completo</label><input
+                                        for="nombre">Nombre Completo</label>
+                                    <input
                                         v-model="formData.firstname"
-                                        class="flex h-10 w-full rounded-md border border-gray-300 border-input bg-background px-3 py-2 text-base  placeholder:text-muted-foreground  md:text-sm"
-                                        id="nombre" placeholder="Tu nombre completo" required="" value="" name="nombre">
+                                        class="flex h-10 w-full rounded-md border border-gray-300 border-input bg-background px-3 py-2 text-base placeholder:text-muted-foreground md:text-sm"
+                                        id="nombre" 
+                                        placeholder="Tu nombre completo" 
+                                        required 
+                                        name="nombre"
+                                        type="text">
                                 </div>
-                                <div class="space-y-2"><label
+                                <div class="space-y-2">
+                                    <label
                                         class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
-                                        for="email">Correo Electrónico</label><input
+                                        for="email">Correo Electrónico</label>
+                                    <input
                                         v-model="formData.email"
-                                        class="flex h-10 w-full rounded-md border border-gray-300 border-input bg-background px-3 py-2 text-base  placeholder:text-muted-foreground  md:text-sm"
-                                        id="email" placeholder="tu@email.com" required="" type="email" value=""
-                                        name="email"></div>
-                                <div class="space-y-2"><label
+                                        class="flex h-10 w-full rounded-md border border-gray-300 border-input bg-background px-3 py-2 text-base placeholder:text-muted-foreground md:text-sm"
+                                        id="email" 
+                                        placeholder="tu@email.com" 
+                                        required 
+                                        type="email" 
+                                        name="email">
+                                </div>
+                                <div class="space-y-2">
+                                    <label
                                         class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
-                                        for="telefono">Teléfono</label><input
+                                        for="telefono">Teléfono</label>
+                                    <input
                                         v-model="formData.contact"
-                                        class="flex h-10 w-full rounded-md border border-gray-300 border-input bg-background px-3 py-2 text-base  placeholder:text-muted-foreground  md:text-sm"
-                                        id="telefono" placeholder="Tu número de teléfono" required="" value=""
-                                        name="telefono"></div>
-                                <div class="space-y-2"><label
+                                        class="flex h-10 w-full rounded-md border border-gray-300 border-input bg-background px-3 py-2 text-base placeholder:text-muted-foreground md:text-sm"
+                                        id="telefono" 
+                                        placeholder="Tu número de teléfono" 
+                                        required 
+                                        name="telefono"
+                                        type="tel">
+                                </div>
+                                <div class="space-y-2">
+                                    <label
                                         class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
-                                        for="asunto">Asunto</label><input
+                                        for="asunto">Asunto</label>
+                                    <input
                                         v-model="formData.subject"
-                                        class="flex h-10 w-full rounded-md border border-gray-300 bg-background px-3 py-2 text-base  placeholder:text-muted-foreground  md:text-sm"
-                                        id="asunto" placeholder="Asunto de tu mensaje" required="" value=""
-                                        name="asunto"></div>
-                                <div class="space-y-2"><label
+                                        class="flex h-10 w-full rounded-md border border-gray-300 bg-background px-3 py-2 text-base placeholder:text-muted-foreground md:text-sm"
+                                        id="asunto" 
+                                        placeholder="Asunto de tu mensaje" 
+                                        required 
+                                        name="asunto"
+                                        type="text">
+                                </div>
+                                <div class="space-y-2">
+                                    <label
                                         class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
-                                        for="mensaje">Mensaje</label><textarea
-                                        class="flex min-h-[80px] w-full rounded-md border border-gray-300 bg-background px-3 py-2 text-base ring-offset-background placeholder:text-muted-foreground  md:text-sm"
-                                        id="mensaje" name="message" placeholder="Escribe tu mensaje aquí..." rows="4"
-                                        required="" v-model="formData.message"></textarea></div>
+                                        for="mensaje">Mensaje</label>
+                                    <textarea
+                                        class="flex min-h-[80px] w-full rounded-md border border-gray-300 bg-background px-3 py-2 text-base ring-offset-background placeholder:text-muted-foreground md:text-sm"
+                                        id="mensaje" 
+                                        name="message" 
+                                        placeholder="Escribe tu mensaje aquí..." 
+                                        rows="4"
+                                        required 
+                                        v-model="formData.message">
+                                    </textarea>
+                                </div>
                                 
                                 <button
                                     class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium bg-[#0068c9] h-10 px-4 py-2 w-full text-white disabled:opacity-50 disabled:cursor-not-allowed"

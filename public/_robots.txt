@@ -1,0 +1,8 @@
+User-Agent: *
+Allow: /
+Disallow: /admin/
+Disallow: /.nuxt/
+Disallow: /node_modules/
+
+# Sitemap
+Sitemap: https://cimro.com.sv/sitemap.xml

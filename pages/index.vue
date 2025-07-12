@@ -1,6 +1,73 @@
 <script setup lang="ts">
 import BannerSwipper from '~/components/BannerSwipper.vue';
 
+const categoriesStore = useCategoriesStore();
+
+// SEO Meta Tags para la página principal
+useSeoMeta({
+  title: 'Centro de Imágenes Médicas y Radiología - CIMRO El Salvador',
+  description: 'CIMRO es el centro líder en diagnóstico por imagen en El Salvador. Ofrecemos resonancia magnética, tomografía, radiología y más con tecnología de vanguardia. Agende su cita.',
+  keywords: 'CIMRO, radiología El Salvador, resonancia magnética, tomografía, diagnóstico por imagen, centro médico Santa Ana, rayos X, ultrasonido',
+  ogTitle: 'CIMRO - Centro de Imágenes Médicas y Radiología El Salvador',
+  ogDescription: 'Centro líder en diagnóstico por imagen con tecnología de vanguardia. Resonancia magnética, tomografía, radiología y más servicios médicos especializados.',
+  ogImage: 'https://cimro.com.sv/logo-horizontal.png',
+  ogUrl: 'https://cimro.com.sv',
+  twitterTitle: 'CIMRO - Centro de Imágenes Médicas El Salvador',
+  twitterDescription: 'Diagnóstico por imagen con tecnología de vanguardia. Agende su cita en CIMRO.',
+  twitterImage: 'https://cimro.com.sv/logo-horizontal.png',
+});
+
+// Structured Data para SEO local
+useHead({
+  script: [
+    {
+      type: 'application/ld+json',
+      innerHTML: JSON.stringify({
+        '@context': 'https://schema.org',
+        '@type': 'MedicalOrganization',
+        name: 'CIMRO - Centro de Imágenes Médicas y Radiología',
+        url: 'https://cimro.com.sv',
+        logo: 'https://cimro.com.sv/logo-horizontal.png',
+        description: 'Centro especializado en diagnóstico por imagen con tecnología de vanguardia en El Salvador.',
+        address: {
+          '@type': 'PostalAddress',
+          streetAddress: 'Urb San Miguelito',
+          addressLocality: 'Santa Ana',
+          addressCountry: 'El Salvador'
+        },
+        contactPoint: {
+          '@type': 'ContactPoint',
+          telephone: '+503-2440-0000',
+          contactType: 'customer service'
+        },
+        medicalSpecialty: [
+          'Radiología',
+          'Resonancia Magnética',
+          'Tomografía Computarizada',
+          'Ultrasonido',
+          'Rayos X'
+        ],
+        sameAs: [
+          'https://www.facebook.com/cimro',
+          'https://www.instagram.com/cimro'
+        ]
+      })
+    }
+  ]
+});
+
+// Cargar categorías al montar el componente
+onMounted(async () => {
+  if (!categoriesStore.hasCategories) {
+    await categoriesStore.fetchCategories();
+  }
+});
+
+// Obtener las primeras 3 categorías para mostrar en homepage
+const mainCategories = computed(() => {
+  const categories = categoriesStore.categories || [];
+  return categories.slice(0, 3) as any[];
+});
 </script>
 
 <template>
@@ -19,56 +86,59 @@ import BannerSwipper from '~/components/BannerSwipper.vue';
                por imagen con la más alta tecnología y personal especializado.</p>
 
             <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 mt-10 px-5 md:px-0">
-               <div
-                  class="rounded-lg border border-gray-200 bg-card text-card-foreground shadow-sm transition-all hover:shadow-md">
+               <NuxtLink 
+                  v-for="(category, index) in mainCategories" 
+                  :key="category?.id || index"
+                  :to="`/servicios/${category?.slug || ''}`"
+                  class="rounded-lg border border-gray-200 bg-card text-card-foreground shadow-sm transition-all duration-500 ease-out hover:shadow-lg hover:scale-95"
+               >
+                  <!-- Header -->
                   <div class="flex flex-col space-y-1.5 p-6">
-                     <div class="text-2xl font-semibold leading-none tracking-tight">Tomografía Computarizada</div>
-                     <div class="text-sm text-muted-foreground">Imágenes detalladas de alta resolución</div>
+                     <div class="text-xl font-semibold leading-tight tracking-tight">
+                        {{ category?.name || 'Categoría' }}
+                     </div>
+                     <div class="text-sm text-muted-foreground">
+                        {{ category?.count || 0 }} {{ (category?.count === 1) ? 'servicio' : 'servicios' }} disponibles
+                     </div>
                   </div>
-                  <div class="p-6 pt-0 flex flex-col items-center"><img alt="Tomografía Computarizada" loading="lazy"
-                        width="350" height="200" decoding="async" data-nimg="1" class="mb-4 rounded-lg object-cover"
-                        style="color:transparent" src="https://picsum.photos/250/250?random=6">
-                     <p class="text-sm text-gray-500">Nuestros equipos de última generación permiten obtener imágenes
-                        precisas con la menor dosis de radiación posible.</p>
+
+                  <!-- Image and Description -->
+                  <div class="p-6 pt-0">
+                     <img 
+                        :alt="`Servicios de ${category?.name || 'diagnóstico por imagen'} en CIMRO El Salvador`" 
+                        loading="lazy" 
+                        width="350" 
+                        height="200"
+                        decoding="async" 
+                        class="mb-4 rounded-lg object-cover w-full h-48"
+                        :src="category?.imagen_url || category?.image || `https://picsum.photos/350/200?random=${category?.id || index}`"
+                     />
+                     <p class="text-sm text-gray-500 line-clamp-3">
+                        {{ category?.description || 'Servicios de diagnóstico por imagen con tecnología de última generación y personal especializado.' }}
+                     </p>
                   </div>
-                  <div class="flex items-center p-6 pt-0"><a class="flex items-center text-sm font-medium text-blue-600"
-                        href="/servicios/tomografia">Más información
-                        <UIcon name="i-lucide-arrow-right" class="size-4" />
-                     </a></div>
-               </div>
-               <div
-                  class="rounded-lg border border-gray-200 bg-card text-card-foreground shadow-sm transition-all hover:shadow-md">
-                  <div class="flex flex-col space-y-1.5 p-6">
-                     <div class="text-2xl font-semibold leading-none tracking-tight">Ultrasonidos</div>
-                     <div class="text-sm text-muted-foreground">Convencionales y especializados</div>
+
+                  <!-- Footer -->
+                  <div class="flex items-center justify-between p-6 pt-0">
+                     <span class="flex items-center text-sm font-medium text-blue-600">
+                        Ver servicios
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                           viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                           stroke-linecap="round" stroke-linejoin="round"
+                           class="lucide lucide-arrow-right ml-1 h-4 w-4">
+                           <path d="M5 12h14"></path>
+                           <path d="m12 5 7 7-7 7"></path>
+                        </svg>
+                     </span>
                   </div>
-                  <div class="p-6 pt-0 flex flex-col items-center"><img alt="Ultrasonidos" loading="lazy" width="350"
-                        height="200" decoding="async" data-nimg="1" class="mb-4 rounded-lg object-cover"
-                        style="color:transparent" src="https://picsum.photos/250/250?random=4">
-                     <p class="text-sm text-gray-500">Realizamos estudios de ultrasonido general, obstétrico,
-                        ginecológico y especializado con equipos de alta definición.</p>
+               </NuxtLink>
+               
+               <!-- Mensaje de carga si no hay categorías -->
+               <div v-if="mainCategories.length === 0" class="col-span-full text-center py-8">
+                  <div class="animate-pulse">
+                     <div class="h-6 bg-gray-200 rounded w-1/3 mx-auto mb-4"></div>
+                     <div class="h-4 bg-gray-200 rounded w-1/2 mx-auto"></div>
                   </div>
-                  <div class="flex items-center p-6 pt-0"><a class="flex items-center text-sm font-medium text-blue-600"
-                        href="/servicios/ultrasonidos">Más información
-                        <UIcon name="i-lucide-arrow-right" class="size-4" />
-                     </a></div>
-               </div>
-               <div
-                  class="rounded-lg border border-gray-200 bg-card text-card-foreground shadow-sm transition-all hover:shadow-md">
-                  <div class="flex flex-col space-y-1.5 p-6">
-                     <div class="text-2xl font-semibold leading-none tracking-tight">Rayos X</div>
-                     <div class="text-sm text-muted-foreground">Convencionales y especiales</div>
-                  </div>
-                  <div class="p-6 pt-0 flex flex-col items-center"><img alt="Rayos X" loading="lazy" width="350"
-                        height="200" decoding="async" data-nimg="1" class="mb-4 rounded-lg object-cover"
-                        style="color:transparent" src="https://picsum.photos/250/250?random=2">
-                     <p class="text-sm text-gray-500">Contamos con equipos digitales que proporcionan imágenes de alta
-                        calidad con mínima exposición a la radiación.</p>
-                  </div>
-                  <div class="flex items-center p-6 pt-0"><a class="flex items-center text-sm font-medium text-blue-600"
-                        href="/servicios/rayos-x">Más información
-                        <UIcon name="i-lucide-arrow-right" class="size-4" />
-                     </a></div>
                </div>
             </div>
 
@@ -182,7 +252,7 @@ import BannerSwipper from '~/components/BannerSwipper.vue';
                      class="inline-flex items-center justify-center gap-2 whitespace-nowrap text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&amp;_svg]:pointer-events-none [&amp;_svg]:size-4 [&amp;_svg]:shrink-0 border bg-background hover:text-accent-foreground h-11 rounded-md px-8 border-white text-white hover:bg-white/10"
                      href="/servicios">Conocer Servicios</a></div>
             </div>
-            <div class="flex items-center justify-center"><img alt="Equipo médico avanzado" loading="lazy" width="500"
+            <div class="flex items-center justify-center"><img alt="Equipo médico avanzado de CIMRO - Centro de diagnóstico por imagen en El Salvador" loading="lazy" width="500"
                   height="400" decoding="async" data-nimg="1" class="rounded-lg object-cover" style="color:transparent"
                   src="https://picsum.photos/400/500?random=1"></div>
          </div>
@@ -231,3 +301,33 @@ import BannerSwipper from '~/components/BannerSwipper.vue';
 
 
 </template>
+
+<style scoped>
+/* Animación suave para las cards */
+.hover\:scale-95:hover {
+  transform: scale(0.99);
+}
+
+/* Transiciones suaves */
+.transition-all {
+  transition-property: all;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.duration-500 {
+  transition-duration: 500ms;
+}
+
+.ease-out {
+  transition-timing-function: cubic-bezier(0, 0, 0.2, 1);
+}
+
+/* Truncado de texto */
+.line-clamp-3 {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+</style>

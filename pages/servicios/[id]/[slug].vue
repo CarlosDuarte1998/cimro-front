@@ -3,25 +3,53 @@ import { onMounted, ref } from "vue";
 import { useServicesStore } from "#imports";
 
 const route = useRoute();
-const id = ref(route.params.id); 
-const slug = ref(route.params.slug); 
-
-
-///servicios/31/slug URL
-
-
+const categorySlug = ref(route.params.id); // En realidad es el slug de la categoría
+const serviceSlug = ref(route.params.slug); // Este es el slug del servicio
 
 const servicesStore = useServicesStore();
+const categoriesStore = useCategoriesStore();
 
+// Variables reactivas para el servicio actual
+const currentService = ref(null);
+const currentCategory = ref(null);
 
-
-
-
-onMounted(() => {
-  servicesStore.getServiceBySlug(id.value);
-  slug.value = route.params.slug;
+onMounted(async () => {
+  console.log('Loading service details...', { categorySlug: categorySlug.value, serviceSlug: serviceSlug.value });
+  
+  // Cargar categorías si no están disponibles
+  if (!categoriesStore.hasCategories) {
+    await categoriesStore.fetchCategories();
+  }
+  
+  // Obtener la categoría por slug
+  currentCategory.value = categoriesStore.getCategoryBySlug(categorySlug.value);
+  console.log('Found category:', currentCategory.value);
+  
+  if (currentCategory.value) {
+    // Obtener los servicios de la categoría
+    const services = await categoriesStore.fetchCategoryServices(currentCategory.value.id);
+    console.log('Services in category:', services);
+    
+    // Encontrar el servicio específico por slug
+    currentService.value = services.find(service => service.slug === serviceSlug.value);
+    console.log('Found service:', currentService.value);
+    
+    // Si encontramos el servicio, obtener sus detalles completos
+    if (currentService.value) {
+      // Usar el ID del servicio en lugar del slug
+      console.log('Fetching service details for ID:', currentService.value.id);
+      await servicesStore.getServiceById(currentService.value.id);
+      console.log('Service details loaded:', {
+        shortDetails: servicesStore.shortDetails,
+        longDetails: servicesStore.longDetails
+      });
+    } else {
+      console.error('Service not found with slug:', serviceSlug.value);
+    }
+  } else {
+    console.error('Category not found with slug:', categorySlug.value);
+  }
 });
-
 
 const items = ['Descripción', 'Preparación', 'Procedimiento', 'Preguntas Frecuentes']
 const selected = ref('Descripción')
@@ -30,54 +58,116 @@ const setSelected = (item) => {
   selected.value = item
 }
 const openAccordion = ref('0')
-const imageUrl = computed(() => 
- servicesStore.imgServices || ''
-)
+
+// Computed properties para datos dinámicos
+const serviceTitle = computed(() => {
+  return currentService.value?.title?.rendered || 
+         currentService.value?.title || 
+         servicesStore.services?.title?.rendered || 
+         'Servicio no encontrado';
+});
+
+const serviceDescription = computed(() => {
+  return currentService.value?.excerpt?.rendered || 
+         currentService.value?.excerpt || 
+         'Descripción no disponible';
+});
+
+const imageUrl = computed(() => {
+  console.log('Computing image URL - servicesStore.imgServices:', servicesStore.imgServices);
+  console.log('Computing image URL - currentService featured_image:', currentService.value?.featured_image);
+  
+  // Priorizar la imagen del store que ahora tiene mejor calidad
+  const finalUrl = servicesStore.imgServices || 
+                   currentService.value?.featured_image || 
+                   '/placeholder.svg';
+  
+  console.log('Final image URL selected:', finalUrl);
+  return finalUrl;
+});
+
+const shortDetails = computed(() => {
+  return servicesStore.shortDetails || {
+    time: 'No especificado',
+    time_reponse: 'No especificado',
+    preparation: 'No especificado'
+  };
+});
+
+const longDetails = computed(() => {
+  return servicesStore.longDetails || {
+    description: 'Descripción no disponible',
+    preparation: 'Preparación no disponible',
+    Procedure: 'Procedimiento no disponible',
+    faq: []
+  };
+});
 
 const itemsAccodion = computed(() => [
   {
     label: 'Descripción',
     icon: 'i-lucide-file-text',
-    description: servicesStore.longDetails.description,
+    description: longDetails.value.description,
     isHtml: true
   },
   {
     label: 'Preparación',
     icon: 'i-lucide-briefcase-medical',
-    description: servicesStore.longDetails.preparation,
+    description: longDetails.value.preparation,
     isHtml: true
   },
   {
     label: 'Procedimiento',
     icon: 'i-lucide-list-checks',
-    description: servicesStore.longDetails.Procedure,
+    description: longDetails.value.Procedure,
     isHtml: true
   },
   {
     label: 'Preguntas Frecuentes',
     icon: 'i-lucide-help-circle',
-    description: servicesStore.longDetails.faq,
+    description: longDetails.value.faq,
     isHtml: false
   }
-])
+]);
 
+// WhatsApp message dinámico
+const whatsappMessage = computed(() => {
+  const serviceName = serviceTitle.value;
+  return `Hola, quisiera información de ${serviceName}`;
+});
+
+const whatsappUrl = computed(() => {
+  return `https://wa.me/50377461474?text=${encodeURIComponent(whatsappMessage.value)}`;
+});
+
+// Meta tags dinámicos
+useSeoMeta({
+  title: computed(() => `${serviceTitle.value} - CIMRO`),
+  description: computed(() => serviceDescription.value),
+  ogTitle: computed(() => `${serviceTitle.value} - CIMRO`),
+  ogDescription: computed(() => serviceDescription.value),
+  ogImage: computed(() => imageUrl.value),
+  twitterCard: 'summary_large_image'
+});
 </script>
 
 <template>
-
   <section class="bg-blue-900 py-16 text-white">
     <div class="container px-4 md:px-6">
       <div class="mx-auto max-w-3xl text-center">
-        <h1 class="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">
-          Tomografía Computarizada Multicorte
-        </h1>
-        <p class="mt-4 text-blue-100 md:text-xl">
-          Diagnóstico preciso con imágenes de alta resolución utilizando
-          tecnología de vanguardia.
-        </p>
+        <div v-if="!currentService" class="animate-pulse">
+          <div class="h-8 bg-blue-800 rounded w-3/4 mx-auto mb-4"></div>
+          <div class="h-4 bg-blue-800 rounded w-1/2 mx-auto"></div>
+        </div>
+        <div v-else>
+          <h1 class="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">
+            {{ serviceTitle }}
+          </h1>
+        </div>
       </div>
     </div>
   </section>
+  
   <section class="py-16">
     <div class="container px-4 md:px-6">
       <div class="grid gap-12 lg:grid-cols-3">
@@ -103,7 +193,7 @@ const itemsAccodion = computed(() => [
                   <div>
                     <h4 class="font-medium">Duración</h4>
                     <p class="text-sm text-gray-500">
-                      15-30 minutos aproximadamente
+                      {{ shortDetails.time }}
                     </p>
                   </div>
                 </div>
@@ -120,7 +210,7 @@ const itemsAccodion = computed(() => [
                   <div>
                     <h4 class="font-medium">Resultados</h4>
                     <p class="text-sm text-gray-500">
-                      Disponibles en 24-48 horas
+                      {{ shortDetails.time_reponse }}
                     </p>
                   </div>
                 </div>
@@ -137,75 +227,65 @@ const itemsAccodion = computed(() => [
                   <div>
                     <h4 class="font-medium">Preparación</h4>
                     <p class="text-sm text-gray-500">
-                      Puede requerir ayuno o medio de contraste
+                      {{ shortDetails.preparation }}
                     </p>
                   </div>
                 </div>
                 <div data-orientation="horizontal" role="none"
                   class="shrink-0 bg-border border-gray-200 h-[1px] w-full"></div>
                 <div class="flex justify-center">
-                  <a class="inline-flex items-center justify-center gap-2  rounded-md text-sm font-medium  bg-[#001871] text-white text-primary-foreground hover:bg-[#001871]/90 h-10 px-4 py-2 w-full"
-                    href="https://wa.me/50377461474?text=Hola, quisiera informaciȯn de Tomografia" target="_bank">
+                  <a class="inline-flex items-center justify-center gap-2 rounded-md text-sm font-medium bg-[#001871] text-white text-primary-foreground hover:bg-[#001871]/90 h-10 px-4 py-2 w-full"
+                    :href="whatsappUrl" target="_blank">
                     <UIcon name="i-fa6-brands-whatsapp" class="size-5" />
                     Agendar Cita
                   </a>
                 </div>
               </div>
             </div>
+            
+            <!-- Navegación de regreso -->
             <div class="rounded-lg border border-gray-200 bg-card text-card-foreground shadow-sm">
-              <div class="flex flex-col space-y-1.5 p-6">
-                <div class="text-2xl font-semibold leading-none tracking-tight">
-                  Estudios Relacionados
-                </div>
-              </div>
-              <div class="p-6 pt-0 space-y-4">
-                <a class="flex items-center gap-2 text-blue-600 hover:text-blue-800 hover:underline"
-                  href="/servicios/rayos-x"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                    viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                    stroke-linejoin="round" class="lucide lucide-info h-4 w-4">
-                    <circle cx="12" cy="12" r="10"></circle>
-                    <path d="M12 16v-4"></path>
-                    <path d="M12 8h.01"></path>
+              <div class="p-6">
+                <NuxtLink :to="`/servicios/${categorySlug}`" class="flex items-center gap-2 text-blue-600 hover:text-blue-800 hover:underline">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-left h-4 w-4">
+                    <path d="M12 19l-7-7 7-7"></path>
+                    <path d="M19 12H5"></path>
                   </svg>
-                  Rayos X Convencionales</a><a
-                  class="flex items-center gap-2 text-blue-600 hover:text-blue-800 hover:underline"
-                  href="/servicios/ultrasonidos"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                    viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                    stroke-linejoin="round" class="lucide lucide-info h-4 w-4">
-                    <circle cx="12" cy="12" r="10"></circle>
-                    <path d="M12 16v-4"></path>
-                    <path d="M12 8h.01"></path>
-                  </svg>
-                  Ultrasonidos</a>
+                  Volver a {{ currentCategory?.name || 'Categoría' }}
+                </NuxtLink>
               </div>
             </div>
           </div>
         </div>
+        
         <div class="lg:col-span-2">
-          <div class="mb-8">
-            <img alt="Tomógrafo Multicorte" loading="lazy" width="800" height="400" decoding="async" data-nimg="1"
-              class="w-full h-full rounded-lg object-cover" v-if="imageUrl" :src="imageUrl" />
+          <div class="mb-8 max-h-[500px] overflow-hidden rounded-lg">
+            <img 
+              :alt="serviceTitle" 
+              loading="eager" 
+              width="1200" 
+              height="600" 
+              decoding="async" 
+              data-nimg="1"
+              class="w-full h-full max-h-[500px] object-cover" 
+              :src="imageUrl" 
+              style="image-rendering: -webkit-optimize-contrast; image-rendering: crisp-edges;"
+            />
           </div>
 
-         
           <div dir="ltr" data-orientation="horizontal">
-
-
             <UAccordion :items="itemsAccodion" v-model="openAccordion" v-if="$device.isMobile">
               <template #content="{ item }">
                 <div v-if="item.isHtml">
                   <div v-html="item.description"></div>
                 </div>
                 <div v-else>
-
                   <ul>
-
-                    <!-- Version Mobile -->
-                    <template v-for="(itemDescription, index) in item.description">
-
+                    <template v-for="(itemDescription, index) in item.description" :key="index">
                       <li>
                         <div class="rounded-lg p-4">
-                          <div class="flex items-start gap-3"><svg xmlns="http://www.w3.org/2000/svg" width="24"
+                          <div class="flex items-start gap-3">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24"
                               height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
                               stroke-linecap="round" stroke-linejoin="round"
                               class="lucide lucide-circle-help mt-0.5 h-5 w-5 shrink-0 text-blue-600">
@@ -223,12 +303,10 @@ const itemsAccodion = computed(() => [
                         </div>
                       </li>
                     </template>
-
                   </ul>
                 </div>
               </template>
             </UAccordion>
-
 
             <!-- Version Desktop -->
             <div
@@ -241,20 +319,18 @@ const itemsAccodion = computed(() => [
               </button>
             </div>
 
-
             <div
-              class="mt-2 ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 space-y-6"  v-if="!$device.isMobile">
+              class="mt-2 ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 space-y-6" v-if="!$device.isMobile">
 
-
-              <div v-if="selected === 'Descripción'" v-html="servicesStore.longDetails.description"></div>
-              <div v-if="selected === 'Preparación'" v-html="servicesStore.longDetails.preparation"></div>
-              <div v-if="selected === 'Procedimiento'" v-html="servicesStore.longDetails.Procedure"></div>
+              <div v-if="selected === 'Descripción'" v-html="longDetails.description"></div>
+              <div v-if="selected === 'Preparación'" v-html="longDetails.preparation"></div>
+              <div v-if="selected === 'Procedimiento'" v-html="longDetails.Procedure"></div>
               <div v-if="selected === 'Preguntas Frecuentes'">
-
-                <ul class="grid gap-3">
-                  <li v-for="(item, index) in servicesStore.longDetails.faq">
+                <ul class="grid gap-3" v-if="longDetails.faq && longDetails.faq.length > 0">
+                  <li v-for="(item, index) in longDetails.faq" :key="index">
                     <div class="rounded-lg border border-gray-200 p-4">
-                      <div class="flex items-start gap-3"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                      <div class="flex items-start gap-3">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                           viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
                           stroke-linejoin="round"
                           class="lucide lucide-circle-help mt-0.5 h-5 w-5 shrink-0 text-blue-600">
@@ -272,6 +348,9 @@ const itemsAccodion = computed(() => [
                     </div>
                   </li>
                 </ul>
+                <div v-else class="text-center py-8 text-gray-500">
+                  No hay preguntas frecuentes disponibles para este servicio.
+                </div>
               </div>
             </div>
           </div>
@@ -280,7 +359,6 @@ const itemsAccodion = computed(() => [
     </div>
   </section>
 </template>
-
 
 <style scoped>
 .select-active {
@@ -293,5 +371,7 @@ const itemsAccodion = computed(() => [
   background-color: #85bbeb27;
 }
 
-.btn-breadcrumb {}
+.btn-breadcrumb {
+  transition: all 0.3s ease;
+}
 </style>
