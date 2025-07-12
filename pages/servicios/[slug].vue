@@ -71,8 +71,9 @@
             <div v-else class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
                 <div v-for="service in services" :key="service.id" class="rounded-lg border border-gray-200 bg-white shadow-sm hover:shadow-md transition-all duration-300">
                     <div class="p-6">
-                        <h3 class="text-xl font-semibold mb-2">{{ service.title.rendered }}</h3>
-                        <div v-if="service.excerpt.rendered" class="text-gray-600 text-sm line-clamp-3" v-html="service.excerpt.rendered"></div>
+                        <h3 class="text-xl font-semibold mb-2">{{ service.title?.rendered || service.title || 'Sin título' }}</h3>
+                        <div v-if="service.excerpt?.rendered" class="text-gray-600 text-sm line-clamp-3" v-html="service.excerpt.rendered"></div>
+                        <div v-else-if="service.excerpt" class="text-gray-600 text-sm line-clamp-3" v-html="service.excerpt"></div>
                         <div class="mt-4">
                             <NuxtLink :to="`/servicios/${route.params.slug}/${service.slug}`" class="text-blue-600 hover:text-blue-800 font-medium text-sm">
                                 Ver detalles →
@@ -114,9 +115,23 @@ const loadServices = async () => {
   
   try {
     const response = await categoriesStore.fetchCategoryServices(currentCategory.value.id)
-    services.value = response
+    // Validar que la respuesta sea un array y tenga datos válidos
+    if (Array.isArray(response)) {
+      services.value = response.map(service => ({
+        ...service,
+        // Asegurar que title existe
+        title: service.title || { rendered: service.name || 'Sin título' },
+        // Asegurar que excerpt existe
+        excerpt: service.excerpt || { rendered: service.description || '' },
+        // Asegurar que slug existe
+        slug: service.slug || service.id || 'sin-slug'
+      }))
+    } else {
+      services.value = []
+    }
   } catch (error) {
     console.error('Error al cargar servicios:', error)
+    services.value = []
   }
 }
 

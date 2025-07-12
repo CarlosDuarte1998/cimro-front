@@ -83,7 +83,24 @@ export const useCategoriesStore = defineStore('categories', {
       
       try {
         const response = await $fetch(`${this.API_BASE_URL}/servicio?categoria=${categoryId}`)
-        return response
+        
+        // Validar que la respuesta sea un array
+        if (!Array.isArray(response)) {
+          console.warn('La respuesta de servicios no es un array:', response)
+          return []
+        }
+        
+        // Normalizar los datos de los servicios
+        const normalizedServices = response.map(service => ({
+          ...service,
+          // Asegurar que los campos críticos existan
+          id: service.id || Math.random().toString(36),
+          title: service.title || { rendered: service.name || 'Sin título' },
+          excerpt: service.excerpt || { rendered: service.description || '' },
+          slug: service.slug || service.id || 'sin-slug'
+        }))
+        
+        return normalizedServices
       } catch (error) {
         this.error = `Error al cargar los servicios de la categoría ${categoryId}`
         console.error('Error fetching category services:', error)
