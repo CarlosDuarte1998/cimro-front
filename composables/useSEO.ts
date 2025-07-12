@@ -1,4 +1,4 @@
-// Composable para gestión de SEO
+// Composable para gestión de SEO y accesibilidad
 export const useSEO = () => {
   const config = useRuntimeConfig()
   
@@ -9,6 +9,7 @@ export const useSEO = () => {
     image?: string
     url?: string
     type?: 'website' | 'article' | 'profile'
+    lang?: string
   }) => {
     const {
       title = 'CIMRO - Centro de Imágenes Médicas',
@@ -16,7 +17,8 @@ export const useSEO = () => {
       keywords = 'CIMRO, radiología, diagnóstico por imagen, El Salvador',
       image = '/logo-horizontal.png',
       url = config.public.SITE_URL as string,
-      type = 'website' as const
+      type = 'website' as const,
+      lang = 'es'
     } = seoData
 
     useSeoMeta({
@@ -34,8 +36,11 @@ export const useSEO = () => {
       twitterCard: 'summary_large_image'
     })
 
-    // Canonical URL
+    // Canonical URL y atributos de accesibilidad
     useHead({
+      htmlAttrs: {
+        lang
+      },
       link: [
         { rel: 'canonical', href: url }
       ]
@@ -53,8 +58,54 @@ export const useSEO = () => {
     })
   }
 
+  const setMedicalOrganizationStructuredData = (orgData: {
+    name: string
+    description: string
+    address: {
+      streetAddress: string
+      addressLocality: string
+      addressCountry: string
+    }
+    telephone?: string
+    email?: string
+    url?: string
+    sameAs?: string[]
+    medicalSpecialty?: string[]
+  }) => {
+    const structuredData = {
+      '@context': 'https://schema.org',
+      '@type': 'MedicalOrganization',
+      name: orgData.name,
+      description: orgData.description,
+      address: {
+        '@type': 'PostalAddress',
+        streetAddress: orgData.address.streetAddress,
+        addressLocality: orgData.address.addressLocality,
+        addressCountry: orgData.address.addressCountry
+      },
+      telephone: orgData.telephone,
+      email: orgData.email,
+      url: orgData.url || config.public.SITE_URL,
+      sameAs: orgData.sameAs || [],
+      medicalSpecialty: orgData.medicalSpecialty || [
+        'Radiología',
+        'Resonancia Magnética',
+        'Tomografía Computarizada',
+        'Ultrasonido',
+        'Rayos X'
+      ],
+      openingHours: [
+        'Mo-Fr 08:00-20:00',
+        'Sa 08:00-14:00'
+      ]
+    }
+
+    setStructuredData(structuredData)
+  }
+
   return {
     setSEO,
-    setStructuredData
+    setStructuredData,
+    setMedicalOrganizationStructuredData
   }
 }

@@ -93,12 +93,11 @@ onMounted(() => {
               <p class="text-lg text-white max-w-md" v-if="slide.description.shortDescription">
                 {{ slide.description.shortDescription }}
               </p>
-              <button
-                class="mt-6 px-6 py-3 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition-colors">
-               <a :href="slide.description.link">{{ 
-               slide.description.btnLabel || 'Ir'
-               }}</a>
-              </button>
+              <a :href="slide.description.link"
+                class="inline-block mt-6 px-6 py-3 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition-colors min-h-[44px] min-w-[44px] font-medium"
+                :aria-label="`${slide.description.btnLabel || 'Ir'} - ${slide.description.title}`">
+                {{ slide.description.btnLabel || 'Ir' }}
+              </a>
             </div>
           </div>
         </div>

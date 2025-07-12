@@ -41,3 +41,47 @@ body {
   height: 1rem;
   width: 1rem;
 }
+
+/* Mejoras de accesibilidad */
+
+/* Asegurar que todos los elementos interactivos tengan un tamaño mínimo de 44px */
+button, a[role="button"], input[type="button"], input[type="submit"] {
+  min-height: 44px;
+  min-width: 44px;
+}
+
+/* Mejorar el foco visible para todos los elementos interactivos */
+button:focus-visible, 
+a:focus-visible, 
+input:focus-visible, 
+select:focus-visible, 
+textarea:focus-visible {
+  outline: 2px solid #0068c9;
+  outline-offset: 2px;
+}
+
+/* Mejorar contraste para el texto azul claro */
+.text-blue-100 {
+  color: #e6f3ff !important;
+}
+
+/* Asegurar suficiente contraste en enlaces de hover */
+.hover\:text-blue-600:hover {
+  color: #0068c9 !important;
+}
+
+/* Skip link para navegación por teclado */
+.skip-link {
+  position: absolute;
+  top: -40px;
+  left: 6px;
+  background: #000;
+  color: #fff;
+  padding: 8px;
+  text-decoration: none;
+  z-index: 1000;
+}
+
+.skip-link:focus {
+  top: 6px;
+}

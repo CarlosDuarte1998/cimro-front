@@ -27,6 +27,9 @@ export default defineNuxtConfig({
   // Configuración SEO global
   app: {
     head: {
+      htmlAttrs: {
+        lang: 'es'
+      },
       titleTemplate: '%s | CIMRO - Centro de Imágenes Médicas',
       meta: [
         { charset: 'utf-8' },
