@@ -61,20 +61,20 @@ onMounted(() => {
     class="relative h-[500px] sm:h-[700px] w-full bg-gray-200 animate-pulse"
     aria-label="Cargando contenido de CIMRO Santa Ana"
   >
-    <div class="absolute inset-0 bg-gradient-to-r from-gray-800/80 to-transparent flex items-center justify-start px-16">
-      <div class="z-10 space-y-4">
+    <div class="absolute inset-0 bg-gradient-to-r from-gray-800/80 to-transparent flex items-center justify-start px-4 sm:px-8 md:px-16">
+      <div class="z-10 space-y-2 sm:space-y-4">
         <!-- Skeleton para el título -->
-        <div class="bg-gray-300 h-8 w-96 max-w-lg rounded animate-pulse"></div>
-        <div class="bg-gray-300 h-8 w-80 max-w-lg rounded animate-pulse"></div>
+        <div class="bg-gray-300 h-6 sm:h-8 w-72 sm:w-80 md:w-96 max-w-lg rounded animate-pulse"></div>
+        <div class="bg-gray-300 h-6 sm:h-8 w-60 sm:w-72 md:w-80 max-w-lg rounded animate-pulse"></div>
         
         <!-- Skeleton para la descripción -->
-        <div class="space-y-2 max-w-md">
-          <div class="bg-gray-400 h-4 w-full rounded animate-pulse"></div>
-          <div class="bg-gray-400 h-4 w-3/4 rounded animate-pulse"></div>
+        <div class="space-y-1 sm:space-y-2 max-w-xs sm:max-w-sm md:max-w-md">
+          <div class="bg-gray-400 h-3 sm:h-4 w-full rounded animate-pulse"></div>
+          <div class="bg-gray-400 h-3 sm:h-4 w-3/4 rounded animate-pulse"></div>
         </div>
         
         <!-- Skeleton para el botón -->
-        <div class="bg-gray-500 h-12 w-32 rounded-md animate-pulse mt-6"></div>
+        <div class="bg-gray-500 h-10 sm:h-12 w-28 sm:w-32 rounded-md animate-pulse mt-3 sm:mt-6"></div>
       </div>
     </div>
   </div>
@@ -111,20 +111,20 @@ onMounted(() => {
           </template>
 
           <div
-            class="absolute inset-0 bg-gradient-to-r from-black/100 to-transparent flex items-center justify-start px-16 z-10" 
+            class="absolute inset-0 bg-gradient-to-r from-black/100 to-transparent flex items-center justify-start px-4 sm:px-8 md:px-16 z-10" 
             v-if="slide.description.title!=''"
             itemScope 
             itemType="https://schema.org/MedicalBusiness"
           >
             <div class="z-20">
-              <h1 class="mb-4 text-3xl font-bold text-white md:text-4xl lg:text-5xl max-w-lg" itemProp="headline">
+              <h1 class="mb-2 sm:mb-4 text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-bold text-white max-w-xs sm:max-w-md md:max-w-lg" itemProp="headline">
                 {{ slide.description.title }}
               </h1>
-              <p class="text-lg text-white max-w-md" v-if="slide.description.shortDescription" itemProp="description">
+              <p class="text-sm sm:text-base md:text-lg text-white max-w-xs sm:max-w-sm md:max-w-md" v-if="slide.description.shortDescription" itemProp="description">
                 {{ slide.description.shortDescription }}
               </p>
               <a :href="slide.description.link"
-                class="inline-block mt-6 px-6 py-3 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition-colors min-h-[44px] min-w-[44px] font-medium"
+                class="inline-block mt-3 sm:mt-4 md:mt-6 px-4 py-2 sm:px-6 sm:py-3 bg-blue-600 text-white text-sm sm:text-base rounded-md hover:bg-blue-700 transition-colors min-h-[40px] sm:min-h-[44px] min-w-[40px] sm:min-w-[44px] font-medium"
                 :aria-label="`${slide.description.btnLabel || 'Conocer más'} - ${slide.description.title} - CIMRO Centro de Imágenes Radiológicas de Occidente Santa Ana`"
                 :title="`${slide.description.btnLabel || 'Conocer más'} sobre ${slide.description.title} en CIMRO Santa Ana`">
                 {{ slide.description.btnLabel || 'Conocer más' }}

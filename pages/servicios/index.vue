@@ -10,7 +10,7 @@
     </section>
 
     <!-- Loading State -->
-    <section v-if="categoriesStore.isLoading" class="py-16">
+    <section v-if="typedCategoriesStore.isLoading" class="py-16">
         <div class="container max-w-[1300px] mx-auto px-4 md:px-6">
             <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 4xl:grid-cols-4">
                 <div v-for="n in 8" :key="n" class="rounded-lg border border-gray-200 bg-white shadow-sm overflow-hidden">
@@ -59,14 +59,14 @@
     </section>
 
     <!-- Error State -->
-    <section v-else-if="categoriesStore.error" class="py-16">
+    <section v-else-if="typedCategoriesStore.error" class="py-16">
         <div class="container max-w-[1300px] mx-auto px-4 md:px-6 text-center">
             <div class="text-red-600 mb-4">
                 <svg class="mx-auto h-12 w-12 mb-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.732-.833-2.5 0L4.268 19.5c-.77.833.192 2.5 1.732 2.5z"></path>
                 </svg>
                 <p class="text-lg font-semibold">Error al cargar las categorías</p>
-                <p class="text-sm text-gray-500">{{ categoriesStore.error }}</p>
+                <p class="text-sm text-gray-500">{{ typedCategoriesStore.error }}</p>
             </div>
             <button @click="loadCategories" class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors">
                 Reintentar
@@ -78,7 +78,7 @@
     <section v-else class="py-16">
         <div class="container max-w-[1300px] mx-auto px-4 md:px-6">
             <!-- Empty State -->
-            <div v-if="!categoriesStore.hasCategories" class="text-center py-12">
+            <div v-if="!typedCategoriesStore.hasCategories" class="text-center py-12">
                 <svg class="mx-auto h-12 w-12 text-gray-400 mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
                 </svg>
@@ -89,7 +89,7 @@
             <!-- Categories Grid -->
             <div v-else class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 4xl:grid-cols-4">
                 <NuxtLink 
-                    v-for="category in categoriesStore.categoriesWithServices" 
+                    v-for="category in typedCategoriesStore.categoriesWithServices" 
                     :key="category.id"
                     :to="`/servicios/${category.slug}`" 
                     class="rounded-lg border border-gray-200 bg-card text-card-foreground shadow-sm transition-all duration-500 ease-out hover:shadow-lg hover:scale-95"
@@ -144,8 +144,28 @@
 
 
 <script setup lang="ts">
+// Definir la interfaz para las categorías
+interface Category {
+  id: number | string
+  name: string
+  slug: string
+  description?: string
+  count: number
+  imagen_url?: string
+  parent?: number
+}
+
 const { corporateInfo, getKeywordsString, generateDescription, services } = useCIMROSEO();
 const categoriesStore = useCategoriesStore()
+
+// Type assertion para el store
+const typedCategoriesStore = categoriesStore as {
+  isLoading: boolean
+  error: string | null
+  hasCategories: boolean
+  categoriesWithServices: Category[]
+  fetchCategories: () => Promise<void>
+}
 
 // SEO optimizado para página de servicios
 useSeoMeta({
@@ -189,20 +209,21 @@ useHead({
 // Función para cargar categorías
 const loadCategories = async () => {
   try {
-    await categoriesStore.fetchCategories()
+    await typedCategoriesStore.fetchCategories()
   } catch (error) {
     console.error('Error al cargar categorías:', error)
   }
 }
 
 // Función para manejar errores de imagen
-const handleImageError = (event) => {
-  event.target.src = 'https://via.placeholder.com/350x200?text=Sin+Imagen'
+const handleImageError = (event: Event) => {
+  const target = event.target as HTMLImageElement
+  target.src = 'https://via.placeholder.com/350x200?text=Sin+Imagen'
 }
 
 // Cargar categorías al montar el componente
 onMounted(() => {
-  if (!categoriesStore.hasCategories) {
+  if (!typedCategoriesStore.hasCategories) {
     loadCategories()
   }
 })
