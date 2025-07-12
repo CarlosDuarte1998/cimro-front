@@ -82,7 +82,7 @@ export const useCategoriesStore = defineStore('categories', {
       this.error = null
       
       try {
-        const response = await $fetch(`${this.API_BASE_URL}/servicio?categoria=${categoryId}`)
+        const response = await $fetch(`${this.API_BASE_URL}/servicio?categoria=${categoryId}&_embed`)
         
         // Validar que la respuesta sea un array
         if (!Array.isArray(response)) {
@@ -97,7 +97,13 @@ export const useCategoriesStore = defineStore('categories', {
           id: service.id || Math.random().toString(36),
           title: service.title || { rendered: service.name || 'Sin título' },
           excerpt: service.excerpt || { rendered: service.description || '' },
-          slug: service.slug || service.id || 'sin-slug'
+          slug: service.slug || service.id || 'sin-slug',
+          // Obtener la imagen destacada del servicio
+          featured_image: service._embedded?.['wp:featuredmedia']?.[0]?.media_details?.sizes?.medium?.source_url || 
+                         service._embedded?.['wp:featuredmedia']?.[0]?.source_url || null,
+          featured_image_large: service._embedded?.['wp:featuredmedia']?.[0]?.source_url || null,
+          featured_image_alt: service._embedded?.['wp:featuredmedia']?.[0]?.alt_text || 
+                             service._embedded?.['wp:featuredmedia']?.[0]?.title?.rendered || 'Imagen del servicio'
         }))
         
         return normalizedServices

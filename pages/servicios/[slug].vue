@@ -31,8 +31,8 @@
         <div class="container max-w-[1300px] mx-auto px-4 md:px-6">
             <!-- Loading State -->
             <div v-if="categoriesStore.isLoading" class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-                <div v-for="n in 6" :key="n" class="rounded-lg border border-gray-200 bg-white shadow-sm animate-pulse">
-                    <div class="h-48 bg-gray-300 rounded-t-lg"></div>
+                <div v-for="n in 6" :key="n" class="rounded-lg border border-gray-200 bg-white shadow-sm animate-pulse overflow-hidden">
+                    <div class="h-48 bg-gray-300"></div>
                     <div class="p-6">
                         <div class="h-6 bg-gray-300 rounded mb-2"></div>
                         <div class="h-4 bg-gray-200 rounded mb-4 w-3/4"></div>
@@ -69,7 +69,31 @@
 
             <!-- Services Grid -->
             <div v-else class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-                <div v-for="service in services" :key="service.id" class="rounded-lg border border-gray-200 bg-white shadow-sm hover:shadow-md transition-all duration-300">
+                <div v-for="service in services" :key="service.id" class="service-card rounded-lg border border-gray-200 bg-white shadow-sm hover:shadow-md transition-all duration-300 overflow-hidden">
+                    <!-- Service Image -->
+                    <div class="h-48 overflow-hidden relative">
+                        <img 
+                            v-if="service.featured_image" 
+                            :src="service.featured_image" 
+                            :alt="service.featured_image_alt || service.title?.rendered || 'Imagen del servicio'"
+                            class="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
+                            loading="lazy"
+                            @error="handleImageError"
+                        >
+                        <div v-else class="image-placeholder w-full h-full bg-gradient-to-br from-blue-100 to-blue-200 flex items-center justify-center">
+                            <svg class="w-16 h-16 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+                            </svg>
+                        </div>
+                        <!-- Placeholder oculto para errores de carga -->
+                        <div class="image-placeholder w-full h-full bg-gradient-to-br from-blue-100 to-blue-200 flex items-center justify-center absolute inset-0" style="display: none;">
+                            <svg class="w-16 h-16 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+                            </svg>
+                        </div>
+                    </div>
+                    
+                    <!-- Service Content -->
                     <div class="p-6">
                         <h3 class="text-xl font-semibold mb-2">{{ service.title?.rendered || service.title || 'Sin título' }}</h3>
                         <div v-if="service.excerpt?.rendered" class="text-gray-600 text-sm line-clamp-3" v-html="service.excerpt.rendered"></div>
@@ -124,7 +148,11 @@ const loadServices = async () => {
         // Asegurar que excerpt existe
         excerpt: service.excerpt || { rendered: service.description || '' },
         // Asegurar que slug existe
-        slug: service.slug || service.id || 'sin-slug'
+        slug: service.slug || service.id || 'sin-slug',
+        // Asegurar que la imagen existe (ya viene del store)
+        featured_image: service.featured_image || null,
+        featured_image_large: service.featured_image_large || null,
+        featured_image_alt: service.featured_image_alt || 'Imagen del servicio'
       }))
     } else {
       services.value = []
@@ -132,6 +160,20 @@ const loadServices = async () => {
   } catch (error) {
     console.error('Error al cargar servicios:', error)
     services.value = []
+  }
+}
+
+// Función para manejar errores de carga de imagen
+const handleImageError = (event) => {
+  const img = event.target
+  const serviceCard = img.closest('.service-card')
+  if (serviceCard) {
+    // Ocultar la imagen y mostrar el placeholder
+    img.style.display = 'none'
+    const placeholder = serviceCard.querySelector('.image-placeholder')
+    if (placeholder) {
+      placeholder.style.display = 'flex'
+    }
   }
 }
 
