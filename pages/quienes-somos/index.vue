@@ -15,20 +15,13 @@
                 <div>
                     <h2 class="mb-6 text-2xl font-bold tracking-tight text-gray-900 sm:text-4xl">Nuestra Historia</h2>
                     <div class="space-y-4 text-gray-600 text-lg">
-                        <p>El Centro de Imágenes Radiológicas de Occidente (CIMRO) fue fundado en [año] con la visión de
-                            ofrecer servicios de diagnóstico por imagen de la más alta calidad, combinando tecnología de
-                            vanguardia con un enfoque humanizado en la atención al paciente.</p>
-                        <p>Desde nuestros inicios, nos hemos comprometido con la excelencia médica, la innovación
-                            tecnológica y el servicio personalizado, lo que nos ha permitido convertirnos en un
-                            referente en el campo de la radiología en la región.</p>
-                        <p>A lo largo de los años, hemos crecido constantemente, ampliando nuestras instalaciones,
-                            incorporando equipos de última generación y formando un equipo médico altamente
-                            especializado para ofrecer diagnósticos precisos y confiables.</p>
+                        <p>Somos un Centro de Diagnóstico por Imágenes, conscientes de nuestra responsabilidad, hemos asumido la implementación de la mejor tecnología radiológica, conducida por expertos profesionales certificados. En la búsqueda de la excelencia para el servicio a nuestros clientes. Con la plena convicción de apoyar la Salud en toda la zona Occidental de El Salvador.
+                        </p>
                     </div>
                 </div>
                 <div class="flex items-center justify-center"><img alt="Instalaciones de CIMRO" loading="lazy"
                         width="500" height="400" decoding="async" data-nimg="1" class="rounded-lg object-cover"
-                        src="https://picsum.photos/400/500?random=1" style="color: transparent;"></div>
+                        src="https://cimro-back-dev.grupomonterroza.com/wp-content/uploads/2025/07/PORTADA-scaled.jpg" style="color: transparent;"></div>
             </div>
         </div>
     </section>
@@ -38,15 +31,11 @@
             <div class="grid gap-8 md:grid-cols-3 text-lg">
                 <div class="rounded-lg bg-white p-6 shadow-sm">
                     <h3 class="mb-4 text-xl font-bold text-gray-900">Misión</h3>
-                    <p class="text-gray-600">Proporcionar servicios de diagnóstico por imagen de la más alta calidad,
-                        utilizando tecnología avanzada y un equipo médico especializado, para contribuir al cuidado de
-                        la salud de nuestros pacientes con un enfoque humanizado.</p>
+                    <p class="text-gray-600">Somos un centro de diagnóstico por imágenes en la rama de salud, que aprovechando al máximo las innovaciones tecnológicas y apoyados por profesionales certificados, bajo un modelo de atención humanizada, brindamos estudios confiables como soporte a diagnósticos médicos.</p>
                 </div>
                 <div class="rounded-lg bg-white p-6 shadow-sm">
                     <h3 class="mb-4 text-xl font-bold text-gray-900">Visión</h3>
-                    <p class="text-gray-600">Ser reconocidos como el centro de referencia en diagnóstico por imagen,
-                        destacando por nuestra excelencia médica, innovación tecnológica y compromiso con el bienestar
-                        de nuestros pacientes.</p>
+                    <p class="text-gray-600">Ser el mejor centro de diagnóstico integral para el apoyo de la salud en el país, manteniéndonos a la vanguardia de la tecnología, innovando servicios para satisfacer las necesidades de nuestros clientes nacionales e internacionales.</p>
                 </div>
                 <div class="rounded-lg bg-white p-6 shadow-sm">
                     <h3 class="mb-4 text-xl font-bold text-gray-900">Valores</h3>
@@ -57,35 +46,35 @@
                                 class="lucide lucide-circle-check-big mt-0.5 h-5 w-5 shrink-0 text-blue-600">
                                 <path d="M21.801 10A10 10 0 1 1 17 3.335"></path>
                                 <path d="m9 11 3 3L22 4"></path>
-                            </svg><span>Excelencia en el servicio</span></li>
+                            </svg><span>Confianza</span></li>
                         <li class="flex items-start gap-2"><svg xmlns="http://www.w3.org/2000/svg" width="24"
                                 height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
                                 stroke-linecap="round" stroke-linejoin="round"
                                 class="lucide lucide-circle-check-big mt-0.5 h-5 w-5 shrink-0 text-blue-600">
                                 <path d="M21.801 10A10 10 0 1 1 17 3.335"></path>
                                 <path d="m9 11 3 3L22 4"></path>
-                            </svg><span>Ética profesional</span></li>
+                            </svg><span>Empatía y Calidez</span></li>
                         <li class="flex items-start gap-2"><svg xmlns="http://www.w3.org/2000/svg" width="24"
                                 height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
                                 stroke-linecap="round" stroke-linejoin="round"
                                 class="lucide lucide-circle-check-big mt-0.5 h-5 w-5 shrink-0 text-blue-600">
                                 <path d="M21.801 10A10 10 0 1 1 17 3.335"></path>
                                 <path d="m9 11 3 3L22 4"></path>
-                            </svg><span>Compromiso con la calidad</span></li>
+                            </svg><span>Calidad</span></li>
                         <li class="flex items-start gap-2"><svg xmlns="http://www.w3.org/2000/svg" width="24"
                                 height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
                                 stroke-linecap="round" stroke-linejoin="round"
                                 class="lucide lucide-circle-check-big mt-0.5 h-5 w-5 shrink-0 text-blue-600">
                                 <path d="M21.801 10A10 10 0 1 1 17 3.335"></path>
                                 <path d="m9 11 3 3L22 4"></path>
-                            </svg><span>Innovación constante</span></li>
+                            </svg><span>Ética y Profesionalismo</span></li>
                         <li class="flex items-start gap-2"><svg xmlns="http://www.w3.org/2000/svg" width="24"
                                 height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
                                 stroke-linecap="round" stroke-linejoin="round"
                                 class="lucide lucide-circle-check-big mt-0.5 h-5 w-5 shrink-0 text-blue-600">
                                 <path d="M21.801 10A10 10 0 1 1 17 3.335"></path>
                                 <path d="m9 11 3 3L22 4"></path>
-                            </svg><span>Atención humanizada</span></li>
+                            </svg><span>Trabajo en equipo</span></li>
                     </ul>
                 </div>
             </div>
@@ -152,22 +141,22 @@
             </div>
             <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
                 <div><img alt="Recepción" loading="lazy" width="400" height="250" decoding="async" data-nimg="1"
-                        class="mb-4 rounded-lg object-cover" src="https://picsum.photos/500/500?random=1"
+                        class="mb-4 rounded-lg object-cover" src="https://cimro-back-dev.grupomonterroza.com/wp-content/uploads/2025/07/quienes-somos.jpeg"
                         style="color: transparent;">
-                    <h3 class="mb-2 text-lg font-medium">Recepción</h3>
-                    <p class="text-gray-600">Área de recepción cómoda y acogedora para nuestros pacientes.</p>
+                    <h3 class="mb-2 text-lg font-medium">Edificio</h3>
+                    <p class="text-gray-600">Contamos con amplias instalaciones</p>
                 </div>
                 <div><img alt="Sala de Tomografía" loading="lazy" width="400" height="250" decoding="async"
                         data-nimg="1" class="mb-4 rounded-lg object-cover"
-                        src="https://picsum.photos/500/500?random=2" style="color: transparent;">
-                    <h3 class="mb-2 text-lg font-medium">Sala de Tomografía</h3>
-                    <p class="text-gray-600">Equipada con tomógrafo de última generación para diagnósticos precisos.</p>
+                        src="https://cimro-back-dev.grupomonterroza.com/wp-content/uploads/2025/07/SALA-DE-ESPERA.jpeg" style="color: transparent;">
+                    <h3 class="mb-2 text-lg font-medium">Sala de espera</h3>
+                    <p class="text-gray-600">Área de espera cómoda para nuestros pacientes.</p>
                 </div>
                 <div><img alt="Sala de Ultrasonido" loading="lazy" width="400" height="250" decoding="async"
                         data-nimg="1" class="mb-4 rounded-lg object-cover"
-                        src="https://picsum.photos/500/500?random=3" style="color: transparent;">
-                    <h3 class="mb-2 text-lg font-medium">Sala de Ultrasonido</h3>
-                    <p class="text-gray-600">Ambiente confortable con equipos de ultrasonido de alta definición.</p>
+                        src="https://cimro-back-dev.grupomonterroza.com/wp-content/uploads/2025/07/PARQUEO.jpeg" style="color: transparent;">
+                    <h3 class="mb-2 text-lg font-medium">Parqueo</h3>
+                    <p class="text-gray-600">Contamos con un amplio parqueo para tu vehículo.</p>
                 </div>
             </div>
         </div>
