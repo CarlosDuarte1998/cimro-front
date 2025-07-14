@@ -16,4 +16,5 @@ onMounted(async() => {
   <NuxtLayout name="default">
     <NuxtPage />
   </NuxtLayout>
+  
 </template>
