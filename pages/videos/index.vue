@@ -1,6 +1,6 @@
 <template>
   <div>
-    <!-- Lo      <!-- Header Section -->
+    
       <section class="bg-blue-900 py-16 text-white">
         <div class="container px-4 md:px-6 max-w-[1200px] mx-auto text-center">
           <h1 class="text-4xl md:text-5xl font-bold text-white mb-4">
@@ -10,7 +10,7 @@
             Conoce más sobre CIMRO a través de nuestros videos institucionales, testimonios de pacientes y presentación de servicios médicos especializados.
           </p>
         </div>
-      </section> -->
+      </section> 
     <section v-if="pending" class="py-16">
       <div class="container px-4 md:px-6 max-w-[1200px] mx-auto">
         <div class="text-center">

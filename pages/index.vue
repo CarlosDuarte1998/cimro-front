@@ -18,12 +18,17 @@ useSeoMeta({
   twitterImage: `${corporateInfo.website}/logo-horizontal.png`,
 });
 
-// Structured Data para SEO local
+// Structured Data para SEO local y script de Taggbox
 useHead({
   script: [
     {
       type: 'application/ld+json',
       innerHTML: JSON.stringify(getSchemaData('homepage'))
+    },
+    {
+      src: 'https://widget.taggbox.com/embed.min.js',
+      type: 'text/javascript',
+      defer: true
     }
   ]
 });
