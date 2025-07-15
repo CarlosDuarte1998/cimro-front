@@ -40,18 +40,6 @@
 
     <!-- Videos Content -->
     <div v-else>
-      <!-- Header Section -->
-      <section class="py-16 bg-gradient-to-br from-blue-900 via-blue-800 to-blue-700">
-        <div class="container px-4 md:px-6 max-w-[1200px] mx-auto text-center">
-          <h1 class="text-4xl md:text-5xl font-bold text-white mb-4">
-            Nuestros Videos
-          </h1>
-          <p class="text-xl text-blue-100 max-w-3xl mx-auto">
-            Conoce más sobre CIMRO a través de nuestros videos institucionales, testimonios de pacientes y presentación de servicios médicos especializados.
-          </p>
-        </div>
-      </section>
-
       <!-- Videos Grid -->
       <section class="py-16">
         <div class="container px-4 md:px-6 max-w-[1200px] mx-auto">

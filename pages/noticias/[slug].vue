@@ -91,8 +91,8 @@
           ></div>
 
           <!-- Featured Image -->
-          <div v-if="post.featured_image" class="w-full max-w-2xl mx-auto mb-6">
-            <div class="relative h-64 sm:h-80 md:h-96 rounded-lg overflow-hidden shadow-lg">
+          <div v-if="post.featured_image" class="w-full mb-6 -mx-4 md:-mx-6">
+            <div class="relative h-64 sm:h-80 md:h-96 lg:h-[28rem] overflow-hidden rounded-lg">
               <img 
                 :src="post.featured_image_large || post.featured_image"
                 :alt="post.featured_image_alt"

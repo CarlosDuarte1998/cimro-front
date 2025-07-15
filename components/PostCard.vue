@@ -1,5 +1,8 @@
 <template>
-  <div class="rounded-lg border border-gray-200 bg-white shadow-sm overflow-hidden hover:shadow-lg transition-shadow group">
+  <NuxtLink 
+    :to="`/noticias/${post.slug}`"
+    class="block rounded-lg border border-gray-200 bg-white shadow-sm overflow-hidden hover:shadow-lg transition-shadow group cursor-pointer"
+  >
     <!-- Image -->
     <div class="relative h-48 w-full overflow-hidden">
       <img
@@ -66,20 +69,17 @@
           {{ post.author.name }}
         </div>
 
-        <!-- Read More Link -->
-        <NuxtLink 
-          :to="`/noticias/${post.slug}`"
-          class="flex items-center text-sm font-medium text-blue-600 hover:text-blue-800 transition-colors group"
-        >
+        <!-- Read More Indicator -->
+        <div class="flex items-center text-sm font-medium text-blue-600 group-hover:text-blue-800 transition-colors">
           {{ readMoreText }}
           <svg class="ml-1 h-4 w-4 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path d="M5 12h14"></path>
             <path d="m12 5 7 7-7 7"></path>
           </svg>
-        </NuxtLink>
+        </div>
       </div>
     </div>
-  </div>
+  </NuxtLink>
 </template>
 
 <script setup>

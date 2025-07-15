@@ -202,8 +202,12 @@ const mainCategories = computed(() => {
                <p class="max-w-[600px] text-blue-100 md:text-xl">En CIMRO combinamos la más alta tecnología con un
                   equipo médico especializado para ofrecerle un diagnóstico preciso y confiable.</p>
                <div class="flex flex-col gap-3 sm:flex-row">
-                  <NuxtLink class="inline-flex items-center justify-center h-11 rounded-md px-8 bg-white text-blue-900 hover:bg-blue-50 font-medium transition-colors"
-                     to="/agendar-cita">Agendar Cita</NuxtLink>
+                  <a class="inline-flex items-center justify-center h-11 rounded-md px-8 bg-white text-blue-900 hover:bg-blue-50 font-medium transition-colors"
+                     href="https://api.whatsapp.com/send/?phone=50377461474&text=Hola%2C+quisiera+informaci%C8%AFn&type=phone_number&app_absent=0" target="_blank">
+                     <Icon name="i-flowbite-whatsapp-solid" class="mr-2 h-5 w-5" />
+                     Agendar Cita
+                  
+                  </a>
                 
                   <NuxtLink class="inline-flex items-center justify-center h-11 rounded-md px-8 border border-white text-white hover:bg-white/10 font-medium transition-colors"
                      to="/servicios">Conocer Servicios

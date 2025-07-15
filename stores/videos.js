@@ -6,7 +6,7 @@ export const useVideosStore = defineStore('videos', {
     videos: [],
     selectedVideo: null,
     error: null,
-    API_BASE_URL: 'https://cimro-back-dev.grupomonterroza.com/wp-json/wp',
+    API_BASE_URL: useRuntimeConfig().public.API_BASE_URL + '/v2',
   }),
 
   getters: {
@@ -57,7 +57,7 @@ export const useVideosStore = defineStore('videos', {
       this.error = null
       
       try {
-        const videos = await $fetch(`${this.API_BASE_URL}/video`)
+        const videos = await $fetch(`${this.API_BASE_URL}/video?_embed`)
         this.videos = videos || []
         return videos
       } catch (error) {
@@ -80,7 +80,7 @@ export const useVideosStore = defineStore('videos', {
         
         if (!video) {
           // Si no existe, hacer petición a la API
-          const videos = await $fetch(`${this.API_BASE_URL}/video?slug=${slug}`)
+          const videos = await $fetch(`${this.API_BASE_URL}/video?slug=${slug}&_embed`)
           if (videos && videos.length > 0) {
             video = videos[0]
             // Agregar al estado si no existe
@@ -116,7 +116,7 @@ export const useVideosStore = defineStore('videos', {
         
         if (!video) {
           // Si no existe, hacer petición a la API
-          video = await $fetch(`${this.API_BASE_URL}/video/${id}`)
+          video = await $fetch(`${this.API_BASE_URL}/video/${id}?_embed`)
           // Agregar al estado si no existe
           if (video && !this.getVideoById(video.id)) {
             this.videos.push(video)
