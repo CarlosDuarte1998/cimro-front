@@ -139,6 +139,93 @@
         </div>
     </section>
 
+    <!-- Métodos de Pago Section -->
+    <section class="py-16 bg-gray-50">
+        <div class="container max-w-[1300px] mx-auto px-4 md:px-6">
+            <div class="mb-12 text-center">
+                <h2 class="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">Facilidades de Pago</h2>
+                <p class="mx-auto mt-4 max-w-[700px] text-gray-500">Ofrecemos diversas opciones de pago para que pueda acceder fácilmente a nuestros servicios médicos especializados.</p>
+            </div>
+            
+            <div class="grid gap-8 grid-cols-1 md:grid-cols-3 max-w-5xl mx-auto">
+                <!-- Tasa 0 -->
+                <div class="group relative overflow-hidden rounded-2xl bg-gradient-to-br from-green-500 to-green-600 p-8 text-white shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105">
+                    <div class="relative z-10">
+                        <div class="mb-6 w-16 h-16 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center">
+                            <UIcon name="i-heroicons-percent-badge" class="w-8 h-8 text-white" />
+                        </div>
+                        <h3 class="mb-4 text-2xl font-bold">Tasa 0%</h3>
+                        <p class="text-green-100 mb-6 leading-relaxed">Financiamiento sin intereses para hacer más accesibles nuestros servicios de diagnóstico por imagen.</p>
+                        <div class="inline-flex items-center text-sm font-semibold">
+                           
+                        </div>
+                    </div>
+                    <div class="absolute top-0 right-0 w-32 h-32 bg-white/10 rounded-full -translate-y-16 translate-x-16"></div>
+                </div>
+
+                <!-- Tarjetas de Crédito y Débito -->
+                <div class="group relative overflow-hidden rounded-2xl bg-gradient-to-br from-blue-500 to-blue-600 p-8 text-white shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105">
+                    <div class="relative z-10">
+                        <div class="mb-6 w-16 h-16 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center">
+                            <UIcon name="i-heroicons-credit-card" class="w-8 h-8 text-white" />
+                        </div>
+                        <h3 class="mb-4 text-2xl font-bold">Tarjetas</h3>
+                        <p class="text-blue-100 mb-6 leading-relaxed">Aceptamos tarjetas de crédito y débito, tanto nacionales como internacionales.</p>
+                        <div class="flex gap-2 flex-wrap">
+                            <span class="px-3 py-1 bg-white/20 backdrop-blur-sm rounded-full text-xs font-medium">Nacional</span>
+                            <span class="px-3 py-1 bg-white/20 backdrop-blur-sm rounded-full text-xs font-medium">Internacional</span>
+                        </div>
+                    </div>
+                    <div class="absolute top-0 right-0 w-32 h-32 bg-white/10 rounded-full -translate-y-16 translate-x-16"></div>
+                </div>
+
+                <!-- Cheque -->
+                <div class="group relative overflow-hidden rounded-2xl bg-gradient-to-br from-purple-500 to-purple-600 p-8 text-white shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105">
+                    <div class="relative z-10">
+                        <div class="mb-6 w-16 h-16 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center">
+                            <UIcon name="i-heroicons-document-text" class="w-8 h-8 text-white" />
+                        </div>
+                        <h3 class="mb-4 text-2xl font-bold">Cheque</h3>
+                        <p class="text-purple-100 mb-6 leading-relaxed">Método de pago tradicional y seguro para mayor control de sus transacciones médicas.</p>
+                        <div class="inline-flex items-center text-sm font-semibold">
+                            <span class="mr-2">Seguro y confiable</span>
+                            <UIcon name="i-heroicons-shield-check" class="w-4 h-4" />
+                        </div>
+                    </div>
+                    <div class="absolute top-0 right-0 w-32 h-32 bg-white/10 rounded-full -translate-y-16 translate-x-16"></div>
+                </div>
+            </div>
+
+            <!-- Call to Action -->
+            <div class="mt-16 text-center">
+                <div class="max-w-3xl mx-auto p-8 bg-white rounded-2xl shadow-sm border border-gray-200">
+                    <h3 class="text-2xl font-bold text-gray-900 mb-4">¿Necesita información sobre nuestros métodos de pago?</h3>
+                    <p class="text-gray-600 mb-8 leading-relaxed">
+                        Nuestro equipo está listo para asesorarle sobre las mejores opciones de pago según sus necesidades. 
+                        No permita que el aspecto financiero sea un obstáculo para cuidar su salud.
+                    </p>
+                    <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                        <a 
+                            class="inline-flex items-center justify-center rounded-lg bg-blue-600 text-white hover:bg-blue-700 h-12 px-8 font-medium transition-colors shadow-md hover:shadow-lg"
+                            href="https://api.whatsapp.com/send/?phone=50377461474&text=Hola%2C+quisiera+informaci%C8%AFn+sobre+los+m%C3%A9todos+de+pago+para+los+servicios&type=phone_number&app_absent=0" 
+                            target="_blank"
+                        >
+                            <UIcon name="i-flowbite-whatsapp-solid" class="mr-2 h-5 w-5" />
+                            Consultar Opciones de Pago
+                        </a>
+                        <NuxtLink 
+                            class="inline-flex items-center justify-center rounded-lg border border-gray-300 bg-white text-gray-700 hover:bg-gray-50 h-12 px-8 font-medium transition-colors"
+                            to="/contactanos"
+                        >
+                            <UIcon name="i-heroicons-phone" class="mr-2 h-4 w-4" />
+                            Contactar Directamente
+                        </NuxtLink>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
 
 </template>
 

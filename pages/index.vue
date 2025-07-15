@@ -198,6 +198,89 @@ const mainCategories = computed(() => {
       </div>
    </section>
 
+   <!-- Métodos de Pago Section -->
+   <section class="py-16 bg-white">
+      <div class="container m-auto px-4 md:px-6 max-w-[1300px]">
+         <div class="mb-12 text-center">
+            <h2 class="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">Métodos de Pago</h2>
+            <p class="mx-auto mt-4 max-w-[700px] text-gray-500">Ofrecemos múltiples opciones de pago para su comodidad y facilidad de acceso a nuestros servicios.</p>
+         </div>
+         
+         <div class="grid gap-8 grid-cols-1 md:grid-cols-3 max-w-4xl mx-auto">
+            <!-- Tasa 0 -->
+            <div class="flex flex-col items-center text-center p-8 bg-gradient-to-br from-green-50 to-green-100 rounded-xl shadow-sm hover:shadow-md transition-shadow duration-300 border border-green-200">
+               <div class="mb-6 w-20 h-20 rounded-full bg-green-500 flex items-center justify-center">
+                  <UIcon name="i-heroicons-percent-badge" class="w-10 h-10 text-white" />
+               </div>
+               <h3 class="mb-4 text-2xl font-bold text-green-700">Tasa 0%</h3>
+               <p class="text-gray-700 text-sm leading-relaxed mb-4">Financiamiento sin intereses para hacer más accesibles nuestros servicios médicos.</p>
+               <div class="mt-auto">
+                  <span class="inline-block px-4 py-2 bg-green-500 text-white text-sm font-medium rounded-full">
+                     Sin Intereses
+                  </span>
+               </div>
+            </div>
+
+            <!-- Tarjetas de Crédito y Débito -->
+            <div class="flex flex-col items-center text-center p-8 bg-gradient-to-br from-blue-50 to-blue-100 rounded-xl shadow-sm hover:shadow-md transition-shadow duration-300 border border-blue-200">
+               <div class="mb-6 w-20 h-20 rounded-full bg-blue-500 flex items-center justify-center">
+                  <UIcon name="i-heroicons-credit-card" class="w-10 h-10 text-white" />
+               </div>
+               <h3 class="mb-4 text-2xl font-bold text-blue-700">Tarjetas</h3>
+               <p class="text-gray-700 text-sm leading-relaxed mb-4">Aceptamos tarjetas de crédito y débito, tanto nacionales como internacionales.</p>
+               <div class="mt-auto flex flex-wrap justify-center gap-2">
+                  <span class="inline-block px-3 py-1 bg-blue-500 text-white text-xs font-medium rounded-full">
+                     Nacional
+                  </span>
+                  <span class="inline-block px-3 py-1 bg-blue-500 text-white text-xs font-medium rounded-full">
+                     Internacional
+                  </span>
+               </div>
+            </div>
+
+            <!-- Cheque -->
+            <div class="flex flex-col items-center text-center p-8 bg-gradient-to-br from-purple-50 to-purple-100 rounded-xl shadow-sm hover:shadow-md transition-shadow duration-300 border border-purple-200">
+               <div class="mb-6 w-20 h-20 rounded-full bg-purple-500 flex items-center justify-center">
+                  <UIcon name="i-heroicons-document-text" class="w-10 h-10 text-white" />
+               </div>
+               <h3 class="mb-4 text-2xl font-bold text-purple-700">Cheque</h3>
+               <p class="text-gray-700 text-sm leading-relaxed mb-4">Pago tradicional con cheque para mayor seguridad y control de sus transacciones.</p>
+               <div class="mt-auto">
+                  <span class="inline-block px-4 py-2 bg-purple-500 text-white text-sm font-medium rounded-full">
+                     Seguro y Confiable
+                  </span>
+               </div>
+            </div>
+         </div>
+
+         <!-- Información adicional -->
+         <div class="mt-12 text-center">
+            <div class="max-w-2xl mx-auto p-6 bg-gray-50 rounded-lg border border-gray-200">
+               <h4 class="text-lg font-semibold text-gray-900 mb-3">Facilidades de Pago</h4>
+               <p class="text-gray-600 text-sm leading-relaxed mb-4">
+                  En CIMRO entendemos la importancia de hacer accesibles nuestros servicios médicos. Por eso ofrecemos diversas opciones de pago que se adaptan a sus necesidades.
+               </p>
+               <div class="flex flex-col sm:flex-row gap-3 justify-center">
+                  <a 
+                     class="inline-flex items-center justify-center rounded-md bg-blue-600 text-white hover:bg-blue-700 h-10 px-6 py-2 font-medium transition-colors"
+                     href="https://api.whatsapp.com/send/?phone=50377461474&text=Hola%2C+quisiera+informaci%C8%AFn+sobre+los+m%C3%A9todos+de+pago&type=phone_number&app_absent=0" 
+                     target="_blank"
+                  >
+                     <Icon name="i-flowbite-whatsapp-solid" class="mr-2 h-4 w-4" />
+                     Consultar Opciones de Pago
+                  </a>
+                  <NuxtLink 
+                     class="inline-flex items-center justify-center rounded-md border border-gray-300 bg-white text-gray-700 hover:bg-gray-50 h-10 px-6 py-2 font-medium transition-colors"
+                     to="/contactanos"
+                  >
+                     Más Información
+                  </NuxtLink>
+               </div>
+            </div>
+         </div>
+      </div>
+   </section>
+
    <section class="relative bg-gradient-to-r bg-[#003a73] py-20 text-white">
       <div class="container relative z-10 px-4 md:px-6 m-auto">
          <div class="grid gap-6 md:grid-cols-2 md:gap-12">

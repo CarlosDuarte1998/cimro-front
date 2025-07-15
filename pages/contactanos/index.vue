@@ -175,6 +175,44 @@ const handleSubmit = async () => {
                                     class="font-medium">Domingos:</span><span>Cerrado</span></div>
                         </div>
                     </div>
+
+                    <!-- Métodos de Pago Section -->
+                    <div class="mt-8">
+                        <h3 class="mb-6 text-xl font-medium">Métodos de Pago Disponibles</h3>
+                        <div class="grid gap-4 sm:grid-cols-3">
+                            <!-- Tasa 0 -->
+                            <div class="flex flex-col items-center text-center p-4 bg-gradient-to-br from-green-50 to-green-100 rounded-lg border border-green-200">
+                                <div class="mb-3 w-12 h-12 rounded-full bg-green-500 flex items-center justify-center">
+                                    <UIcon name="i-heroicons-percent-badge" class="w-6 h-6 text-white" />
+                                </div>
+                                <h4 class="text-sm font-semibold text-green-700 mb-1">Tasa 0%</h4>
+                                <p class="text-xs text-gray-600">Sin intereses</p>
+                            </div>
+
+                            <!-- Tarjetas -->
+                            <div class="flex flex-col items-center text-center p-4 bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg border border-blue-200">
+                                <div class="mb-3 w-12 h-12 rounded-full bg-blue-500 flex items-center justify-center">
+                                    <UIcon name="i-heroicons-credit-card" class="w-6 h-6 text-white" />
+                                </div>
+                                <h4 class="text-sm font-semibold text-blue-700 mb-1">Tarjetas</h4>
+                                <p class="text-xs text-gray-600">Nacional e internacional</p>
+                            </div>
+
+                            <!-- Cheque -->
+                            <div class="flex flex-col items-center text-center p-4 bg-gradient-to-br from-purple-50 to-purple-100 rounded-lg border border-purple-200">
+                                <div class="mb-3 w-12 h-12 rounded-full bg-purple-500 flex items-center justify-center">
+                                    <UIcon name="i-heroicons-document-text" class="w-6 h-6 text-white" />
+                                </div>
+                                <h4 class="text-sm font-semibold text-purple-700 mb-1">Cheque</h4>
+                                <p class="text-xs text-gray-600">Pago tradicional</p>
+                            </div>
+                        </div>
+                        <div class="mt-4 p-3 bg-blue-50 rounded-lg border border-blue-200">
+                            <p class="text-sm text-blue-800 text-center">
+                                💳 Facilitamos el acceso a nuestros servicios con múltiples opciones de pago
+                            </p>
+                        </div>
+                    </div>
                 </div>
                 <div>
                     <h2 class="mb-6 text-2xl font-bold tracking-tight text-gray-900">Envíanos un Mensaje</h2>
