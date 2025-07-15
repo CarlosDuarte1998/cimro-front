@@ -10,6 +10,8 @@ export const useConfigStore = defineStore("config", {
         bannerMain: [],
         insurance: [],
         socialMedia: [],
+        contactInfo: {},
+        businessHours: {},
         isLoading: false,
         loaded: false,
         error: null,
@@ -31,6 +33,22 @@ export const useConfigStore = defineStore("config", {
                     this.bannerMain = this.configuraciones["configuraciones"].bannerMain || [];
                     this.insurance = this.configuraciones["configuraciones"].insurance || [];
                     this.socialMedia = this.configuraciones["configuraciones"].socialmedia || [];
+                    
+                    // Extraer información de contacto
+                    this.contactInfo = {
+                        address: this.configuraciones["configuraciones"].direccion || '',
+                        phone: this.configuraciones["configuraciones"].telefono || '',
+                        whatsapp: this.configuraciones["configuraciones"].whatsapp || '',
+                        email: this.configuraciones["configuraciones"].email || '',
+                        website: this.configuraciones["configuraciones"].website || ''
+                    };
+                    
+                    // Extraer horarios de atención
+                    this.businessHours = {
+                        weekdays: this.configuraciones["configuraciones"].horario_semana || '',
+                        saturday: this.configuraciones["configuraciones"].horario_sabado || '',
+                        sunday: this.configuraciones["configuraciones"].horario_domingo || 'Cerrado'
+                    };
                     
                     this.loaded = true;
                 } catch (error) {
@@ -56,5 +74,11 @@ export const useConfigStore = defineStore("config", {
         
         // Getter para verificar si hay seguros disponibles
         hasInsurance: (state) => state.insurance.length > 0,
+        
+        // Getter para información de contacto
+        getContactInfo: (state) => state.contactInfo,
+        
+        // Getter para horarios de atención
+        getBusinessHours: (state) => state.businessHours,
     },
 });

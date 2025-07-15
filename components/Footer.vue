@@ -5,6 +5,32 @@ import { useConfigStore } from "#imports";
 const configStore = useConfigStore();
 const { corporateInfo, businessHours } = useCIMROSEO();
 
+// Usar información de contacto de la API o fallback al composable
+const contactInfo = computed(() => {
+    if (configStore.hasDataLoaded && configStore.getContactInfo) {
+        return {
+            address: configStore.getContactInfo.address || corporateInfo.address,
+            phone: configStore.getContactInfo.phone || corporateInfo.phone,
+            whatsapp: configStore.getContactInfo.whatsapp || corporateInfo.whatsapp,
+            email: configStore.getContactInfo.email || corporateInfo.email,
+            website: configStore.getContactInfo.website || corporateInfo.website
+        };
+    }
+    return corporateInfo;
+});
+
+// Usar horarios de la API o fallback al composable
+const hours = computed(() => {
+    if (configStore.hasDataLoaded && configStore.getBusinessHours) {
+        return {
+            weekdays: configStore.getBusinessHours.weekdays || businessHours.weekdays,
+            saturday: configStore.getBusinessHours.saturday || businessHours.saturday,
+            sunday: configStore.getBusinessHours.sunday || 'Cerrado'
+        };
+    }
+    return businessHours;
+});
+
 const socialMediaLinks = computed(() => configStore.socialMedia);
 </script>
 
@@ -67,32 +93,32 @@ const socialMediaLinks = computed(() => configStore.socialMedia);
                                 target="_blank" rel="noopener noreferrer"
                                 aria-label="Ver ubicación de CIMRO Centro de Imágenes Radiológicas de Occidente en Google Maps">
                                 <UIcon name="i-lucide-map-pin" class="size-5" aria-hidden="true" />
-                                <span>{{ corporateInfo.address }}</span>
+                                <span>{{ contactInfo.address }}</span>
                             </a>
                         </li>
                         <li class="flex items-center gap-2">
-                            <a :href="`tel:${corporateInfo.phone}`"
+                            <a :href="`tel:${contactInfo.phone}`"
                                 class="flex items-center gap-2 transition-colors hover:text-white hover:underline"
                                 target="_blank" rel="noopener noreferrer"
-                                :aria-label="`Llamar a CIMRO al ${corporateInfo.phone}`">
+                                :aria-label="`Llamar a CIMRO al ${contactInfo.phone}`">
                                 <UIcon name="i-lucide-phone" class="size-5" aria-hidden="true" />
-                                <span>{{ corporateInfo.phone }}</span>
+                                <span>{{ contactInfo.phone }}</span>
                             </a>
                         </li>
                         <li class="flex items-center gap-2">
-                            <a :href="`mailto:${corporateInfo.email}`"
+                            <a :href="`mailto:${contactInfo.email}`"
                                 class="flex items-center gap-2 transition-colors hover:text-white hover:underline"
                                 target="_blank" rel="noopener noreferrer"
-                                :aria-label="`Enviar correo a CIMRO a ${corporateInfo.email}`">
+                                :aria-label="`Enviar correo a CIMRO a ${contactInfo.email}`">
                                 <UIcon name="i-lucide-mail" class="size-5" aria-hidden="true" />
-                                <span>{{ corporateInfo.email }}</span>
+                                <span>{{ contactInfo.email }}</span>
                             </a>
                         </li>
                         <li class="flex items-start gap-2">
                             <UIcon name="i-lucide-clock" class="size-5 mt-0.5" aria-hidden="true" />
                             <div>
-                                <div>{{ businessHours.weekdays }}</div>
-                                <div>{{ businessHours.saturday }}</div>
+                                <div>{{ hours.weekdays }}</div>
+                                <div>{{ hours.saturday }}</div>
                             </div>
                         </li>
                     </ul>
@@ -136,9 +162,9 @@ const socialMediaLinks = computed(() => configStore.socialMedia);
                     <div class="mt-6">
                         <h4 class="mb-2 text-sm font-medium">Horario de Atención</h4>
                         <p class="text-sm text-blue-100">
-                            Lunes a Viernes: 8:00 AM - 8:00 PM
+                            {{ hours.weekdays }}
                         </p>
-                        <p class="text-sm text-blue-100">Sábados: 8:00 AM - 2:00 PM</p>
+                        <p class="text-sm text-blue-100">{{ hours.saturday }}</p>
                     </div>
                 </div>
             </div>

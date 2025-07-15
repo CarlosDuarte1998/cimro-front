@@ -1,8 +1,35 @@
 <script setup>
 import { UButton } from '#components';
-import {useContactStore} from '#imports';
+import {useContactStore, useConfigStore} from '#imports';
 
 const { corporateInfo, getKeywordsString, generateDescription, businessHours } = useCIMROSEO();
+const configStore = useConfigStore();
+
+// Usar información de contacto de la API o fallback al composable
+const contactInfo = computed(() => {
+    if (configStore.hasDataLoaded && configStore.getContactInfo) {
+        return {
+            address: configStore.getContactInfo.address || corporateInfo.address,
+            phone: configStore.getContactInfo.phone || corporateInfo.phone,
+            whatsapp: configStore.getContactInfo.whatsapp || corporateInfo.whatsapp,
+            email: configStore.getContactInfo.email || corporateInfo.email,
+            website: configStore.getContactInfo.website || corporateInfo.website
+        };
+    }
+    return corporateInfo;
+});
+
+// Usar horarios de la API o fallback al composable
+const hours = computed(() => {
+    if (configStore.hasDataLoaded && configStore.getBusinessHours) {
+        return {
+            weekdays: configStore.getBusinessHours.weekdays || businessHours.weekdays,
+            saturday: configStore.getBusinessHours.saturday || businessHours.saturday,
+            sunday: configStore.getBusinessHours.sunday || 'Cerrado'
+        };
+    }
+    return businessHours;
+});
 
 // SEO Meta Tags para página de contacto
 useSeoMeta({
@@ -35,22 +62,22 @@ useHead({
           name: corporateInfo.name,
           address: {
             '@type': 'PostalAddress',
-            streetAddress: corporateInfo.address,
+            streetAddress: contactInfo.value.address,
             addressLocality: 'Santa Ana',
             addressCountry: 'El Salvador'
           },
           contactPoint: [
             {
               '@type': 'ContactPoint',
-              telephone: corporateInfo.phone,
+              telephone: contactInfo.value.phone,
               contactType: 'customer service',
-              email: corporateInfo.email,
+              email: contactInfo.value.email,
               availableLanguage: 'Spanish'
             },
             {
               '@type': 'ContactPoint',
               contactType: 'emergency',
-              telephone: corporateInfo.phone
+              telephone: contactInfo.value.phone
             }
           ],
           openingHours: businessHours.structured
@@ -78,8 +105,11 @@ const contactStore = useContactStore();
 const showSuccessToast = ref(false);
 const showErrorToast = ref(false);
 
-onMounted(() => {
-   
+onMounted(async () => {
+    // Asegurar que las configuraciones estén cargadas
+    if (!configStore.hasDataLoaded) {
+        await configStore.fetchConfiguraciones();
+    }
 });
 
 const handleSubmit = async () => {
@@ -134,14 +164,46 @@ const handleSubmit = async () => {
             <div class="grid gap-10 md:grid-cols-2">
                 <div>
                     <h2 class="mb-6 text-2xl font-bold tracking-tight text-gray-900">Información de Contacto</h2>
-                    <div class="space-y-6">
+                    
+                    <!-- Loading state -->
+                    <div v-if="configStore.isCurrentlyLoading" class="space-y-6">
+                        <div class="rounded-lg border border-gray-200 bg-card text-card-foreground shadow-sm animate-pulse">
+                            <div class="flex items-start gap-4 p-6">
+                                <div class="mt-0.5 h-5 w-5 bg-gray-300 rounded"></div>
+                                <div class="flex-1">
+                                    <div class="h-4 bg-gray-300 rounded w-20 mb-2"></div>
+                                    <div class="h-3 bg-gray-200 rounded w-full"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="rounded-lg border border-gray-200 bg-card text-card-foreground shadow-sm animate-pulse">
+                            <div class="flex items-start gap-4 p-6">
+                                <div class="mt-0.5 h-5 w-5 bg-gray-300 rounded"></div>
+                                <div class="flex-1">
+                                    <div class="h-4 bg-gray-300 rounded w-20 mb-2"></div>
+                                    <div class="h-3 bg-gray-200 rounded w-full"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="rounded-lg border border-gray-200 bg-card text-card-foreground shadow-sm animate-pulse">
+                            <div class="flex items-start gap-4 p-6">
+                                <div class="mt-0.5 h-5 w-5 bg-gray-300 rounded"></div>
+                                <div class="flex-1">
+                                    <div class="h-4 bg-gray-300 rounded w-20 mb-2"></div>
+                                    <div class="h-3 bg-gray-200 rounded w-full"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Content when loaded -->
+                    <div v-else class="space-y-6">
                         <div class="rounded-lg border border-gray-200 bg-card text-card-foreground shadow-sm">
                             <div class="flex items-start gap-4 p-6">
                                 <UIcon name="lucide:map-pin" class="mt-0.5 h-5 w-5 shrink-0 text-blue-600" />
                                 <div>
                                     <h3 class="font-medium">Dirección</h3>
-                                    <p class="text-sm text-gray-500">Av. Principal #123, Colonia Centro<br>Ciudad,
-                                        Estado, País<br>Código Postal 12345</p>
+                                    <p class="text-sm text-gray-500">{{ contactInfo.address }}</p>
                                 </div>
                             </div>
                         </div>
@@ -150,7 +212,17 @@ const handleSubmit = async () => {
                                 <UIcon name="lucide:phone" class="mt-0.5 h-5 w-5 shrink-0 text-blue-600" />
                                 <div>
                                     <h3 class="font-medium">Teléfonos</h3>
-                                    <p class="text-sm text-gray-500">+123 456 7890<br>+123 456 7891</p>
+                                    <p class="text-sm text-gray-500">
+                                        <a :href="`tel:${contactInfo.phone}`" class="hover:text-blue-600 transition-colors">
+                                            {{ contactInfo.phone }}
+                                        </a>
+                                        <br>
+                                        <a :href="`https://wa.me/${contactInfo.whatsapp.replace(/[^0-9]/g, '')}`" 
+                                           target="_blank" 
+                                           class="hover:text-blue-600 transition-colors">
+                                            {{ contactInfo.whatsapp }} (WhatsApp)
+                                        </a>
+                                    </p>
                                 </div>
                             </div>
                         </div>
@@ -159,25 +231,37 @@ const handleSubmit = async () => {
                                 <UIcon name="lucide:mail" class="mt-0.5 h-5 w-5 shrink-0 text-blue-600" />
                                 <div>
                                     <h3 class="font-medium">Correo Electrónico</h3>
-                                    <p class="text-sm text-gray-500">contacto@cimro.com<br>citas@cimro.com</p>
+                                    <p class="text-sm text-gray-500">
+                                        <a :href="`mailto:${contactInfo.email}`" class="hover:text-blue-600 transition-colors">
+                                            {{ contactInfo.email }}
+                                        </a>
+                                    </p>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="mt-8">
+                    
+                    <!-- Business Hours Section -->
+                    <div class="mt-8" v-if="!configStore.isCurrentlyLoading">
                         <h3 class="mb-4 text-xl font-medium">Horario de Atención</h3>
                         <div class="space-y-2">
-                            <div class="flex justify-between"><span class="font-medium">Lunes a
-                                    Viernes:</span><span>8:00 AM - 8:00 PM</span></div>
-                            <div class="flex justify-between"><span class="font-medium">Sábados:</span><span>8:00 AM -
-                                    2:00 PM</span></div>
-                            <div class="flex justify-between"><span
-                                    class="font-medium">Domingos:</span><span>Cerrado</span></div>
+                            <div class="flex justify-between">
+                                <span class="font-medium">{{ hours.weekdays.split(':')[0] }}:</span>
+                                <span>{{ hours.weekdays.split(':').slice(1).join(':').trim() }}</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="font-medium">{{ hours.saturday.split(':')[0] }}:</span>
+                                <span>{{ hours.saturday.split(':').slice(1).join(':').trim() }}</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="font-medium">Domingos:</span>
+                                <span>{{ hours.sunday || 'Cerrado' }}</span>
+                            </div>
                         </div>
                     </div>
 
                     <!-- Métodos de Pago Section -->
-                    <div class="mt-8">
+                    <div class="mt-8" v-if="!configStore.isCurrentlyLoading">
                         <h3 class="mb-6 text-xl font-medium">Métodos de Pago Disponibles</h3>
                         <div class="grid gap-4 sm:grid-cols-3">
                             <!-- Tasa 0 -->

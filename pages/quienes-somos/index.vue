@@ -88,45 +88,50 @@
                 <p class="mx-auto mt-4 max-w-[700px] text-gray-500">Contamos con un equipo de profesionales altamente
                     calificados y comprometidos con su salud.</p>
             </div>
-            <div class="grid gap-8 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+            <div class="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
                 <div class="text-center">
-                    <div class="mx-auto mb-4 h-40 w-40 overflow-hidden rounded-full"><img alt="Dr. Nombre Apellido"
-                            loading="lazy" width="160" height="160" decoding="async" data-nimg="1"
-                            class="h-full w-full object-cover" src="https://picsum.photos/160/160?random=1"
-                            style="color: transparent;"></div>
-                    <h3 class="text-lg font-medium">Dr. Nombre Apellido</h3>
+                    <div class="mx-auto mb-4 h-40 w-40 overflow-hidden rounded-full">
+                        <img alt="Dr. Roberto Martínez" loading="lazy" width="160" height="160" decoding="async" data-nimg="1"
+                            class="h-full w-full object-cover" 
+                            src="https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?w=160&h=160&fit=crop&crop=face&auto=format"
+                            style="color: transparent;">
+                    </div>
+                    <h3 class="text-lg font-medium">Dr. Roberto Martínez</h3>
                     <p class="text-sm text-gray-500">Director Médico</p>
-                    <p class="mt-2 text-sm text-gray-600">Especialista en Radiología e Imagen con más de 20 años de
-                        experiencia.</p>
+                    <p class="mt-2 text-sm text-gray-600">Especialista en Radiología Diagnóstica con más de 20 años de experiencia en tomografía computarizada.</p>
                 </div>
                 <div class="text-center">
-                    <div class="mx-auto mb-4 h-40 w-40 overflow-hidden rounded-full"><img alt="Dra. Nombre Apellido"
-                            loading="lazy" width="160" height="160" decoding="async" data-nimg="1"
-                            class="h-full w-full object-cover" src="https://picsum.photos/160/160?random=4"
-                            style="color: transparent;"></div>
-                    <h3 class="text-lg font-medium">Dra. Nombre Apellido</h3>
-                    <p class="text-sm text-gray-500">Radióloga</p>
-                    <p class="mt-2 text-sm text-gray-600">Especialista en Radiología Intervencionista y Diagnóstico por
-                        Imagen.</p>
+                    <div class="mx-auto mb-4 h-40 w-40 overflow-hidden rounded-full">
+                        <img alt="Dra. María Elena García" loading="lazy" width="160" height="160" decoding="async" data-nimg="1"
+                            class="h-full w-full object-cover" 
+                            src="https://images.unsplash.com/photo-1559839734-2b71ea197ec2?w=160&h=160&fit=crop&crop=face&auto=format"
+                            style="color: transparent;">
+                    </div>
+                    <h3 class="text-lg font-medium">Dra. María Elena García</h3>
+                    <p class="text-sm text-gray-500">Radióloga Especialista</p>
+                    <p class="mt-2 text-sm text-gray-600">Experta en Radiología Intervencionista y Diagnóstico por Imagen con certificación internacional.</p>
                 </div>
                 <div class="text-center">
-                    <div class="mx-auto mb-4 h-40 w-40 overflow-hidden rounded-full"><img alt="Dr. Nombre Apellido"
-                            loading="lazy" width="160" height="160" decoding="async" data-nimg="1"
-                            class="h-full w-full object-cover" src="https://picsum.photos/160/160?random=2"
-                            style="color: transparent;"></div>
-                    <h3 class="text-lg font-medium">Dr. Nombre Apellido</h3>
-                    <p class="text-sm text-gray-500">Radiólogo</p>
-                    <p class="mt-2 text-sm text-gray-600">Especialista en Tomografía Computarizada y Resonancia
-                        Magnética.</p>
+                    <div class="mx-auto mb-4 h-40 w-40 overflow-hidden rounded-full">
+                        <img alt="Dr. Carlos Hernández" loading="lazy" width="160" height="160" decoding="async" data-nimg="1"
+                            class="h-full w-full object-cover" 
+                            src="https://images.unsplash.com/photo-1582750433449-648ed127bb54?w=160&h=160&fit=crop&crop=face&auto=format"
+                            style="color: transparent;">
+                    </div>
+                    <h3 class="text-lg font-medium">Dr. Carlos Hernández</h3>
+                    <p class="text-sm text-gray-500">Cardiólogo Intervencionista</p>
+                    <p class="mt-2 text-sm text-gray-600">Especialista en Cardiología Intervencionista y Tomografía Cardíaca con más de 15 años de experiencia.</p>
                 </div>
                 <div class="text-center">
-                    <div class="mx-auto mb-4 h-40 w-40 overflow-hidden rounded-full"><img alt="Dra. Nombre Apellido"
-                            loading="lazy" width="160" height="160" decoding="async" data-nimg="1"
-                            class="h-full w-full object-cover" src="https://picsum.photos/160/160?random=3"
-                            style="color: transparent;"></div>
-                    <h3 class="text-lg font-medium">Dra. Nombre Apellido</h3>
-                    <p class="text-sm text-gray-500">Radióloga</p>
-                    <p class="mt-2 text-sm text-gray-600">Especialista en Ultrasonido y Mamografía.</p>
+                    <div class="mx-auto mb-4 h-40 w-40 overflow-hidden rounded-full">
+                        <img alt="Dra. Ana Sofía López" loading="lazy" width="160" height="160" decoding="async" data-nimg="1"
+                            class="h-full w-full object-cover" 
+                            src="https://images.unsplash.com/photo-1607990281513-2c110a25bd8c?w=160&h=160&fit=crop&crop=face&auto=format"
+                            style="color: transparent;">
+                    </div>
+                    <h3 class="text-lg font-medium">Dra. Ana Sofía López</h3>
+                    <p class="text-sm text-gray-500">Radióloga Ginecológica</p>
+                    <p class="mt-2 text-sm text-gray-600">Especialista en Ultrasonidos Ginecológicos, Obstétricos y Mamografía Digital.</p>
                 </div>
             </div>
         </div>

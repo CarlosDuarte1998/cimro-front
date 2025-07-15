@@ -231,7 +231,7 @@ export const usePostsStore = defineStore('posts', {
         slug: post.slug,
         date: post.date,
         modified: post.modified,
-        author: post._embedded?.author?.[0] || null,
+        author: { name: 'CIMRO', id: 1 },
         categories: post._embedded?.['wp:term']?.[0] || [],
         tags: post._embedded?.['wp:term']?.[1] || [],
         link: post.link,
