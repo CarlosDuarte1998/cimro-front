@@ -202,10 +202,13 @@ const mainCategories = computed(() => {
                <p class="max-w-[600px] text-blue-100 md:text-xl">En CIMRO combinamos la más alta tecnología con un
                   equipo médico especializado para ofrecerle un diagnóstico preciso y confiable.</p>
                <div class="flex flex-col gap-3 sm:flex-row">
-                  <a class="inline-flex items-center justify-center h-11 rounded-md px-8 bg-white text-blue-900 hover:bg-blue-50 font-medium transition-colors"
-                     href="/agendar-cita">Agendar Cita</a>
-                  <a class="inline-flex items-center justify-center h-11 rounded-md px-8 border border-white text-white hover:bg-white/10 font-medium transition-colors"
-                     href="/servicios">Conocer Servicios</a>
+                  <NuxtLink class="inline-flex items-center justify-center h-11 rounded-md px-8 bg-white text-blue-900 hover:bg-blue-50 font-medium transition-colors"
+                     to="/agendar-cita">Agendar Cita</NuxtLink>
+                
+                  <NuxtLink class="inline-flex items-center justify-center h-11 rounded-md px-8 border border-white text-white hover:bg-white/10 font-medium transition-colors"
+                     to="/servicios">Conocer Servicios
+                     
+                  </NuxtLink>
                </div>
             </div>
             <div class="flex items-center justify-center"><img alt="Equipo médico avanzado de CIMRO - Centro de diagnóstico por imagen en El Salvador" loading="lazy" width="500"
@@ -239,25 +242,16 @@ const mainCategories = computed(() => {
       <BransLoop />
    </section>
 
-   <section class="bg-[#3d78bc] py-16 text-white">
-      <div class="container px-4 md:px-6 m-auto">
-         <div class="mx-auto max-w-3xl text-center">
-            <h2 class="text-3xl font-bold tracking-tight sm:text-4xl">Estamos para servirle</h2>
-            <p class="mx-auto mt-4 max-w-[700px] text-white">Agende su cita hoy mismo y experimente la atención de
-               calidad que merece.</p>
-            <div class="mt-8 flex flex-col justify-center gap-4 sm:flex-row">
-               <a class="inline-flex items-center justify-center h-11 rounded-md px-8 bg-white text-blue-600 hover:bg-blue-50 font-medium transition-colors min-h-[44px]"
-                  href="/agendar-cita"
-                  aria-label="Agendar cita médica en CIMRO">Agendar Cita</a>
-               <a class="inline-flex items-center justify-center h-11 rounded-md px-8 border border-white text-white hover:bg-white/10 font-medium transition-colors min-h-[44px]"
-                  href="/contactanos"
-                  aria-label="Contactar con CIMRO para más información">Contactar</a>
-            </div>
-         </div>
-      </div>
-   </section>
+ 
 
-
+   <!-- Recent Posts Section -->
+   <RecentPosts 
+     title="Últimas Noticias"
+     subtitle="Mantente informado sobre las novedades y avances en CIMRO"
+     :limit="3"
+     :show-author="false"
+     :show-reading-time="false"
+   />
 
 </template>
 

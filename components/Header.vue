@@ -111,7 +111,7 @@ const handleLogoClick = () => {
                             <NuxtLink @click="toggleSlideover" class="text-gray-700 hover:text-blue-600 py-2 border-l-4 border-transparent pl-2"
                                 :class="{ 'border-blue-600 text-blue-600 bg-blue-50': route.path === '/contactanos' }"
                                 to="/contactanos">Contáctanos</NuxtLink>
-                            <a class="text-gray-700 hover:text-blue-600 py-2" href="/agendar-cita">Agendar Cita</a>
+                           
                             
                         </nav>
                         <div class="p-4 text-center text-gray-700">

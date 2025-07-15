@@ -1,15 +1,15 @@
 <script setup>
-import { ref, computed, onMounted, nextTick } from 'vue';
+import { ref, computed, onMounted, nextTick, watch } from 'vue';
 import { useConfigStore } from '#imports';
 
 // Store
 const configStore = useConfigStore();
 
-// Estado de carga
-const isLoading = ref(true);
-
-// Computed que devuelve los banners
+// Computed que devuelve los banners y el estado de carga del store
 const bannerMain = computed(() => configStore.bannerMain);
+const isLoading = computed(() => configStore.isCurrentlyLoading);
+const isDataLoaded = computed(() => configStore.hasDataLoaded);
+const hasBanners = computed(() => configStore.hasBanners);
 
 // Swiper
 const containerRef = ref(null);
@@ -37,27 +37,34 @@ const swiperConfig = {
   // Eliminamos creativeEffect ya que entra en conflicto con fade
 };
 
+// Función para inicializar el swiper
+const initializeSwiper = async () => {
+  await nextTick();
+  if (containerRef.value) {
+    // Asignar la configuración al elemento swiper
+    Object.assign(containerRef.value, swiperConfig);
+    // Inicializar el swiper
+    containerRef.value.initialize();
+  }
+};
+
 onMounted(() => {
-  // Simular tiempo de carga y luego mostrar el banner
-  setTimeout(() => {
-    isLoading.value = false;
-    // Inicializar el swiper después de que el DOM se actualice
-    nextTick(() => {
-      if (containerRef.value) {
-        // Asignar la configuración al elemento swiper
-        Object.assign(containerRef.value, swiperConfig);
-        // Inicializar el swiper
-        containerRef.value.initialize();
-      }
-    });
-  }, 2000); // Ajusta el tiempo según tus necesidades
+  // Cargar las configuraciones al montar el componente
+  configStore.fetchConfiguraciones();
 });
+
+// Watch para inicializar el swiper cuando los datos estén cargados
+watch([isDataLoaded, hasBanners], ([loaded, banners]) => {
+  if (loaded && banners) {
+    initializeSwiper();
+  }
+}, { immediate: true });
 </script>
 
 <template>
   <!-- Skeleton Loader para CIMRO - Centro de Imágenes Radiológicas de Occidente -->
   <div 
-    v-if="isLoading" 
+    v-if="!isDataLoaded" 
     class="relative h-[500px] sm:h-[700px] w-full bg-gray-200 animate-pulse"
     aria-label="Cargando contenido de CIMRO Santa Ana"
   >
@@ -81,7 +88,7 @@ onMounted(() => {
 
   <!-- Banner principal CIMRO - Centro de Imágenes Radiológicas de Occidente -->
   <swiper-container 
-    v-if="!isLoading" 
+    v-if="isDataLoaded && hasBanners" 
     ref="containerRef" 
     :init="false"
     role="banner"

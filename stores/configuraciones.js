@@ -10,6 +10,7 @@ export const useConfigStore = defineStore("config", {
         bannerMain: [],
         insurance: [],
         socialMedia: [],
+        isLoading: false,
         loaded: false,
         error: null,
     }),
@@ -19,28 +20,41 @@ export const useConfigStore = defineStore("config", {
         async fetchConfiguraciones() {
            
            if (this.configuraciones.length === 0) {
+                this.isLoading = true;
                 this.loaded = false;
+                this.error = null;
+                
                 try {
-                    this.loaded = true;
                     const response = await axios.get(`https://cimro-back-dev.grupomonterroza.com/wp-json/acf/v3/opciones`);
                     this.configuraciones = response.data;
-
-                    
 
                     this.bannerMain = this.configuraciones["configuraciones"].bannerMain || [];
                     this.insurance = this.configuraciones["configuraciones"].insurance || [];
                     this.socialMedia = this.configuraciones["configuraciones"].socialmedia || [];
+                    
+                    this.loaded = true;
                 } catch (error) {
                     console.error("Error fetching configuraciones:", error);
                     this.error = error;
                     this.loaded = false;
+                } finally {
+                    this.isLoading = false;
                 }
-                this.loaded = false;
             }
         
         },
     },
     getters: {
+        // Getter para saber si está cargando
+        isCurrentlyLoading: (state) => state.isLoading,
         
+        // Getter para saber si los datos están disponibles
+        hasDataLoaded: (state) => state.loaded && !state.isLoading,
+        
+        // Getter para verificar si hay banners disponibles
+        hasBanners: (state) => state.bannerMain.length > 0,
+        
+        // Getter para verificar si hay seguros disponibles
+        hasInsurance: (state) => state.insurance.length > 0,
     },
 });

@@ -42,9 +42,6 @@ interface Props {
   breadcrumbs: Breadcrumb[]
 }
 
-defineProps<Props>()
-
-// Structured Data para breadcrumbs
 const props = defineProps<Props>()
 
 useHead({
