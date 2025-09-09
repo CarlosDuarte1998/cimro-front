@@ -21,7 +21,7 @@
                 </div>
                 <div class="flex items-center justify-center"><img alt="Instalaciones de CIMRO" loading="lazy"
                         width="500" height="400" decoding="async" data-nimg="1" class="rounded-lg object-cover"
-                        src="https://cimro-back-dev.grupomonterroza.com/wp-content/uploads/2025/07/PORTADA-scaled.jpg" style="color: transparent;"></div>
+                        src="https://admin-cimro.gunssoft.tech/wp-content/uploads/2025/07/PORTADA-scaled.jpg" style="color: transparent;"></div>
             </div>
         </div>
     </section>
@@ -146,20 +146,20 @@
             </div>
             <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
                 <div><img alt="Recepción" loading="lazy" width="400" height="250" decoding="async" data-nimg="1"
-                        class="mb-4 rounded-lg object-cover" src="https://cimro-back-dev.grupomonterroza.com/wp-content/uploads/2025/07/quienes-somos.jpeg"
+                        class="mb-4 rounded-lg object-cover" src="https://admin-cimro.gunssoft.tech/wp-content/uploads/2025/07/quienes-somos.jpeg"
                         style="color: transparent;">
                     <h3 class="mb-2 text-lg font-medium">Edificio</h3>
                     <p class="text-gray-600">Contamos con amplias instalaciones</p>
                 </div>
                 <div><img alt="Sala de Tomografía" loading="lazy" width="400" height="250" decoding="async"
                         data-nimg="1" class="mb-4 rounded-lg object-cover"
-                        src="https://cimro-back-dev.grupomonterroza.com/wp-content/uploads/2025/07/SALA-DE-ESPERA.jpeg" style="color: transparent;">
+                        src="https://admin-cimro.gunssoft.tech/wp-content/uploads/2025/07/SALA-DE-ESPERA.jpeg" style="color: transparent;">
                     <h3 class="mb-2 text-lg font-medium">Sala de espera</h3>
                     <p class="text-gray-600">Área de espera cómoda para nuestros pacientes.</p>
                 </div>
                 <div><img alt="Sala de Ultrasonido" loading="lazy" width="400" height="250" decoding="async"
                         data-nimg="1" class="mb-4 rounded-lg object-cover"
-                        src="https://cimro-back-dev.grupomonterroza.com/wp-content/uploads/2025/07/PARQUEO.jpeg" style="color: transparent;">
+                        src="https://admin-cimro.gunssoft.tech/wp-content/uploads/2025/07/PARQUEO.jpeg" style="color: transparent;">
                     <h3 class="mb-2 text-lg font-medium">Parqueo</h3>
                     <p class="text-gray-600">Contamos con un amplio parqueo para tu vehículo.</p>
                 </div>

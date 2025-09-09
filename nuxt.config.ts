@@ -6,12 +6,25 @@ export default defineNuxtConfig({
   compatibilityDate: '2025-05-15',
   devtools: { enabled: true },
 
-  // SSR habilitado para mejor SEO 
-  ssr: true,
+  // SPA mode para compatibilidad con hosting compartido
+  ssr: false,
+  
+  // Configuración específica para SPA y hosting compartido
+  nitro: {
+    prerender: {
+      crawlLinks: false,
+      routes: ['/'],
+      failOnError: false
+    },
+    experimental: {
+      wasm: true
+    }
+  },
 
   ui: {
     colorMode: false
   },
+  
   modules: [
     '@nuxt/ui',
     '@nuxt/icon',
@@ -24,8 +37,14 @@ export default defineNuxtConfig({
     '@nuxtjs/robots'
   ],
 
+  // Configuración de robots para baseURL
+  robots: {
+    robotsTxt: false
+  },
+
   // Configuración SEO global
   app: {
+    baseURL: '/',
     head: {
       htmlAttrs: {
         lang: 'es'
@@ -54,19 +73,9 @@ export default defineNuxtConfig({
     }
   },
 
-  // Configuración del sitemap
-  nitro: {
-    prerender: {
-      routes: [
-        '/',
-        '/servicios',
-        '/quienes-somos',
-        '/contactanos',
-        '/noticias',
-        '/turismo-salud',
-        '/videos'
-      ]
-    }
+  // Configuración de performance
+  experimental: {
+    payloadExtraction: false
   },
 
   runtimeConfig: {
@@ -79,11 +88,6 @@ export default defineNuxtConfig({
   // Configuración global del sitemap
   site: {
     url: 'https://cimro.com.sv'
-  },
-
-  // Configuración de performance
-  experimental: {
-    payloadExtraction: false
   },
 
   // Configuración de CSS crítico

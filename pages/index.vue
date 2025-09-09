@@ -305,7 +305,7 @@ const mainCategories = computed(() => {
             </div>
             <div class="flex items-center justify-center"><img alt="Equipo médico avanzado de CIMRO - Centro de diagnóstico por imagen en El Salvador" loading="lazy" width="500"
                   height="400" decoding="async" data-nimg="1" class="rounded-lg object-cover" style="color:transparent"
-                  src="https://cimro-back-dev.grupomonterroza.com/wp-content/uploads/2025/07/PORTADA-scaled.jpg"></div>
+                  src="https://admin-cimro.gunssoft.tech/wp-content/uploads/2025/07/PORTADA-scaled.jpg"></div>
          </div>
       </div>
       <div class="absolute inset-0 bg-blue-900/20 mix-blend-multiply"></div>
