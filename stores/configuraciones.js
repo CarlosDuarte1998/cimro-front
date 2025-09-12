@@ -28,7 +28,8 @@ export const useConfigStore = defineStore("config", {
                 
                 try {
                     const config = useRuntimeConfig();
-                    const apiBaseUrl = config.public.API_BASE_URL;
+                    const apiBaseUrl = "https://admin-cimro.gunssoft.tech/wp-json";
+                    //const apiBaseUrl = config.public.API_BASE_URL;
                     const response = await axios.get(`${apiBaseUrl}/acf/v3/opciones`);
                     this.configuraciones = response.data;
 
