@@ -61,6 +61,9 @@ const handleLogoClick = () => {
                     :class="{ 'border-blue-600 text-blue-600': route.path === '/turismo-salud' }"
                     to="/turismo-salud">Turismo Salud</NuxtLink> -->
                 <NuxtLink class="4xl:text-lg text-sm font-bold text-gray-700 transition-colors hover:text-blue-600 pb-1 border-b-2 border-transparent"
+                    :class="{ 'border-blue-600 text-blue-600': route.path === '/razon-social' }"
+                    to="/razon-social">Razón Social</NuxtLink>
+                <NuxtLink class="4xl:text-lg text-sm font-bold text-gray-700 transition-colors hover:text-blue-600 pb-1 border-b-2 border-transparent"
                     :class="{ 'border-blue-600 text-blue-600': route.path === '/contactanos' }"
                     to="/contactanos">Contáctanos</NuxtLink>
                 <a class="items-center justify-center gap-2 rounded-md text-sm font-semibold h-10 px-4 py-2 hidden bg-blue-600 hover:bg-blue-700 md:inline-flex text-white min-h-[44px]"
@@ -108,6 +111,10 @@ const handleLogoClick = () => {
                                 :class="{ 'border-blue-600 text-blue-600 bg-blue-50': route.path === '/turismo-salud' }"
                                 to="/turismo-salud">Turismo Salud
                             </NuxtLink> -->
+                            <NuxtLink @click="toggleSlideover" class="text-gray-700 hover:text-blue-600 py-2 border-l-4 border-transparent pl-2"
+                                :class="{ 'border-blue-600 text-blue-600 bg-blue-50': route.path === '/razon-social' }"
+                                to="/razon-social">Razón Social
+                            </NuxtLink>
                             <NuxtLink @click="toggleSlideover" class="text-gray-700 hover:text-blue-600 py-2 border-l-4 border-transparent pl-2"
                                 :class="{ 'border-blue-600 text-blue-600 bg-blue-50': route.path === '/contactanos' }"
                                 to="/contactanos">Contáctanos</NuxtLink>
