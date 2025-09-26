@@ -253,7 +253,7 @@ useSeoMeta({
               height="600" 
               decoding="async" 
               data-nimg="1"
-              class="w-full h-full max-h-[500px] object-cover" 
+              class="w-full lg:max-w-2/3 h-full max-h-[500px] lg:max-h-[300px] object-cover" 
               :src="imageUrl" 
               style="image-rendering: -webkit-optimize-contrast; image-rendering: crisp-edges;"
             />
