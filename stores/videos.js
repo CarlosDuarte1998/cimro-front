@@ -6,7 +6,7 @@ export const useVideosStore = defineStore('videos', {
     videos: [],
     selectedVideo: null,
     error: null,
-    API_BASE_URL: useRuntimeConfig().public.API_BASE_URL + '/v2',
+    API_BASE_URL: useRuntimeConfig().public.API_BASE_URL + '/wp/v2',
   }),
 
   getters: {

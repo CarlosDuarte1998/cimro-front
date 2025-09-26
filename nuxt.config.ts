@@ -81,7 +81,7 @@ export default defineNuxtConfig({
   runtimeConfig: {
     public: {
       API_BASE_URL: process.env.NUXT_API_BASE_URL,
-      SITE_URL: process.env.NUXT_SITE_URL || 'https://cimro.com.sv'
+      SITE_URL: process.env.NUXT_SITE_URL 
     }
   },
 
