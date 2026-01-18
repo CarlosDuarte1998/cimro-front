@@ -2,9 +2,9 @@
 import { UButton } from '#components';
 import {useContactStore, useConfigStore} from '#imports';
 
-const { corporateInfo, getKeywordsString, generateDescription, businessHours } = useCIMROSEO();
+const { corporateInfo, getKeywordsString, generateDescription } = useCIMROSEO();
 const configStore = useConfigStore();
-
+const { businessHours } = storeToRefs(configStore);
 // Usar información de contacto de la API o fallback al composable
 const contactInfo = computed(() => {
     if (configStore.hasDataLoaded && configStore.getContactInfo) {
@@ -25,7 +25,10 @@ const hours = computed(() => {
         return {
             weekdays: configStore.getBusinessHours.weekdays || businessHours.weekdays,
             saturday: configStore.getBusinessHours.saturday || businessHours.saturday,
-            sunday: configStore.getBusinessHours.sunday || 'Cerrado'
+            sunday: configStore.getBusinessHours.sunday || 'Cerrado',
+            weekdays_corto: configStore.getBusinessHours.weekdays_corto || businessHours.weekdays_corto,
+            saturday_corto: configStore.getBusinessHours.saturday_corto || businessHours.saturday_corto,
+            sunday_corto: configStore.getBusinessHours.sunday_corto || 'Cerrado'
         };
     }
     return businessHours;
@@ -246,17 +249,17 @@ const handleSubmit = async () => {
                         <h3 class="mb-4 text-xl font-medium">Horario de Atención</h3>
                         <div class="space-y-2">
                             <div class="flex justify-between">
-                                <span class="font-medium">{{ hours.weekdays.split(':')[0] }}:</span>
-                                <span>{{ hours.weekdays.split(':').slice(1).join(':').trim() }}</span>
+                                <span class="font-medium">{{ hours.weekdays?.split(':')[0] || '' }}:</span>
+                                <span>{{ hours.weekdays_corto }}</span>
                             </div>
                             <div class="flex justify-between">
-                                <span class="font-medium">{{ hours.saturday.split(':')[0] }}:</span>
-                                <span>{{ hours.saturday.split(':').slice(1).join(':').trim() }}</span>
+                                <span class="font-medium">{{ hours.saturday?.split(':')[0] || '' }}:</span>
+                                <span>{{ hours.saturday_corto }}</span>
                             </div>
-                            <div class="flex justify-between">
+                            <!-- <div class="flex justify-between">
                                 <span class="font-medium">Domingos:</span>
                                 <span>{{ hours.sunday || 'Cerrado' }}</span>
-                            </div>
+                            </div> -->
                         </div>
                     </div>
 

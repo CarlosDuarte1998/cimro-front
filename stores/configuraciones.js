@@ -50,7 +50,8 @@ export const useConfigStore = defineStore("config", {
                     this.businessHours = {
                         weekdays: this.configuraciones["configuraciones"].horario_semana || '',
                         saturday: this.configuraciones["configuraciones"].horario_sabado || '',
-                        sunday: this.configuraciones["configuraciones"].horario_domingo || 'Cerrado'
+                        weekdays_corto: this.configuraciones["configuraciones"].horario_semana_corto || '',
+                        saturday_corto: this.configuraciones["configuraciones"].horario_sabado_corto || ''
                     };
                     
                     this.loaded = true;

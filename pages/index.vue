@@ -174,7 +174,8 @@ const mainCategories = computed(() => {
                   <UIcon name="i-heroicons-clock" class="w-8 h-8 text-blue-600" />
                </div>
                <h3 class="mb-3 text-xl font-semibold text-gray-900">Resultados Rápidos</h3>
-               <p class="text-gray-600 text-sm leading-relaxed">Entregamos los resultados en el menor tiempo posible, con la opción de consulta en línea.</p>
+               <!-- <p class="text-gray-600 text-sm leading-relaxed">Entregamos los resultados en el menor tiempo posible, con la opción de consulta en línea.</p> -->
+               <p class="text-gray-600 text-sm leading-relaxed">Resultados en el menor tiempo posible y disponibles en tu expediente clínico en línea.</p>
             </div>
 
             <!-- Citas Flexibles -->
@@ -206,51 +207,94 @@ const mainCategories = computed(() => {
             <p class="mx-auto mt-4 max-w-[700px] text-gray-500">Ofrecemos múltiples opciones de pago para su comodidad y facilidad de acceso a nuestros servicios.</p>
          </div>
          
-         <div class="grid gap-8 grid-cols-1 md:grid-cols-3 max-w-4xl mx-auto">
+         <div class="grid gap-8 grid-cols-1 md:grid-cols-4 max-w-6xl mx-auto">
             <!-- Tasa 0 -->
-            <div class="flex flex-col items-center text-center p-8 bg-gradient-to-br from-green-50 to-green-100 rounded-xl shadow-sm hover:shadow-md transition-shadow duration-300 border border-green-200">
-               <div class="mb-6 w-20 h-20 rounded-full bg-green-500 flex items-center justify-center">
-                  <UIcon name="i-heroicons-percent-badge" class="w-10 h-10 text-white" />
-               </div>
-               <h3 class="mb-4 text-2xl font-bold text-green-700">Tasa 0%</h3>
-               <p class="text-gray-700 text-sm leading-relaxed mb-4">Financiamiento sin intereses para hacer más accesibles nuestros servicios médicos.</p>
-               <div class="mt-auto">
-                  <span class="inline-block px-4 py-2 bg-green-500 text-white text-sm font-medium rounded-full">
-                     Sin Intereses
-                  </span>
-               </div>
-            </div>
-
-            <!-- Tarjetas de Crédito y Débito -->
-            <div class="flex flex-col items-center text-center p-8 bg-gradient-to-br from-blue-50 to-blue-100 rounded-xl shadow-sm hover:shadow-md transition-shadow duration-300 border border-blue-200">
-               <div class="mb-6 w-20 h-20 rounded-full bg-blue-500 flex items-center justify-center">
-                  <UIcon name="i-heroicons-credit-card" class="w-10 h-10 text-white" />
-               </div>
-               <h3 class="mb-4 text-2xl font-bold text-blue-700">Tarjetas</h3>
-               <p class="text-gray-700 text-sm leading-relaxed mb-4">Aceptamos tarjetas de crédito y débito, tanto nacionales como internacionales.</p>
-               <div class="mt-auto flex flex-wrap justify-center gap-2">
-                  <span class="inline-block px-3 py-1 bg-blue-500 text-white text-xs font-medium rounded-full">
-                     Nacional
-                  </span>
-                  <span class="inline-block px-3 py-1 bg-blue-500 text-white text-xs font-medium rounded-full">
-                     Internacional
-                  </span>
+           <div class="group relative overflow-hidden rounded-2xl bg-[#001871] p-8 text-white shadow-lg hover:shadow-2xl transition-all duration-300 hover:scale-105 flex flex-col items-center text-center min-h-[24rem]">
+               <div class="relative z-10 flex flex-col flex-1 justify-center items-center">
+                  <div class="mb-6 w-20 h-20 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center">
+                     <UIcon name="i-heroicons-percent-badge" class="w-10 h-10 text-white" />
+                  </div>
+                  <h3 class="mb-4 text-2xl font-bold text-white">Tasa 0%</h3>
+                  <p class="text-white text-sm leading-relaxed mb-4">
+                     Financiamiento sin intereses para hacer más accesibles nuestros servicios médicos.
+                  </p>
+                  <div class="mt-auto">
+                     <span
+                        class="inline-block px-4 py-2 bg-white/20 backdrop-blur-sm text-white text-sm font-medium rounded-full">
+                        Sin Intereses
+                     </span>
+                  </div>
                </div>
             </div>
 
-            <!-- Cheque -->
-            <div class="flex flex-col items-center text-center p-8 bg-gradient-to-br from-purple-50 to-purple-100 rounded-xl shadow-sm hover:shadow-md transition-shadow duration-300 border border-purple-200">
-               <div class="mb-6 w-20 h-20 rounded-full bg-purple-500 flex items-center justify-center">
-                  <UIcon name="i-heroicons-document-text" class="w-10 h-10 text-white" />
-               </div>
-               <h3 class="mb-4 text-2xl font-bold text-purple-700">Cheque</h3>
-               <p class="text-gray-700 text-sm leading-relaxed mb-4">Pago tradicional con cheque para mayor seguridad y control de sus transacciones.</p>
-               <div class="mt-auto">
-                  <span class="inline-block px-4 py-2 bg-purple-500 text-white text-sm font-medium rounded-full">
-                     Seguro y Confiable
-                  </span>
+<!-- Tarjetas -->
+           <div class="group relative overflow-hidden rounded-2xl bg-[#307FE2] p-8 text-white shadow-lg hover:shadow-2xl transition-all duration-300 hover:scale-105 flex flex-col items-center text-center min-h-[24rem]">
+               <div class="relative z-10 flex flex-col flex-1 justify-center items-center">
+                  <div class="mb-6 w-20 h-20 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center">
+                     <UIcon name="i-heroicons-credit-card" class="w-10 h-10 text-white" />
+                  </div>
+                  <h3 class="mb-4 text-2xl font-bold text-white">Tarjetas</h3>
+                  <p class="text-white text-sm leading-relaxed mb-4">
+                     Aceptamos tarjetas de crédito y débito, tanto nacionales como internacionales.
+                  </p>
+                  <div class="mt-auto flex flex-wrap justify-center gap-2">
+                     <span
+                        class="inline-block px-3 py-1 bg-white/20 backdrop-blur-sm text-white text-xs font-medium rounded-full">
+                        Nacional
+                     </span>
+                     <span
+                        class="inline-block px-3 py-1 bg-white/20 backdrop-blur-sm text-white text-xs font-medium rounded-full">
+                        Internacional
+                     </span>
+                  </div>
                </div>
             </div>
+
+<!-- Cheque -->
+           <div class="group relative overflow-hidden rounded-2xl bg-[#6CACE4] p-8 text-white shadow-lg hover:shadow-2xl transition-all duration-300 hover:scale-105 flex flex-col items-center text-center min-h-[24rem]">
+               <div class="relative z-10 flex flex-col flex-1 justify-center items-center">
+                  <div class="mb-6 w-20 h-20 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center">
+                     <UIcon name="i-heroicons-document-text" class="w-10 h-10 text-white" />
+                  </div>
+                  <h3 class="mb-4 text-2xl font-bold text-white">Cheque</h3>
+                  <p class="text-white text-sm leading-relaxed mb-4">
+                     Pago tradicional con cheque para mayor seguridad y control de sus transacciones.
+                  </p>
+                  <div class="mt-auto">
+                     <span
+                        class="inline-block px-4 py-2 bg-white/20 backdrop-blur-sm text-white text-sm font-medium rounded-full">
+                        Seguro y Confiable
+                     </span>
+                  </div>
+               </div>
+            </div>
+
+
+            <!-- TRANSFERENCIAS -->
+           <div class="group relative overflow-hidden rounded-2xl bg-[#74D2E7] p-8 text-white shadow-lg hover:shadow-2xl transition-all duration-300 hover:scale-105 flex flex-col items-center text-center min-h-[24rem]">
+               <div class="relative z-10 flex flex-col flex-1 justify-center items-center">
+                  <div class="mb-6 w-20 h-20 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center">
+                     <UIcon name="solar:card-transfer-broken" class="w-10 h-10 text-white" />
+                  </div>
+                  <h3 class="mb-4 text-2xl font-bold text-white">
+                     Transferencias
+                  </h3>
+                  <p class="text-white text-sm leading-relaxed mb-4">
+                     Aceptamos transferencias bancarias nacionales e internacionales.
+                  </p>
+                  <div class="mt-auto">
+                     <span
+                        class="inline-block px-4 py-2 bg-white/20 backdrop-blur-sm text-white text-sm font-medium rounded-full">
+                        Seguro y Confiable
+                     </span>
+                  </div>
+               </div>
+               <div class="absolute top-0 right-0 w-32 h-32 bg-white/10 rounded-full -translate-y-16 translate-x-16">
+               </div>
+            </div>
+
+
+
          </div>
 
          <!-- Información adicional -->

@@ -3,20 +3,17 @@
         <div class="container px-4 md:px-6">
             <div class="mx-auto max-w-3xl text-center">
                 <h1 class="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">Quiénes Somos</h1>
-                <p class="mt-4 text-blue-100 md:text-xl">Conoce más sobre CIMRO, nuestro compromiso con la excelencia y
-                    nuestra trayectoria en el diagnóstico por imagen.</p>
+                    <p class="mt-4 text-blue-100 md:text-xl">{{ qs.descripcion }}</p>
             </div>
         </div>
     </section>
-
     <section class="py-16">
         <div class="container px-4 md:px-6 max-w-[1300px] mx-auto">
             <div class="grid gap-12 md:grid-cols-2">
                 <div>
                     <h2 class="mb-6 text-2xl font-bold tracking-tight text-gray-900 sm:text-4xl">Nuestra Historia</h2>
                     <div class="space-y-4 text-gray-600 text-lg">
-                        <p>Somos un Centro de Diagnóstico por Imágenes, conscientes de nuestra responsabilidad, hemos asumido la implementación de la mejor tecnología radiológica, conducida por expertos profesionales certificados. En la búsqueda de la excelencia para el servicio a nuestros clientes. Con la plena convicción de apoyar la Salud en toda la zona Occidental de El Salvador.
-                        </p>
+                        <div v-html="qs.getHistoriaHTML"></div>
                     </div>
                 </div>
                 <div class="flex items-center justify-center"><img alt="Instalaciones de CIMRO" loading="lazy"
@@ -31,15 +28,27 @@
             <div class="grid gap-8 md:grid-cols-3 text-lg">
                 <div class="rounded-lg bg-white p-6 shadow-sm">
                     <h3 class="mb-4 text-xl font-bold text-gray-900">Misión</h3>
-                    <p class="text-gray-600">Somos un centro de diagnóstico por imágenes en la rama de salud, que aprovechando al máximo las innovaciones tecnológicas y apoyados por profesionales certificados, bajo un modelo de atención humanizada, brindamos estudios confiables como soporte a diagnósticos médicos.</p>
+                    <p class="text-gray-600">{{qs.mision}} </p>
                 </div>
                 <div class="rounded-lg bg-white p-6 shadow-sm">
                     <h3 class="mb-4 text-xl font-bold text-gray-900">Visión</h3>
-                    <p class="text-gray-600">Ser el mejor centro de diagnóstico integral para el apoyo de la salud en el país, manteniéndonos a la vanguardia de la tecnología, innovando servicios para satisfacer las necesidades de nuestros clientes nacionales e internacionales.</p>
+                    <p class="text-gray-600">{{qs.vision}} </p>
                 </div>
                 <div class="rounded-lg bg-white p-6 shadow-sm">
                     <h3 class="mb-4 text-xl font-bold text-gray-900">Valores</h3>
                     <ul class="space-y-2 text-gray-600">
+                        <li v-for="(NombreValor, valor) in qs.valores" :key="valor" class="flex items-start gap-2">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round"
+                                class="lucide lucide-circle-check-big mt-0.5 h-5 w-5 shrink-0 text-blue-600">
+                                <path d="M21.801 10A10 10 0 1 1 17 3.335"></path>
+                                <path d="m9 11 3 3L22 4"></path>
+                            </svg>
+                            <span>{{ NombreValor }}</span>
+                        </li>
+                    </ul>
+                    <!-- <ul class="space-y-2 text-gray-600">
                         <li class="flex items-start gap-2"><svg xmlns="http://www.w3.org/2000/svg" width="24"
                                 height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
                                 stroke-linecap="round" stroke-linejoin="round"
@@ -75,7 +84,7 @@
                                 <path d="M21.801 10A10 10 0 1 1 17 3.335"></path>
                                 <path d="m9 11 3 3L22 4"></path>
                             </svg><span>Trabajo en equipo</span></li>
-                    </ul>
+                    </ul> -->
                 </div>
             </div>
         </div>
@@ -89,7 +98,25 @@
                     calificados y comprometidos con su salud.</p>
             </div>
             <div class="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
-                <div class="text-center">
+                <!-- INICIO DE PERSONAS -->
+                 <div v-for="(persona, index) in (qs.equipo as any[])" :key="index" class="text-center">
+                    <div class="mx-auto mb-4 h-40 w-40 overflow-hidden rounded-full">
+                        <img :alt="(persona as any).nombre" :src="(persona as any).perfil" loading="lazy"
+                            decoding="async" class="h-full w-full object-cover" style="color: transparent;" />
+                    </div>
+
+                    <h3 class="text-lg font-medium">
+                        {{ (persona as any).nombre }}
+                    </h3>
+                    <p class="text-sm text-gray-500">
+                        {{ (persona as any).puesto }}
+                    </p>
+                    <p class="mt-2 text-sm text-gray-600">
+                        {{ (persona as any).descripcion }}
+                    </p>
+                </div>
+                <!-- FIN DE PERSONAS -->
+                <!-- <div class="text-center">
                     <div class="mx-auto mb-4 h-40 w-40 overflow-hidden rounded-full">
                         <img alt="Dr. Roberto Martínez" loading="lazy" width="160" height="160" decoding="async" data-nimg="1"
                             class="h-full w-full object-cover" 
@@ -132,7 +159,7 @@
                     <h3 class="text-lg font-medium">Dra. Ana Sofía López</h3>
                     <p class="text-sm text-gray-500">Radióloga Ginecológica</p>
                     <p class="mt-2 text-sm text-gray-600">Especialista en Ultrasonidos Ginecológicos, Obstétricos y Mamografía Digital.</p>
-                </div>
+                </div> -->
             </div>
         </div>
     </section>
@@ -142,7 +169,41 @@
             <div class="mb-12 text-center">
                 <h2 class="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">Nuestras Instalaciones</h2>
             </div>
-            <div class="mb-12 text-center">
+            <!-- INICIO DE INSTALACIONES --> 
+            <div v-for="inst in instalaciones" :key="inst.id" class="mb-20">
+                <template v-for="(sucursal, index) in inst.sucursales" :key="sucursal.nombre">
+                    <!-- Nombre de sucursal -->
+                    <div class="mb-12 text-center mt-8">
+                        <h2 class="text-3xl font-bold tracking-tight text-gray-900 sm:text-2xl">
+                            {{ sucursal.nombre }}
+                        </h2>
+                        <p class="mx-auto mt-2 max-w-[700px] text-gray-500 text-sm">{{ sucursal.direccion }}</p>
+                    </div>
+                    <!-- Grid de imágenes -->
+                    <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+                        <div v-for="detalle in sucursal.detalles" :key="detalle.titulo">
+                            <img :alt="detalle.titulo" loading="lazy" width="400" height="250"
+                                class="mb-4 rounded-lg object-cover" :src="detalle.imagen_url || '/placeholder.svg'" />
+                            <h3 class="mb-2 text-lg font-medium">
+                                {{ detalle.titulo }}
+                            </h3>
+                            <p class="text-gray-600">
+                                {{ detalle.descripcion }}
+                            </p>
+                        </div>
+                    </div>
+
+                    
+
+                </template>
+
+            </div>
+
+
+
+            <!-- FIN DE INSTALACIONES -->
+
+            <!-- <div class="mb-12 text-center">
                 <h2 class="text-3xl font-bold tracking-tight text-gray-900 sm:text-2xl">Santa Ana</h2>
                 <p class="mx-auto mt-2 max-w-[700px] text-gray-500 text-sm">5A Avenida Sur, entre 25 y 27 calle oriente, Urb San Miguelito, Santa Ana.</p>
             </div>
@@ -165,8 +226,8 @@
                     <h3 class="mb-2 text-lg font-medium">Parqueo</h3>
                     <p class="text-gray-600">Contamos con un amplio parqueo para tu vehículo.</p>
                 </div>
-            </div>
-            <div class="mb-12 mt-5 text-center">
+            </div> -->
+            <!-- <div class="mb-12 mt-5 text-center">
                 <h2 class="text-3xl font-bold tracking-tight text-gray-900 sm:text-2xl">Sonsonate</h2>
                 <p class="mx-auto mt-2 max-w-[700px] text-gray-500 text-sm">Hospital Especializado Fray Flavián Mucci, Km. 63 Carretera de San Salvador a Sonsonate, Sonzacate, Sonsonate, El Salvador</p>
             </div>
@@ -190,7 +251,7 @@
                     <h3 class="mb-2 text-lg font-medium">Parqueo</h3>
                     <p class="text-gray-600">Contamos con un amplio parqueo para tu vehículo.</p>
                 </div>
-            </div>
+            </div> -->
         </div>
     </section>
 
@@ -201,6 +262,30 @@
 
 <script setup lang="ts">
 const { corporateInfo, getKeywordsString, generateDescription } = useCIMROSEO();
+const { fetchInstalaciones, processInstalacion } = useInstalaciones();
+// Estado para instalaciones
+const instalaciones = ref<any[]>([]);
+const loadingInstalaciones = ref(true);
+// Cargar instalaciones
+onMounted(async () => {
+    try {
+        const rawInstalaciones = await fetchInstalaciones();
+
+        // Procesar cada instalación para obtener URLs de imágenes
+        const processed = await Promise.all(
+            rawInstalaciones.map(inst => processInstalacion(inst))
+        );
+
+        instalaciones.value = processed;
+
+        // Guardar en estado global para uso en páginas de detalle
+        useState('allInstalaciones', () => processed);
+    } catch (error) {
+        console.error('Error loading instalaciones:', error);
+    } finally {
+        loadingInstalaciones.value = false;
+    }
+});
 
 // SEO optimizado para página "Quiénes Somos"
 useSeoMeta({
@@ -242,5 +327,12 @@ useHead({
       })
     }
   ]
+});
+import { useQuienesStore } from '~/stores/quienes';
+
+const qs = useQuienesStore();
+
+onMounted(async () => {
+  await qs.fetchquienesSomos();
 });
 </script>
