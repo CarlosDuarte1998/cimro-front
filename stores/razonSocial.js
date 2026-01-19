@@ -12,7 +12,7 @@ export const useRazonSocialStore = defineStore('razonSocial', {
       totalPosts: 0,
       postsPerPage: 10
     },
-    API_BASE_URL: useRuntimeConfig().public.API_BASE_URL + '/v2',
+    API_BASE_URL: useRuntimeConfig().public.API_BASE_URL + '/wp/v2',
   }),
 
   getters: {
