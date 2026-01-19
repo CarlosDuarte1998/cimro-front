@@ -1,4 +1,4 @@
-import { defineStore } from 'pinia'
+  import { defineStore } from 'pinia'
 
 export const useCategoriesStore = defineStore('categories', {
   state: () => ({
@@ -6,7 +6,7 @@ export const useCategoriesStore = defineStore('categories', {
     categories: [],
     selectedCategory: null,
     error: null,
-    API_BASE_URL: useRuntimeConfig().public.API_BASE_URL+ '/wp/v2',
+    API_BASE_URL: useRuntimeConfig().public.API_BASE_URL+ '/v2',
   }),
 
   getters: {

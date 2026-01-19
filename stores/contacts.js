@@ -13,7 +13,7 @@ export const useContactStore = defineStore("contact", {
         async submitContactForm(data) {
             this.isLoading = true;
             try {
-                const response = await axios.post(`${this.API_BASE_URL}/wp/v1/submit-form`, data);
+                const response = await axios.post(`${this.API_BASE_URL}/v1/submit-form`, data);
                 this.contacts = response.data;
                 return response.data;
             } catch (error) {

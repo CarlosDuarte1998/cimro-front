@@ -28,7 +28,9 @@ export const useConfigStore = defineStore("config", {
                 this.error = null;
                 
                 try {
-                    const response = await axios.get(`${this.URL_CONFIG}/acf/v3/opciones`);
+                    //const response = await axios.get(`${this.URL_CONFIG}/acf/v3/opciones`);
+                    const response = await axios.get(`https://admin-cimro.gunssoft.tech/wp-json/acf/v3/opciones`);
+
                     this.configuraciones = response.data;
 
                     this.bannerMain = this.configuraciones["configuraciones"].bannerMain || [];

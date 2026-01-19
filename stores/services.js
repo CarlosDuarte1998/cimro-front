@@ -17,7 +17,7 @@ export const useServicesStore = defineStore("services", {
      
         async getAllServices() {
             try {
-                const response = await axios.get(`${this.API_BASE_URL}/wp/v2/servicios?_embed`);
+                const response = await axios.get(`${this.API_BASE_URL}/v2/servicios?_embed`);
                 this.allServices = response.data;
             } catch (error) {
                 console.error('Error fetching all services:', error);
@@ -26,7 +26,7 @@ export const useServicesStore = defineStore("services", {
 
         async getServiceBySlug(slug){
             try {
-                const response = await axios.get(`${this.API_BASE_URL}/wp/v2/servicio/${slug}?_embed`);
+                const response = await axios.get(`${this.API_BASE_URL}/v2/servicio/${slug}?_embed`);
                 this.services = response.data;
                 this.shortDetails = response.data.acf?.detalles?.info_short || {};
                 this.longDetails = response.data.acf?.detalles?.info_long || {};
@@ -53,7 +53,7 @@ export const useServicesStore = defineStore("services", {
 
         async getServiceById(id){
             try {
-                const response = await axios.get(`${this.API_BASE_URL}/wp/v2/servicio/${id}?_embed`);
+                const response = await axios.get(`${this.API_BASE_URL}/v2/servicio/${id}?_embed`);
                 
                 this.services = response.data;
                 this.shortDetails = response.data.acf?.detalles?.info_short || {};
