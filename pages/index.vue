@@ -175,7 +175,7 @@ const mainCategories = computed(() => {
                </div>
                <h3 class="mb-3 text-xl font-semibold text-gray-900">Resultados Rápidos</h3>
                <!-- <p class="text-gray-600 text-sm leading-relaxed">Entregamos los resultados en el menor tiempo posible, con la opción de consulta en línea.</p> -->
-               <p class="text-gray-600 text-sm leading-relaxed">Resultados en el menor tiempo posible y disponibles en tu expediente clínico en línea.</p>
+               <p class="text-gray-600 text-sm leading-relaxed"> Resultados en el menor tiempo posible y disponibles en tu expediente clínico en línea.</p>
             </div>
 
             <!-- Citas Flexibles -->
