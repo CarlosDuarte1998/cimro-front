@@ -5,7 +5,7 @@
       <div class="container px-4 md:px-6 max-w-[800px] mx-auto">
         <div class="text-center">
           <div class="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-900 mx-auto"></div>
-          <p class="mt-4 text-gray-600">Cargando noticia...</p>
+          <p class="mt-4 text-gray-600">Cargando información...</p>
         </div>
       </div>
     </section>
@@ -15,13 +15,13 @@
       <div class="container px-4 md:px-6 max-w-[800px] mx-auto">
         <div class="text-center">
           <div class="bg-red-50 border border-red-200 rounded-lg p-6">
-            <h1 class="text-2xl font-bold text-red-800 mb-2">Noticia no encontrada</h1>
-            <p class="text-red-600 mb-4">La noticia que buscas no existe o ha sido eliminada.</p>
+            <h1 class="text-2xl font-bold text-red-800 mb-2">Información no encontrada</h1>
+            <p class="text-red-600 mb-4">La información que buscas no existe o ha sido eliminada.</p>
             <NuxtLink 
-              to="/noticias"
+              to="/razon-social"
               class="bg-blue-900 text-white px-4 py-2 rounded-lg hover:bg-blue-800 transition-colors"
             >
-              Ver todas las noticias
+              Ver toda la información
             </NuxtLink>
           </div>
         </div>
@@ -268,7 +268,7 @@ const route = useRoute()
 const { slug } = route.params
 
 // Store
-const postsStore = usePostsStore()
+const razonSocialStore = useRazonSocialStore()
 
 // Reactive state
 const post = ref(null)
@@ -277,9 +277,9 @@ const pending = ref(true)
 const copied = ref(false)
 
 // Fetch post data
-const { data, error: fetchError } = await useLazyAsyncData(`post-${slug}`, async () => {
+const { data, error: fetchError } = await useLazyAsyncData(`razon-social-post-${slug}`, async () => {
   try {
-    return await postsStore.fetchPostBySlug(slug)
+    return await razonSocialStore.fetchPostBySlug(slug)
   } catch (err) {
     throw err
   }
@@ -299,7 +299,7 @@ watchEffect(() => {
 
 // Computed properties
 const breadcrumbItems = computed(() => [
-  { label: 'Noticias', to: '/noticias' },
+  { label: 'Razón Social', to: '/razon-social' },
   { label: post.value?.title || 'Cargando...' }
 ])
 
@@ -312,7 +312,7 @@ const shareUrls = computed(() => {
   if (!post.value) return {}
   
   const baseUrl = useRuntimeConfig().public.SITE_URL || 'https://cimro.com.sv'
-  const currentUrl = `${baseUrl}/noticias/${post.value.slug}`
+  const currentUrl = `${baseUrl}/razon-social/${post.value.slug}`
   return generateShareUrls(post.value, currentUrl)
 })
 
@@ -324,7 +324,7 @@ const relatedPosts = computed(() => {
 // Methods
 const handleCopyToClipboard = async () => {
   const baseUrl = useRuntimeConfig().public.SITE_URL || 'https://cimro.com.sv'
-  const currentUrl = `${baseUrl}/noticias/${post.value.slug}`
+  const currentUrl = `${baseUrl}/razon-social/${post.value.slug}`
   const success = await copyToClipboard(currentUrl)
   
   if (success) {
@@ -345,7 +345,7 @@ if (post.value) {
 if (error.value) {
   throw createError({
     statusCode: 404,
-    statusMessage: 'Noticia no encontrada'
+    statusMessage: 'Información de razón social no encontrada'
   })
 }
 </script>

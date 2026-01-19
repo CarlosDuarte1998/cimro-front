@@ -4,31 +4,31 @@
     <section class="bg-blue-900 py-16 text-white">
       <div class="container px-4 md:px-6">
         <div class="mx-auto max-w-3xl text-center">
-          <h1 class="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">Noticias y Novedades</h1>
+          <h1 class="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">Razón Social</h1>
           <p class="mt-4 text-blue-100 md:text-xl">
-            Mantente informado sobre las últimas novedades, eventos y avances en CIMRO.
+            Información corporativa, políticas y documentación oficial de CIMRO.
           </p>
         </div>
       </div>
     </section>
 
     <!-- Loading State -->
-    <section v-if="postsStore.isLoading && !postsStore.hasPosts" class="py-16">
+    <section v-if="razonSocialStore.isLoading && !razonSocialStore.hasPosts" class="py-16">
       <div class="container px-4 md:px-6 max-w-[1300px] mx-auto">
         <div class="text-center">
           <div class="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-900 mx-auto"></div>
-          <p class="mt-4 text-gray-600">Cargando noticias...</p>
+          <p class="mt-4 text-gray-600">Cargando información de razón social...</p>
         </div>
       </div>
     </section>
 
     <!-- Error State -->
-    <section v-else-if="postsStore.error" class="py-16">
+    <section v-else-if="razonSocialStore.error" class="py-16">
       <div class="container px-4 md:px-6 max-w-[1300px] mx-auto">
         <div class="text-center">
           <div class="bg-red-50 border border-red-200 rounded-lg p-6">
-            <h3 class="text-lg font-medium text-red-800 mb-2">Error al cargar las noticias</h3>
-            <p class="text-red-600 mb-4">{{ postsStore.error }}</p>
+            <h3 class="text-lg font-medium text-red-800 mb-2">Error al cargar la información</h3>
+            <p class="text-red-600 mb-4">{{ razonSocialStore.error }}</p>
             <button 
               @click="loadPosts"
               class="bg-red-600 text-white px-4 py-2 rounded-lg hover:bg-red-700 transition-colors"
@@ -41,7 +41,7 @@
     </section>
 
     <!-- Posts Content -->
-    <section v-if="!postsStore.isLoading || postsStore.hasPosts" class="py-16">
+    <section v-if="!razonSocialStore.isLoading || razonSocialStore.hasPosts" class="py-16">
       <div class="container px-4 md:px-6 max-w-[1300px] mx-auto">
         <!-- Search Bar -->
         <div class="mb-8">
@@ -50,7 +50,7 @@
               v-model="searchTerm"
               @input="handleSearch"
               type="text"
-              placeholder="Buscar noticias..."
+              placeholder="Buscar información de razón social..."
               class="w-full px-4 py-2 pl-10 pr-4 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
             >
             <svg 
@@ -65,11 +65,11 @@
         </div>
 
         <!-- Content based on state -->
-        <div v-if="postsStore.hasPosts">
+        <div v-if="razonSocialStore.hasPosts">
           <!-- Posts Grid -->
           <div class="mb-8">
             <h2 class="text-2xl font-bold tracking-tight text-gray-900 sm:text-3xl">
-              {{ searchTerm ? `Resultados para "${searchTerm}"` : 'Todas las Noticias' }}
+              {{ searchTerm ? `Resultados para "${searchTerm}"` : 'Información de Razón Social' }}
             </h2>
             <div class="h-[1px] w-full bg-gray-200 mt-4"></div>
           </div>
@@ -92,14 +92,14 @@
             </svg>
             <h3 class="mt-4 text-lg font-medium text-gray-900">No se encontraron resultados</h3>
             <p class="mt-2 text-gray-500">
-              No encontramos noticias que coincidan con tu búsqueda "{{ searchTerm }}". 
+              No encontramos información de razón social que coincida con tu búsqueda "{{ searchTerm }}". 
               Intenta con otros términos.
             </p>
             <button 
               @click="clearSearch"
               class="mt-4 bg-blue-900 text-white px-4 py-2 rounded-lg hover:bg-blue-800 transition-colors"
             >
-              Ver todas las noticias
+              Ver toda la información
             </button>
           </div>
         </div>
@@ -114,9 +114,9 @@
           <svg class="mx-auto h-12 w-12 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3H9M7 16h6M7 8h6v4H7V8z"></path>
           </svg>
-          <h3 class="mt-4 text-lg font-medium text-gray-900">No hay noticias disponibles</h3>
+          <h3 class="mt-4 text-lg font-medium text-gray-900">No hay información de razón social disponible</h3>
           <p class="mt-2 text-gray-500">
-            Pronto agregaremos noticias y actualizaciones. Vuelve a visitarnos.
+            Pronto agregaremos información corporativa y documentación oficial. Vuelve a visitarnos.
           </p>
         </div>
       </div>
@@ -130,13 +130,13 @@ const { formatDate, cleanExcerpt } = usePosts()
 
 // SEO y meta
 useCIMROSEO({
-  title: 'Noticias y Novedades',
-  description: 'Mantente informado sobre las últimas novedades, eventos y avances en CIMRO. Descubre nuestras noticias más recientes.',
-  keywords: 'CIMRO noticias, novedades, eventos, diagnóstico por imagen, actualidades médicas'
+  title: 'Razón Social - CIMRO',
+  description: 'Información corporativa, políticas y documentación oficial de CIMRO. Conoce nuestra estructura organizacional y documentos legales.',
+  keywords: 'CIMRO razón social, información corporativa, políticas empresariales, documentación legal, estructura organizacional'
 })
 
 // Stores
-const postsStore = usePostsStore()
+const razonSocialStore = useRazonSocialStore()
 
 // Estado reactivo
 const searchTerm = ref('')
@@ -145,18 +145,18 @@ const searchTimeout = ref(null)
 // Computed properties
 const displayedPosts = computed(() => {
   if (searchTerm.value) {
-    return postsStore.allPosts
+    return razonSocialStore.allPosts
   }
-  // Mostrar todos los posts sin excluir ninguno
-  return postsStore.postsByDate
+  // Mostrar todos los posts de razón social ordenados por fecha
+  return razonSocialStore.postsByDate
 })
 
 // Métodos
 const loadPosts = async () => {
   try {
-    await postsStore.fetchPosts(1, 100) // Cargar todos los posts sin paginación
+    await razonSocialStore.fetchRazonSocialPosts(1, 100) // Cargar posts de razón social
   } catch (error) {
-    console.error('Error loading posts:', error)
+    console.error('Error loading razon social posts:', error)
   }
 }
 
@@ -168,9 +168,9 @@ const handleSearch = () => {
   searchTimeout.value = setTimeout(async () => {
     if (searchTerm.value.trim()) {
       try {
-        await postsStore.searchPosts(searchTerm.value.trim())
+        await razonSocialStore.searchPosts(searchTerm.value.trim())
       } catch (error) {
-        console.error('Error searching posts:', error)
+        console.error('Error searching razon social posts:', error)
       }
     } else {
       await loadPosts()
