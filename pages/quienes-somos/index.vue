@@ -97,7 +97,7 @@
                 <p class="mx-auto mt-4 max-w-[700px] text-gray-500">Contamos con un equipo de profesionales altamente
                     calificados y comprometidos con su salud.</p>
             </div>
-            <div class="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
+            <div class="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
                 <!-- INICIO DE PERSONAS -->
                  <div v-for="(persona, index) in (qs.equipo as any[])" :key="index" class="text-center">
                     <div class="mx-auto mb-4 h-40 w-40 overflow-hidden rounded-full">
